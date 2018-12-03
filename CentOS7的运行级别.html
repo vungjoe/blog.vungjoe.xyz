@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
 <meta property="og:description" content="CentOS7取消了运行级别这一说，之所以还保留只是为了平滑过渡（by 铭哥）。就像用systemctl代替了service和chkconfig，但仍然保留这两个命令一样（后面是我自己加的）。如果非要说7有几个运行级别，那就是5个（234都是multi-user）。  一、CentOS7有哪些运行级别可以使用ll /usr/lib/systemd/system/runlevel*target命令">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-03T14:49:03.182Z">
+<meta property="og:updated_time" content="2018-12-03T14:58:18.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7的运行级别">
 <meta name="twitter:description" content="CentOS7取消了运行级别这一说，之所以还保留只是为了平滑过渡（by 铭哥）。就像用systemctl代替了service和chkconfig，但仍然保留这两个命令一样（后面是我自己加的）。如果非要说7有几个运行级别，那就是5个（234都是multi-user）。  一、CentOS7有哪些运行级别可以使用ll /usr/lib/systemd/system/runlevel*target命令">
@@ -393,7 +393,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-03 22:49:03" itemprop="dateModified" datetime="2018-12-03T22:49:03+08:00">2018-12-03</time>
+                <time title="修改时间：2018-12-03 22:58:18" itemprop="dateModified" datetime="2018-12-03T22:58:18+08:00">2018-12-03</time>
               
             
           </span>
@@ -429,6 +429,7 @@
 </blockquote>
 <h1 id="一、CentOS7有哪些运行级别"><a href="#一、CentOS7有哪些运行级别" class="headerlink" title="一、CentOS7有哪些运行级别"></a>一、CentOS7有哪些运行级别</h1><p>可以使用<code>ll /usr/lib/systemd/system/runlevel*target</code>命令来查看CentOS7 中的运行级别有哪些：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lrwxrwxrwx. 1 root root 15 May 24 09:49 /usr/lib/systemd/system/runlevel0.target -&gt; poweroff.target</span><br><span class="line">lrwxrwxrwx. 1 root root 13 May 24 09:49 /usr/lib/systemd/system/runlevel1.target -&gt; rescue.target</span><br><span class="line">lrwxrwxrwx. 1 root root 17 May 24 09:49 /usr/lib/systemd/system/runlevel2.target -&gt; multi-user.target</span><br><span class="line">lrwxrwxrwx. 1 root root 17 May 24 09:49 /usr/lib/systemd/system/runlevel3.target -&gt; multi-user.target</span><br><span class="line">lrwxrwxrwx. 1 root root 17 May 24 09:49 /usr/lib/systemd/system/runlevel4.target -&gt; multi-user.target</span><br><span class="line">lrwxrwxrwx. 1 root root 16 May 24 09:49 /usr/lib/systemd/system/runlevel5.target -&gt; graphical.target</span><br><span class="line">lrwxrwxrwx. 1 root root 13 May 24 09:49 /usr/lib/systemd/system/runlevel6.target -&gt; reboot.target</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>运行级别0~6：</p>
 <ul>
 <li>0对应poweroff，关机</li>
