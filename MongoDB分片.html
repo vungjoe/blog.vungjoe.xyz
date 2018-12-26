@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、概念分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。 基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。 通过一个名为mongos的路由进程进行操作，mongos知道数据和片的对应关系（通过配置服务器）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB分片">
+<meta property="og:url" content="https://blog.vungjoe.xyz/MongoDB分片.html">
+<meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
+<meta property="og:description" content="一、概念分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。 基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。 通过一个名为mongos的路由进程进行操作，mongos知道数据和片的对应关系（通过配置服务器）。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2018/12/26/5c23a2b8c186c.png">
+<meta property="og:updated_time" content="2018-10-23T11:21:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB分片">
+<meta name="twitter:description" content="一、概念分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。 基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。 通过一个名为mongos的路由进程进行操作，mongos知道数据和片的对应关系（通过配置服务器）。">
+<meta name="twitter:image" content="https://i.loli.net/2018/12/26/5c23a2b8c186c.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.vungjoe.xyz/MongoDB分片.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MongoDB分片 | VUNGJOE'S BLOG</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119042139-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-119042139-1');
+</script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">VUNGJOE'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/MongoDB分片.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MongoDB分片
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-23 00:47:11 / 修改时间：19:21:11" itemprop="dateCreated datePublished" datetime="2018-10-23T00:47:11+08:00">2018-10-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux-运维高阶/" itemprop="url" rel="index"><span itemprop="name">Linux 运维高阶</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux-运维高阶/MongoDB/" itemprop="url" rel="index"><span itemprop="name">MongoDB</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h1><p>分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。</p>
+<p>基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。</p>
+<p>通过一个名为mongos的路由进程进行操作，mongos知道数据和片的对应关系（通过配置服务器）。</p>
+<h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><p><img src="https://i.loli.net/2018/12/26/5c23a2b8c186c.png" alt="1541867546052_110.png"></p>
+<ul>
+<li>mongos: <strong>数据库集群请求的入口</strong>，所有的请求都通过mongos进行协调，不需要在应用程序添加一个路由选择器，mongos自己就是一个请求分发中心，它负责把对应的数据请求请求转发到对应的shard服务器上。在生产环境通常有多mongos作为请求的入口，防止其中一个挂掉所有的mongodb请求都没有办法操作。</li>
+<li>config server:配置服务器，存储所有数据库元信息（路由、分片）的配置。mongos本身没有物理存储分片服务器和数据路由信息，只是<strong>缓存在内存里</strong>，配置服务器则实际存储这些数据。mongos第一次启动或者关掉重启就会从 config server 加载配置信息，以后如果配置服务器信息变化会通知到所有的 mongos 更新自己的状态，这样mongos就能继续准确路由。在生产环境通常有多个 config server配置服务器，因为它存储了分片路由的元数据，防止数据丢失！</li>
+<li>shard: 存储了一个集合部分数据的MongoDB实例，每个分片是单独的mongodb服务或者副本集，在生产环境中，<strong>所有的分片都应该是副本集</strong>。</li>
+</ul>
+<h1 id="二、搭建"><a href="#二、搭建" class="headerlink" title="二、搭建"></a>二、搭建</h1><p>需要三台服务器，三台服务器均跑5个服务：</p>
+<ul>
+<li>mongos一个，端口20000</li>
+<li>config一个，端口21000</li>
+<li>副本集三个，端口27001、27002、27003</li>
+<li>三台服务器均关闭SELinux，清空iptables规则或放行相应端口。</li>
+</ul>
+<h2 id="2-1-创建需要的目录"><a href="#2-1-创建需要的目录" class="headerlink" title="2.1 创建需要的目录"></a>2.1 创建需要的目录</h2><p>在三台服务器均需执行下面的几条命令，创建后面的所需目录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/mongodb/mongos/log</span><br><span class="line">mkdir -p /data/mongodb/config/&#123;data,log&#125;</span><br><span class="line">mkdir -p /data/mongodb/shard1/&#123;data,log&#125;</span><br><span class="line">mkdir -p /data/mongodb/shard2/&#123;data,log&#125;</span><br><span class="line">mkdir -p /data/mongodb/shard3/&#123;data,log&#125;</span><br><span class="line">mkdir /etc/mongod</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-配置config-server"><a href="#2-2-配置config-server" class="headerlink" title="2.2 配置config server"></a>2.2 配置config server</h2><h3 id="2-2-1-创建配置文件"><a href="#2-2-1-创建配置文件" class="headerlink" title="2.2.1 创建配置文件"></a>2.2.1 创建配置文件</h3><p>创建配置文件<code>/etc/mongod/config.conf</code>，写入以下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pidfilepath = /var/run/mongodb/configsrv.pid</span><br><span class="line">dbpath = /data/mongodb/config/data</span><br><span class="line">logpath = /data/mongodb/config/log/congigsrv.log</span><br><span class="line">logappend = true</span><br><span class="line">bind_ip = 192.168.123.118</span><br><span class="line">port = 21000</span><br><span class="line">fork = true</span><br><span class="line">configsvr = true #declare this is a config db of a cluster;</span><br><span class="line">replSet=configs #副本集名称</span><br><span class="line">maxConns=20000 #设置最大连接数</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li>三台服务器均需要创建上述配置文件</li>
+<li><code>bind_ip</code>需要<strong>修改为服务器对应的IP</strong>。如果不想改，可以写成0.0.0.0（不安全，不建议），这样三台服务器都无需修改。</li>
+<li>配置文件在三台服务器之间传输，可以使用scp，也可以使用expect等工具。</li>
+</ul>
+<h3 id="2-2-2-启动config-server"><a href="#2-2-2-启动config-server" class="headerlink" title="2.2.2 启动config server"></a>2.2.2 启动config server</h3><p>启动config：<code>mongod -f /etc/mongod/config.conf</code></p>
+<p>检查服务是否启动：<code>ps aux|grep mongo</code>，<br>检查端口是否启动：<code>netstat -ltnp|grep mongo</code></p>
+<h3 id="2-2-3-初始化mongos副本集"><a href="#2-2-3-初始化mongos副本集" class="headerlink" title="2.2.3 初始化mongos副本集"></a>2.2.3 初始化mongos副本集</h3><p>登录任意一台机器的21000端口，初始化副本集<br>登陆mongos，<code>mongo --port 21000</code>，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config = &#123; _id: &quot;configs&quot;, members: [ &#123;_id : 0, host : &quot;192.168.123.128:21000&quot;&#125;,&#123;_id : 1, host : &quot;192.168.123.118:21000&quot;&#125;,&#123;_id : 2, host : &quot;192.168.123.132:21000&quot;&#125;] &#125;</span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-配置sharding"><a href="#2-3-配置sharding" class="headerlink" title="2.3 配置sharding"></a>2.3 配置sharding</h2><p>创建三个分片（分布在三台服务器上），每个分片均由一个primary和两个secondary组成。</p>
+<h3 id="2-3-1-创建配置文件"><a href="#2-3-1-创建配置文件" class="headerlink" title="2.3.1 创建配置文件"></a>2.3.1 创建配置文件</h3><p>创建配置文件<code>/etc/mongodb/shard1.conf</code>，加入如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pidfilepath = /var/run/mongodb/shard1.pid</span><br><span class="line">dbpath = /data/mongodb/shard1/data</span><br><span class="line">logpath = /data/mongodb/shard1/log/shard1.log</span><br><span class="line">logappend = true</span><br><span class="line">bind_ip = 192.168.123.118</span><br><span class="line">port = 27001</span><br><span class="line">fork = true</span><br><span class="line">httpinterface=true #打开web监控</span><br><span class="line">rest=true</span><br><span class="line">replSet=shard1 #副本集名称</span><br><span class="line">shardsvr = true #declare this is a shard db of a cluster;</span><br><span class="line">maxConns=20000 #设置最大连接数</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pidfilepath = /var/run/mongodb/shard2.pid</span><br><span class="line">dbpath = /data/mongodb/shard2/data</span><br><span class="line">logpath = /data/mongodb/shard2/log/shard2.log</span><br><span class="line">logappend = true</span><br><span class="line">bind_ip = 192.168.123.118</span><br><span class="line">port = 27002</span><br><span class="line">fork = true</span><br><span class="line">httpinterface=true #打开web监控</span><br><span class="line">rest=true</span><br><span class="line">replSet=shard1 #副本集名称</span><br><span class="line">shardsvr = true #declare this is a shard db of a cluster;</span><br><span class="line">maxConns=20000 #设置最大连接数</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pidfilepath = /var/run/mongodb/shard3.pid</span><br><span class="line">dbpath = /data/mongodb/shard3/data</span><br><span class="line">logpath = /data/mongodb/shard3/log/shard3.log</span><br><span class="line">logappend = true</span><br><span class="line">bind_ip = 192.168.123.118</span><br><span class="line">port = 27003</span><br><span class="line">fork = true</span><br><span class="line">httpinterface=true #打开web监控</span><br><span class="line">rest=true</span><br><span class="line">replSet=shard1 #副本集名称</span><br><span class="line">shardsvr = true #declare this is a shard db of a cluster;</span><br><span class="line">maxConns=20000 #设置最大连接数</span><br></pre></td></tr></table></figure>
+<p>启动shard1</p>
+<p><code>mongod -f /etc/mongod/shard1.conf</code> //三台机器都要操作</p>
+<p>登录130或者132任何一台机器的27001端口初始化副本集，133之所以不行，是因为shard1我们把133这台机器的27001端口作为了仲裁节点</p>
+<p><code>mongo --port 27001</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line">config = &#123; _id: &quot;shard1&quot;, members: [ &#123;_id : 0, host : &quot;192.168.123.118:27001&quot;&#125;, &#123;_id: 1,host : &quot;192.168.123.128:27001&quot;&#125;,&#123;_id : 2, host : &quot;192.168.123.132:27001&quot;,arbiterOnly:true&#125;] &#125;</span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<p>启动shard2</p>
+<p><code>mongod -f /etc/mongod/shard2.conf</code> //三台机器都要操作</p>
+<p>登录128或者132任何一台机器的27002端口初始化副本集，118之所以不行，是因为shard2我们把118这台机器的27002端口作为了仲裁节点</p>
+<p><code>mongo --port 27002</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line">config = &#123; _id: &quot;shard1&quot;, members: [ &#123;_id : 0, host : &quot;192.168.123.118:27002&quot;&#125;, &#123;_id: 1,host : &quot;192.168.123.128:27002&quot;&#125;,&#123;_id : 2, host : &quot;192.168.123.132:27002&quot;,arbiterOnly:true&#125;] &#125;</span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<p>启动shard3</p>
+<p><code>mongod -f /etc/mongod/shard3.conf</code> //三台机器都要操作</p>
+<p>登录128或者132任何一台机器的27001端口初始化副本集，118之所以不行，是因为shard3我们把118这台机器的27003端口作为了仲裁节点</p>
+<p><code>mongo --port 27003</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line">config = &#123; _id: &quot;shard1&quot;, members: [ &#123;_id : 0, host : &quot;192.168.123.118:27003&quot;&#125;, &#123;_id: 1,host : &quot;192.168.123.128:27003&quot;&#125;,&#123;_id : 2, host : &quot;192.168.123.132:27003&quot;,arbiterOnly:true&#125;] &#125;</span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
+<p>添加配置文件(三台机器都操作)</p>
+<p><code>vim /etc/mongod/mongos.conf</code>，加入如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pidfilepath = /var/run/mongodb/mongos.pid</span><br><span class="line">logpath = /data/mongodb/mongos/log/mongos.log</span><br><span class="line">logappend = true</span><br><span class="line">bind_ip = 0.0.0.0</span><br><span class="line">port = 20000</span><br><span class="line">fork = true</span><br><span class="line">configdb = configs/192.168.133.130:21000, 192.168.133.132:21000, 192.168.133.133:21000 #监听的配置服务器,只能有1个或者3个，configs为配置服务器的副本集名字</span><br><span class="line">maxConns=20000 #设置最大连接数</span><br></pre></td></tr></table></figure>
+<p>启动mongos服务，注意命令，前面都是mongod，这里是mongos</p>
+<p><code>mongos -f /etc/mongod/mongos.conf</code></p>
+<h2 id="2-4-配置路由服务器"><a href="#2-4-配置路由服务器" class="headerlink" title="2.4 配置路由服务器"></a>2.4 配置路由服务器</h2><h3 id="2-4-1-创建配置文件"><a href="#2-4-1-创建配置文件" class="headerlink" title="2.4.1 创建配置文件"></a>2.4.1 创建配置文件</h3><p>三台服务器均需创建：</p>
+<h3 id="2-4-2-启用分片"><a href="#2-4-2-启用分片" class="headerlink" title="2.4.2 启用分片"></a>2.4.2 启用分片</h3><h1 id="三、分片测试"><a href="#三、分片测试" class="headerlink" title="三、分片测试"></a>三、分片测试</h1><hr>
+<p>参考文档：</p>
+<ol>
+<li>MongoDB 分片的原理、搭建、应用：<a href="http://www.cnblogs.com/zhoujinyi/p/4635444.html" target="_blank" rel="noopener">http://www.cnblogs.com/zhoujinyi/p/4635444.html</a></li>
+<li>Sharding：<a href="https://docs.mongodb.com/manual/sharding/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/sharding/</a></li>
+<li>mongodb 3.4 集群搭建：分片+副本集：<a href="http://www.ityouknow.com/mongodb/2017/08/05/mongodb-cluster-setup.html" target="_blank" rel="noopener">http://www.ityouknow.com/mongodb/2017/08/05/mongodb-cluster-setup.html</a></li>
+<li>搭建高可用mongodb集群（四）—— 分片：<a href="http://www.lanceyan.com/tech/arch/mongodb_shard1.html" target="_blank" rel="noopener">http://www.lanceyan.com/tech/arch/mongodb_shard1.html</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/删除数据目录导致MongoDB无法启动的解决办法.html" rel="next" title="删除数据目录导致MongoDB无法启动的解决办法">
+                <i class="fa fa-chevron-left"></i> 删除数据目录导致MongoDB无法启动的解决办法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/No-module-named-win32api.html" rel="prev" title="No module named win32api">
+                No module named win32api <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">vungjoe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/vungjoe" title="GitHub &rarr; https://github.com/vungjoe" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:vungjoe.xyz@gmail.com" title="E-Mail &rarr; mailto:vungjoe.xyz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、概念"><span class="nav-text">一、概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#架构图"><span class="nav-text">架构图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、搭建"><span class="nav-text">二、搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-创建需要的目录"><span class="nav-text">2.1 创建需要的目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-配置config-server"><span class="nav-text">2.2 配置config server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-创建配置文件"><span class="nav-text">2.2.1 创建配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-启动config-server"><span class="nav-text">2.2.2 启动config server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-初始化mongos副本集"><span class="nav-text">2.2.3 初始化mongos副本集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-配置sharding"><span class="nav-text">2.3 配置sharding</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-创建配置文件"><span class="nav-text">2.3.1 创建配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-配置路由服务器"><span class="nav-text">2.4 配置路由服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-创建配置文件"><span class="nav-text">2.4.1 创建配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-启用分片"><span class="nav-text">2.4.2 启用分片</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、分片测试"><span class="nav-text">三、分片测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">vungjoe</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
