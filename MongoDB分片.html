@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="一、概念分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。 基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。 通过一个名为mongos的路由进程进行操作，mongos知道数据和片的对应关系（通过配置服务器）。">
+  <meta name="description" content="一、概念分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。 基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB分片">
 <meta property="og:url" content="https://blog.vungjoe.xyz/MongoDB分片.html">
 <meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
-<meta property="og:description" content="一、概念分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。 基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。 通过一个名为mongos的路由进程进行操作，mongos知道数据和片的对应关系（通过配置服务器）。">
+<meta property="og:description" content="一、概念分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。 基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2018/12/26/5c23a2b8c186c.png">
 <meta property="og:updated_time" content="2018-10-23T11:21:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB分片">
-<meta name="twitter:description" content="一、概念分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。 基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。 通过一个名为mongos的路由进程进行操作，mongos知道数据和片的对应关系（通过配置服务器）。">
+<meta name="twitter:description" content="一、概念分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。 基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。">
 <meta name="twitter:image" content="https://i.loli.net/2018/12/26/5c23a2b8c186c.png">
 
 
@@ -450,6 +450,7 @@
       
         <h1 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h1><p>分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。</p>
 <p>基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。</p>
+<a id="more"></a>
 <p>通过一个名为mongos的路由进程进行操作，mongos知道数据和片的对应关系（通过配置服务器）。</p>
 <h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><p><img src="https://i.loli.net/2018/12/26/5c23a2b8c186c.png" alt="1541867546052_110.png"></p>
 <ul>
