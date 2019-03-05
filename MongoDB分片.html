@@ -116,7 +116,7 @@
 <meta property="og:description" content="一、概念分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。 基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2018/12/26/5c23a2b8c186c.png">
-<meta property="og:updated_time" content="2018-10-23T11:21:11.000Z">
+<meta property="og:updated_time" content="2017-10-23T11:21:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB分片">
 <meta name="twitter:description" content="一、概念分片（sharding）是指将数据库拆分，将其分散在不同的机器上的过程。将数据分散到不同的机器上，不需要功能强大的服务器就可以存储更多的数据和处理更大的吞吐量。 基本思想就是将集合切成小块，这些块分散到若干片里，每个片只负责总数据的一部分，最后通过一个均衡器来对各个分片进行均衡（数据迁移）。">
@@ -387,7 +387,7 @@
                 
               
 
-              <time title="创建时间：2018-10-23 00:47:11 / 修改时间：19:21:11" itemprop="dateCreated datePublished" datetime="2018-10-23T00:47:11+08:00">2018-10-23</time>
+              <time title="创建时间：2017-10-23 00:47:11 / 修改时间：19:21:11" itemprop="dateCreated datePublished" datetime="2017-10-23T00:47:11+08:00">2017-10-23</time>
             
 
             
@@ -481,7 +481,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config = &#123; _id: &quot;configs&quot;, members: [ &#123;_id : 0, host : &quot;192.168.123.128:21000&quot;&#125;,&#123;_id : 1, host : &quot;192.168.123.118:21000&quot;&#125;,&#123;_id : 2, host : &quot;192.168.123.132:21000&quot;&#125;] &#125;</span><br><span class="line">rs.initiate(config)</span><br></pre></td></tr></table></figure>
 <h2 id="2-3-配置sharding"><a href="#2-3-配置sharding" class="headerlink" title="2.3 配置sharding"></a>2.3 配置sharding</h2><p>创建三个分片（分布在三台服务器上），每个分片均由一个primary和两个secondary组成。</p>
 <h3 id="2-3-1-创建配置文件"><a href="#2-3-1-创建配置文件" class="headerlink" title="2.3.1 创建配置文件"></a>2.3.1 创建配置文件</h3><p>创建配置文件<code>/etc/mongodb/shard1.conf</code>，加入如下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pidfilepath = /var/run/mongodb/shard1.pid</span><br><span class="line">dbpath = /data/mongodb/shard1/data</span><br><span class="line">logpath = /data/mongodb/shard1/log/shard1.log</span><br><span class="line">logappend = true</span><br><span class="line">bind_ip = 192.168.123.118</span><br><span class="line">port = 27001</span><br><span class="line">fork = true</span><br><span class="line">httpinterface=true #打开web监控</span><br><span class="line">rest=true</span><br><span class="line">replSet=shard1 #副本集名称</span><br><span class="line">shardsvr = true #declare this is a shard db of a cluster;</span><br><span class="line">maxConns=20000 #设置最大连接数</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pidfilepath = /var/run/mongodb/shard2.pid</span><br><span class="line">dbpath = /data/mongodb/shard2/data</span><br><span class="line">logpath = /data/mongodb/shard2/log/shard2.log</span><br><span class="line">logappend = true</span><br><span class="line">bind_ip = 192.168.123.118</span><br><span class="line">port = 27002</span><br><span class="line">fork = true</span><br><span class="line">httpinterface=true #打开web监控</span><br><span class="line">rest=true</span><br><span class="line">replSet=shard1 #副本集名称</span><br><span class="line">shardsvr = true #declare this is a shard db of a cluster;</span><br><span class="line">maxConns=20000 #设置最大连接数</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pidfilepath = /var/run/mongodb/shard3.pid</span><br><span class="line">dbpath = /data/mongodb/shard3/data</span><br><span class="line">logpath = /data/mongodb/shard3/log/shard3.log</span><br><span class="line">logappend = true</span><br><span class="line">bind_ip = 192.168.123.118</span><br><span class="line">port = 27003</span><br><span class="line">fork = true</span><br><span class="line">httpinterface=true #打开web监控</span><br><span class="line">rest=true</span><br><span class="line">replSet=shard1 #副本集名称</span><br><span class="line">shardsvr = true #declare this is a shard db of a cluster;</span><br><span class="line">maxConns=20000 #设置最大连接数</span><br></pre></td></tr></table></figure>
@@ -554,8 +553,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/No-module-named-win32api.html" rel="prev" title="No module named win32api">
-                No module named win32api <i class="fa fa-chevron-right"></i>
+              <a href="/Python数值.html" rel="prev" title="Python数值">
+                Python数值 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -622,7 +621,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -634,6 +633,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
@@ -661,6 +662,8 @@
                 <div class="site-state-item site-state-tags">
                   
                     
+                    
+                      
                     
                       
                     
@@ -745,7 +748,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
