@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、字符串1.1 什么是字符串由0个或多个字符组成的有序字符序列，就是字符串。特点：  由一对单引号或者是一对双引号表示，只能表示单行字符串 由一对三单引号或者三双引号表示，表示多行字符串 前面说过这样做是作为程序的注释。其实质就是字符串，只不过在程序中未对这个字符串有任何操作   字符串是字符的字符的有序序列，可以对其中的字符进行索引">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python字符串">
+<meta property="og:url" content="https://blog.vungjoe.xyz/Python字符串.html">
+<meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
+<meta property="og:description" content="一、字符串1.1 什么是字符串由0个或多个字符组成的有序字符序列，就是字符串。特点：  由一对单引号或者是一对双引号表示，只能表示单行字符串 由一对三单引号或者三双引号表示，表示多行字符串 前面说过这样做是作为程序的注释。其实质就是字符串，只不过在程序中未对这个字符串有任何操作   字符串是字符的字符的有序序列，可以对其中的字符进行索引">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/03/05/5c7e080641d1f.jpeg">
+<meta property="og:image" content="https://i.loli.net/2019/03/05/5c7e0858bc9e0.jpeg">
+<meta property="og:image" content="https://i.loli.net/2019/03/05/5c7e0858c2a13.jpeg">
+<meta property="og:image" content="https://i.loli.net/2019/03/05/5c7e0858be576.jpeg">
+<meta property="og:updated_time" content="2019-03-05T03:50:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python字符串">
+<meta name="twitter:description" content="一、字符串1.1 什么是字符串由0个或多个字符组成的有序字符序列，就是字符串。特点：  由一对单引号或者是一对双引号表示，只能表示单行字符串 由一对三单引号或者三双引号表示，表示多行字符串 前面说过这样做是作为程序的注释。其实质就是字符串，只不过在程序中未对这个字符串有任何操作   字符串是字符的字符的有序序列，可以对其中的字符进行索引">
+<meta name="twitter:image" content="https://i.loli.net/2019/03/05/5c7e080641d1f.jpeg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.vungjoe.xyz/Python字符串.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python字符串 | VUNGJOE'S BLOG</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119042139-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-119042139-1');
+</script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">VUNGJOE'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Python字符串.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python字符串
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-18 14:54:36" itemprop="dateCreated datePublished" datetime="2018-06-18T14:54:36+08:00">2018-06-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-05 11:50:36" itemprop="dateModified" datetime="2019-03-05T11:50:36+08:00">2019-03-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python3/" itemprop="url" rel="index"><span itemprop="name">Python3</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、字符串"><a href="#一、字符串" class="headerlink" title="一、字符串"></a>一、字符串</h1><h2 id="1-1-什么是字符串"><a href="#1-1-什么是字符串" class="headerlink" title="1.1 什么是字符串"></a>1.1 什么是字符串</h2><p>由0个或多个字符组成的有序字符序列，就是字符串。特点：</p>
+<ul>
+<li>由一对单引号或者是一对双引号表示，只能表示<strong>单行</strong>字符串</li>
+<li>由一对三单引号或者三双引号表示，表示<strong>多行</strong>字符串<ul>
+<li>前面说过这样做是作为程序的注释。其实质就是字符串，只不过在程序中未对这个字符串有任何操作</li>
+</ul>
+</li>
+<li>字符串是字符的<strong>字符</strong>的有序序列，可以对其中的字符进行索引</li>
+</ul>
+<a id="more"></a>
+<h2 id="1-2-字符串中有双引号或者单引号如何表示"><a href="#1-2-字符串中有双引号或者单引号如何表示" class="headerlink" title="1.2 字符串中有双引号或者单引号如何表示"></a>1.2 字符串中有双引号或者单引号如何表示</h2><p>三种方式：</p>
+<ul>
+<li>“这里有一个单引号（’）”，双包单</li>
+<li>‘这里有一个双引号（”）’，单包双</li>
+<li>‘’’这里既有单引号（’），也有双引号（”）’’’</li>
+</ul>
+<h1 id="二、索引与切片"><a href="#二、索引与切片" class="headerlink" title="二、索引与切片"></a>二、索引与切片</h1><h2 id="2-1-字符串的序号"><a href="#2-1-字符串的序号" class="headerlink" title="2.1 字符串的序号"></a>2.1 字符串的序号</h2><p>从左往右（正向递增），依次是0，1，2，…<br>从右往左（反向递减），依次是-1，-2，-3，…</p>
+<p>如下图所示：</p>
+<p><img src="https://i.loli.net/2019/03/05/5c7e080641d1f.jpeg" alt="字符串的序号.jpeg"></p>
+<h2 id="2-2-索引"><a href="#2-2-索引" class="headerlink" title="2.2 索引"></a>2.2 索引</h2><p>索引是指返回字符串中单个字符（1个汉字就是一个字符，占用两个字节）</p>
+<p>表示方法：&lt;字符变量&gt;[N]</p>
+<h2 id="2-3-切片"><a href="#2-3-切片" class="headerlink" title="2.3 切片"></a>2.3 切片</h2><p>切片是指返回字符串中的一个字符子串</p>
+<p>表示方法：&lt;字符变量&gt;[start:end:step]， 以步长 step 对 start 到 end 之间的字符串进行切片，且<strong>不包含 end 在内</strong>。</p>
+<p>示例：</p>
+<p><img src="https://i.loli.net/2019/03/05/5c7e0858bc9e0.jpeg" alt="字符串切片.jpeg"></p>
+<ul>
+<li>start、end、step 可以省掉最多2个。<ul>
+<li>[:N]，表示从第一个到第 N 个</li>
+<li>[M:]，表示从第 M 个到最后一个</li>
+<li>[::K]，对整个字符串，每隔 K 个进行切片</li>
+</ul>
+</li>
+<li>常用表示方法：<ul>
+<li>倒序：[::-1]</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-4-转义符"><a href="#2-4-转义符" class="headerlink" title="2.4 转义符"></a>2.4 转义符</h2><p>转义符用 “\” 进行表示，用来表示特定字符的本意</p>
+<ul>
+<li><code>print(&quot;\&quot;&quot;)</code>，打印一个双引号</li>
+<li>表达一些不可打印字符<ul>
+<li><code>\b</code>，回退，光标向前回退一个位置</li>
+<li><code>\n</code>，换行，光标移动到下一行行首</li>
+<li><code>\r</code>，回车，光标回到当前行行首</li>
+<li><code>\t</code>，制表符</li>
+</ul>
+</li>
+</ul>
+<h1 id="三、字符串操作符"><a href="#三、字符串操作符" class="headerlink" title="三、字符串操作符"></a>三、字符串操作符</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">操作符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">a + b</td>
+<td>连接两个字符串，无空格</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>n * x</code> 或 <code>x * n</code></td>
+<td>n 个字符串连接</td>
+</tr>
+<tr>
+<td style="text-align:center">x in s</td>
+<td>如果 x 是s 的子串，则返回 True，否则返回 False</td>
+</tr>
+</tbody>
+</table>
+<h1 id="四、字符串处理函数"><a href="#四、字符串处理函数" class="headerlink" title="四、字符串处理函数"></a>四、字符串处理函数</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">len(x)</td>
+<td>返回字符串 x 的长度，x 可以是字符串，也可以是字符串变量</td>
+</tr>
+<tr>
+<td style="text-align:center">str(x)</td>
+<td>将任意类型的变量 x 转换成对应的字符串类型</td>
+</tr>
+<tr>
+<td style="text-align:center">eval(x)</td>
+<td>将字符串最外侧的引号去掉，剩下语句再执行</td>
+</tr>
+<tr>
+<td style="text-align:center">hex(x)或 oct(x)</td>
+<td>将十进制的x 转换成十六进制或八进制<strong>小写</strong>的字符串形式</td>
+</tr>
+<tr>
+<td style="text-align:center">chr(x)</td>
+<td>x 为Unicode 编码，返回其对应的字符</td>
+</tr>
+<tr>
+<td style="text-align:center">ord(x)</td>
+<td>x 为字符，返回其对应的 Unicode 编码</td>
+</tr>
+</tbody>
+</table>
+<h1 id="五、字符串处理方法"><a href="#五、字符串处理方法" class="headerlink" title="五、字符串处理方法"></a>五、字符串处理方法</h1><h2 id="5-1-什么是方法"><a href="#5-1-什么是方法" class="headerlink" title="5.1 什么是方法"></a>5.1 什么是方法</h2><p>方法是一个专有名词，在面向对象的 编程中，</p>
+<ul>
+<li>方法特指<code>&lt;a&gt;.&lt;b&gt;()</code>风格中的<code>&lt;b&gt;()</code></li>
+<li>方法本身也是函数，但与<code>&lt;a&gt;</code>有关，需<code>&lt;a&gt;.&lt;b&gt;()</code>方可使用</li>
+<li>字符串及变量也是<code>&lt;a&gt;</code>，存在一些方法</li>
+</ul>
+<h2 id="5-2-8个方法"><a href="#5-2-8个方法" class="headerlink" title="5.2 8个方法"></a>5.2 8个方法</h2><p>下面是一些一方法提供的字符串处理方法</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">str.lower()或者str.upper()</td>
+<td>返回字符串的副本，其结果全部为小写/大写</td>
+</tr>
+<tr>
+<td style="text-align:center">str.split(sep)</td>
+<td>返回字符串被分割之后的一个<strong>列表</strong>，分割符是sep，分割之后的部分组成一个列表。 如 <code>&quot;a,b,c&quot;.split(&quot;,&quot;)</code> 结果为 <code>[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">str.count(substr)</td>
+<td>返回子串在字符串中出现的次数</td>
+</tr>
+<tr>
+<td style="text-align:center">str.replace(old,new)</td>
+<td>将字符串中的 old 子串全部替换成 new</td>
+</tr>
+<tr>
+<td style="text-align:center">str.center(width[,fillchar])</td>
+<td>字符串根据宽度 width 使用 fillchar 进行填充，默认的填充符是空格</td>
+</tr>
+<tr>
+<td style="text-align:center">str.strip(chars)</td>
+<td>去掉字符串左右两侧 chars 中给出的字符，默认去掉空格、换行符<code>\n</code>、制表符<code>\t</code></td>
+</tr>
+<tr>
+<td style="text-align:center">iter.join(str)</td>
+<td>在字符串str 除最后一个元素外的左右元素后面加一个字符iter，主要用于字符串分隔。<br> 比如<code>&#39;,&#39;.join(&#39;12345&#39;)</code> 结果为 <code>&#39;1,2,3,4,5&#39;</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="六、字符串的格式化"><a href="#六、字符串的格式化" class="headerlink" title="六、字符串的格式化"></a>六、字符串的格式化</h1><h2 id="6-1-format-的用法"><a href="#6-1-format-的用法" class="headerlink" title="6.1 format()的用法"></a>6.1 <code>format()</code>的用法</h2><p>格式化是对字符串进行格式化输出的方式，使用format()方法，具体的使用方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;模板字符串&gt;.format(&lt;逗号分隔的参数&gt;)</span><br></pre></td></tr></table></figure>
+<p>在这里，不得不提到一个“槽”的概念——槽指的是在字符串中用一对“{ }”括起来的内容，分别和format()函数中的参数一一对应。如下图所示：</p>
+<p><strong>默认情况</strong>：</p>
+<p><img src="https://i.loli.net/2019/03/05/5c7e0858c2a13.jpeg" alt="format使用1.jpeg"></p>
+<p><strong>修改其依次对应的关系</strong>：</p>
+<p><img src="https://i.loli.net/2019/03/05/5c7e0858be576.jpeg" alt="format使用2.jpeg"></p>
+<h2 id="6-2-槽内部对格式化的配置方式"><a href="#6-2-槽内部对格式化的配置方式" class="headerlink" title="6.2 槽内部对格式化的配置方式"></a>6.2 槽内部对格式化的配置方式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&lt;参数序号&gt;:&lt;格式控制标记&gt;&#125;</span><br></pre></td></tr></table></figure>
+<p>控制标记共分两大类：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">分类</th>
+<th>&lt;填充&gt;</th>
+<th>&lt;对齐&gt;</th>
+<th>&lt;宽度&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">字符串</td>
+<td>用于填充的单个字符，默认是空格</td>
+<td><code>&lt;</code>——左对齐，默认是左对齐 <br> <code>&gt;</code>——右对齐 <br> <code>^</code>——居中对齐。</td>
+<td>槽设定的输出宽度 <br> 若format 中的参数长度大于槽的宽度，则以实际参数为准；否则对空位进行填充</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td>&lt;,&gt;</td>
+<td>&lt;.精度&gt;</td>
+<td>&lt;类型&gt;</td>
+</tr>
+<tr>
+<td style="text-align:center">数字</td>
+<td>数字的千位分隔符</td>
+<td>浮点数的输出精度或者字符串的最大输出长度</td>
+<td>整数类型，b（二进制）、c（数字对应的 Unicode 字符）、d（十进制）、o（八进制）、x（十六进制，小写）、X（十六进制，大写）<br>浮点数类型，e（科学计数法，e小写）、E（科学计数法，E 大写）、f（普通非科学计数法）、%（百分数形式）</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/MongoDB分片.html" rel="next" title="MongoDB分片">
+                <i class="fa fa-chevron-left"></i> MongoDB分片
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Python数值.html" rel="prev" title="Python数值">
+                Python数值 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">vungjoe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/vungjoe" title="GitHub &rarr; https://github.com/vungjoe" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:vungjoe.xyz@gmail.com" title="E-Mail &rarr; mailto:vungjoe.xyz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、字符串"><span class="nav-text">一、字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-什么是字符串"><span class="nav-text">1.1 什么是字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-字符串中有双引号或者单引号如何表示"><span class="nav-text">1.2 字符串中有双引号或者单引号如何表示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、索引与切片"><span class="nav-text">二、索引与切片</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-字符串的序号"><span class="nav-text">2.1 字符串的序号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-索引"><span class="nav-text">2.2 索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-切片"><span class="nav-text">2.3 切片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-转义符"><span class="nav-text">2.4 转义符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、字符串操作符"><span class="nav-text">三、字符串操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、字符串处理函数"><span class="nav-text">四、字符串处理函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、字符串处理方法"><span class="nav-text">五、字符串处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-什么是方法"><span class="nav-text">5.1 什么是方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-8个方法"><span class="nav-text">5.2 8个方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、字符串的格式化"><span class="nav-text">六、字符串的格式化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-format-的用法"><span class="nav-text">6.1 format()的用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-槽内部对格式化的配置方式"><span class="nav-text">6.2 槽内部对格式化的配置方式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">vungjoe</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

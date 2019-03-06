@@ -402,7 +402,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-03 23:03:31" itemprop="dateModified" datetime="2018-12-03T23:03:31+08:00">2018-12-03</time>
+                <time title="修改时间：2019-03-05 14:33:04" itemprop="dateModified" datetime="2019-03-05T14:33:04+08:00">2019-03-05</time>
               
             
           </span>
@@ -814,8 +814,7 @@
 
       
         
-          
-            <p>Python中最主要的数值类型有整数（int）、浮点数（float）、布尔（bool）和复数（complex），这里主要介绍整数和浮点数。</p>
+          <p>Python中最主要的数值类型有整数（int）、浮点数（float）、布尔（bool）和复数（complex），这里主要介绍整数和浮点数。</p>
 <h1 id="一、整数类型"><a href="#一、整数类型" class="headerlink" title="一、整数类型"></a>一、整数类型</h1><h2 id="1-1-一个常用的函数"><a href="#1-1-一个常用的函数" class="headerlink" title="1.1 一个常用的函数"></a>1.1 一个常用的函数</h2><p>power(x,y)：求x的y次幂</p>
 <h2 id="1-2-四种常用的进制表示方法"><a href="#1-2-四种常用的进制表示方法" class="headerlink" title="1.2 四种常用的进制表示方法"></a>1.2 四种常用的进制表示方法</h2><p>四种进制表示方法</p>
 <ul>
@@ -824,136 +823,199 @@
 <li>八进制：以0o或者0O开头（O表示October），如0O1270、-0o146</li>
 <li>十六进制：以0x或者0X开头，如0x9b</li>
 </ul>
-<h1 id="二、浮点数类型"><a href="#二、浮点数类型" class="headerlink" title="二、浮点数类型"></a>二、浮点数类型</h1><h2 id="2-1-浮点数的"><a href="#2-1-浮点数的" class="headerlink" title="2.1 浮点数的"></a>2.1 浮点数的</h2><p>Python中的浮点数类型与数学中的实数概念一致</p>
-<ul>
-<li>带有小数点及小数的数字</li>
-<li>浮点数取值范围和精度都存在限制，但常规计算可忽略</li>
-<li>取值范围数量级约-10＾308~10＾308，精度等级10＾-16。</li>
-<li><strong>浮点数之间运算存在不确定尾数现象，不是bug</strong></li>
-</ul>
-<h2 id="2-2-浮点数运算的不确定尾数"><a href="#2-2-浮点数运算的不确定尾数" class="headerlink" title="2.2 浮点数运算的不确定尾数"></a>2.2 浮点数运算的不确定尾数</h2><p>前面已经提到，浮点数运算存在<a href="https://www.zhihu.com/question/25457573" target="_blank" rel="noopener">不确定尾数</a>，不是bug。</p>
-<p><img src="https://i.loli.net/2019/03/05/5c7df509debcc.jpeg" alt="不确定尾数.jpeg"></p>
-<p>为了解决浮点数的不确定尾数，使用 <code>round()</code> 函数来进行圆整（四舍五入） </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">round(x,d)：把*/.+36</span><br><span class="line">x四舍五入到小数点后d位。</span><br></pre></td></tr></table></figure>
-<h1 id="三、复数类型"><a href="#三、复数类型" class="headerlink" title="三、复数类型"></a>三、复数类型</h1><p>Python 中的复数与数学中的复数是相同的，用 z = a+bj 进行表示：</p>
-<ul>
-<li>其中 a 是实部，b 是虚部</li>
-<li>j**2 = -1</li>
-<li><code>z.real</code> 获取实部，<code>z.imag</code> 获取虚部</li>
-</ul>
-<h1 id="四、数字运算操作符"><a href="#四、数字运算操作符" class="headerlink" title="四、数字运算操作符"></a>四、数字运算操作符</h1><h2 id="4-1-一元操作符"><a href="#4-1-一元操作符" class="headerlink" title="4.1 一元操作符"></a>4.1 一元操作符</h2><table>
-<thead>
-<tr>
-<th>操作符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>x+y</td>
-<td>加，x与y之和</td>
-</tr>
-<tr>
-<td>x-y</td>
-<td>减，x与y之差</td>
-</tr>
-<tr>
-<td>x*y</td>
-<td>乘，x与y之积</td>
-</tr>
-<tr>
-<td>x/y</td>
-<td>除，x与y之商，结果与数学中一样，10/3=3.3333333333333335</td>
-</tr>
-<tr>
-<td>x//y</td>
-<td>整数除，10//3=3</td>
-</tr>
-<tr>
-<td>x%y</td>
-<td>取余，模运算，10%3=1</td>
-</tr>
-<tr>
-<td>x**y</td>
-<td>x的y次幂，与函数pow(x,y)效果相同</td>
-</tr>
-<tr>
-<td>+x</td>
-<td>x本身</td>
-</tr>
-<tr>
-<td>-y</td>
-<td>y的负数</td>
-</tr>
-</tbody>
-</table>
-<h2 id="4-2-二元操作符"><a href="#4-2-二元操作符" class="headerlink" title="4.2 二元操作符"></a>4.2 二元操作符</h2><p>二元操作符有对应的增强赋值操作符，x op= y</p>
-<p>二元操作符有，+=、-=、*=、/=、//=、%=、</p>
-<ul>
-<li>含义：x = x ** 2</li>
-</ul>
-<h2 id="4-3-数字类型之间的关系"><a href="#4-3-数字类型之间的关系" class="headerlink" title="4.3 数字类型之间的关系"></a>4.3 数字类型之间的关系</h2><ul>
-<li>不同的数字类型可以进行混合运算，生成结果“最宽”的类型</li>
-<li>整数–&gt;浮点数–&gt;复数</li>
-</ul>
-<h1 id="五、数字运算函数"><a href="#五、数字运算函数" class="headerlink" title="五、数字运算函数"></a>五、数字运算函数</h1><table>
-<thead>
-<tr>
-<th>函数</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>abs(x)</td>
-<td style="text-align:left">求绝对值</td>
-</tr>
-<tr>
-<td>divmod(x,y)</td>
-<td style="text-align:left">商余，(x//y,x%y)，同时输出商和余数。比如divmod(10,3)结果为(3,1)</td>
-</tr>
-<tr>
-<td>pow(x,y[,z])</td>
-<td style="text-align:left">幂余，(x**y)%z，</td>
-</tr>
-<tr>
-<td>round(x[,d])</td>
-<td style="text-align:left">对x进行四舍五入，d表示小数位数，默认是0（表示圆整）</td>
-</tr>
-<tr>
-<td>max(x1,x2,…,xn)</td>
-<td style="text-align:left">最大值</td>
-</tr>
-<tr>
-<td>min(x1,x2,…,xn)</td>
-<td style="text-align:left">最小值</td>
-</tr>
-</tbody>
-</table>
-<h1 id="六、数字类型转换函数"><a href="#六、数字类型转换函数" class="headerlink" title="六、数字类型转换函数"></a>六、数字类型转换函数</h1><table>
-<thead>
-<tr>
-<th>函数</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>int(x)</td>
-<td style="text-align:left">将x变为整数，int(123.12)结果为123，int(“123”)结果为123（文本只能是整数）</td>
-</tr>
-<tr>
-<td>float(x)</td>
-<td style="text-align:left">将x变成浮点数，增加小数部分，float(1)结果为1.0，float(“1.23”)结果为1.23</td>
-</tr>
-<tr>
-<td>complex(x)</td>
-<td style="text-align:left">将x变成复数，增加虚数部分，complex(4)结果为4+0j</td>
-</tr>
-</tbody>
-</table>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Python数值.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Python字符串.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/Python字符串.html" class="post-title-link" itemprop="https://blog.vungjoe.xyz/index.html">Python字符串</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-18 14:54:36" itemprop="dateCreated datePublished" datetime="2018-06-18T14:54:36+08:00">2018-06-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-05 11:50:36" itemprop="dateModified" datetime="2019-03-05T11:50:36+08:00">2019-03-05</time>
+              
+            
+          </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python3/" itemprop="url" rel="index"><span itemprop="name">Python3</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="一、字符串"><a href="#一、字符串" class="headerlink" title="一、字符串"></a>一、字符串</h1><h2 id="1-1-什么是字符串"><a href="#1-1-什么是字符串" class="headerlink" title="1.1 什么是字符串"></a>1.1 什么是字符串</h2><p>由0个或多个字符组成的有序字符序列，就是字符串。特点：</p>
+<ul>
+<li>由一对单引号或者是一对双引号表示，只能表示<strong>单行</strong>字符串</li>
+<li>由一对三单引号或者三双引号表示，表示<strong>多行</strong>字符串<ul>
+<li>前面说过这样做是作为程序的注释。其实质就是字符串，只不过在程序中未对这个字符串有任何操作</li>
+</ul>
+</li>
+<li>字符串是字符的<strong>字符</strong>的有序序列，可以对其中的字符进行索引</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/Python字符串.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+         
+          <!--/noindex-->
         
       
     </div>
@@ -1613,7 +1675,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-03 23:03:33" itemprop="dateModified" datetime="2018-12-03T23:03:33+08:00">2018-12-03</time>
+                <time title="修改时间：2018-12-03 23:03:20" itemprop="dateModified" datetime="2018-12-03T23:03:20+08:00">2018-12-03</time>
               
             
           </span>
@@ -1801,7 +1863,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-30 18:41:05" itemprop="dateModified" datetime="2018-11-30T18:41:05+08:00">2018-11-30</time>
+                <time title="修改时间：2018-11-30 18:41:39" itemprop="dateModified" datetime="2018-11-30T18:41:39+08:00">2018-11-30</time>
               
             
           </span>
@@ -1952,7 +2014,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1993,6 +2055,8 @@
                 <div class="site-state-item site-state-tags">
                   
                     
+                    
+                      
                     
                       
                     
