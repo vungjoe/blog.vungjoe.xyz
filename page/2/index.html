@@ -715,6 +715,213 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/MySQL安装使用常见故障.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/MySQL安装使用常见故障.html" class="post-title-link" itemprop="https://blog.vungjoe.xyz/page/2/index.html">MySQL安装使用常见故障</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-10 22:29:19" itemprop="dateCreated datePublished" datetime="2017-05-10T22:29:19+08:00">2017-05-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-24 00:15:05" itemprop="dateModified" datetime="2019-03-24T00:15:05+08:00">2019-03-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux-运维基础/" itemprop="url" rel="index"><span itemprop="name">Linux 运维基础</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Linux-运维基础/LANMP/" itemprop="url" rel="index"><span itemprop="name">LANMP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>有些问题中的命令可能已经弃用了，但还是有一定的参考价值。</p>
+<hr>
+<p>一、无法加载共享库</p>
+<p>报错信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqld: error <span class="keyword">while</span> loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
+<p><strong>解决方案</strong>：安装提示所缺的库包。这一解决方案是通用的，不论安装什么软件，如果提示类似的错误缺少 <code>***.so</code>，就可以使用此方法解决。</p>
+<ul>
+<li>这一点其实在官方文档里面就有提及，只是因为我开始安装的时候并没有参照官方文档来，所以出现了这个错误。<strong>看官方文档，看官方文档，看官方文档</strong>。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y libaio</span><br></pre></td></tr></table></figure>
+<p>二、一大堆的 WARNING</p>
+<p>报错信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">2019-03-23T16:12:59.315718Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation <span class="keyword">for</span> more details).</span><br><span class="line">2019-03-23T16:12:59.815084Z 0 [Warning] InnoDB: New <span class="built_in">log</span> files created, LSN=45790</span><br><span class="line">2019-03-23T16:12:59.893997Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.</span><br><span class="line">2019-03-23T16:12:59.964389Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 87225e31-4d86-11e9-a365-aaaa0011f0f7.</span><br><span class="line">2019-03-23T16:12:59.972581Z 0 [Warning] Gtid table is not ready to be used. Table <span class="string">'mysql.gtid_executed'</span> cannot be opened.</span><br><span class="line">2019-03-23T16:12:59.975152Z 1 [Note] A temporary password is generated <span class="keyword">for</span> root@localhost: &gt;,8Ieg+&amp;qwhe</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里虽然提示了一大堆 WARNING，但使用 <code>echo $?</code> 会发现结果是0。这里可以放心，并不是安装出现了问题。</li>
+<li></li>
+</ul>
+<p>三、提示无法创建 frm 文件</p>
+<p>报错信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Installing MySQL system tables...</span><br><span class="line">ERROR: 1004  Can<span class="string">'t create file '</span>/tmp/<span class="comment">#sql5a1_1_0.frm' (errno: 13)</span></span><br><span class="line">160302 17:17:43 [ERROR] Aborting</span><br><span class="line"></span><br><span class="line">160302 17:17:43 [Note] ./bin/mysqld: Shutdown complete</span><br><span class="line"></span><br><span class="line">Installation of system tables failed!  Examine the logs <span class="keyword">in</span></span><br><span class="line">/data/mysql <span class="keyword">for</span> more information.</span><br><span class="line"></span><br><span class="line">You can try to start the mysqld daemon with:</span><br><span class="line"></span><br><span class="line">    shell&gt; ./bin/mysqld --skip-grant &amp;</span><br><span class="line"></span><br><span class="line">and use the <span class="built_in">command</span> line tool ./bin/mysql</span><br><span class="line">to connect to the mysql database and look at the grant tables:</span><br><span class="line"></span><br><span class="line">    shell&gt; ./bin/mysql -u root mysql</span><br><span class="line">    mysql&gt; show tables</span><br><span class="line"></span><br><span class="line">Try <span class="string">'mysqld --help'</span> <span class="keyword">if</span> you have problems with paths.  Using --<span class="built_in">log</span></span><br><span class="line">gives you a <span class="built_in">log</span> <span class="keyword">in</span> /data/mysql that may be helpful.</span><br><span class="line"></span><br><span class="line">Please consult the MySQL manual section</span><br><span class="line"><span class="string">'Problems running mysql_install_db'</span>, and the manual section that</span><br><span class="line">describes problems on your OS.  Another information <span class="built_in">source</span> are the</span><br><span class="line">MySQL email archives available at http://lists.mysql.com/.</span><br><span class="line"></span><br><span class="line">Please check all of the above before mailing us!  And remember, <span class="keyword">if</span></span><br><span class="line">you <span class="keyword">do</span> mail us, you MUST use the ./bin/mysqlbug script!</span><br></pre></td></tr></table></figure>
+<p>解决方案：<br><code>/tmp</code>目录权限错误，使用<code>chmod 1777 /tmp</code>，更改后即可正常使用。</p>
+<h1 id="四、"><a href="#四、" class="headerlink" title="四、"></a>四、</h1><p>报错信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Installing MySQL system tables...</span><br><span class="line">161027  7:07:41 [Note] /usr/<span class="built_in">local</span>/mysql/bin/mysqld (mysqld 5.5.52) starting as process 15409 ...</span><br><span class="line">161027  7:07:41 [ERROR] COLLATION <span class="string">'latin1_swedish_ci'</span> is not valid <span class="keyword">for</span> CHARACTER SET <span class="string">'utf8'</span></span><br><span class="line">161027  7:07:41 [ERROR] Aborting</span><br><span class="line"></span><br><span class="line">161027  7:07:41 [Note] /usr/<span class="built_in">local</span>/mysql/bin/mysqld: Shutdown complete</span><br></pre></td></tr></table></figure>
+<p>解决办法：<br>初始化设置时增加一个选项<code>--collation-server=utf8_general_ci</code>，即</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./scripts/mysql_install_db --basedir=/usr/<span class="built_in">local</span>/mysql --datadir=/data/mysql/ --user=mysql --collation-server=utf8_general_ci</span><br></pre></td></tr></table></figure>
+<h1 id="五、提示-socket-文件不存在（同一服务器不同端口-mysql-主从练习）"><a href="#五、提示-socket-文件不存在（同一服务器不同端口-mysql-主从练习）" class="headerlink" title="五、提示 socket 文件不存在（同一服务器不同端口 mysql 主从练习）"></a>五、提示 socket 文件不存在（同一服务器不同端口 mysql 主从练习）</h1><p>报错信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld_safe Directory <span class="string">'/var/lib/mysql'</span> <span class="keyword">for</span> UNIX socket file don<span class="string">'t exists.</span></span><br></pre></td></tr></table></figure>
+<p>原因分析：权限不足，无法创建 sock 文件。<br>解决办法：修改<code>my.cnf</code>中的 sock 位置：<code>sock = /tmp/mysql.sock</code>。</p>
+<h1 id="六、提示-pid-文件错误（同一服务器不同端口-mysql-主从练习）"><a href="#六、提示-pid-文件错误（同一服务器不同端口-mysql-主从练习）" class="headerlink" title="六、提示 pid 文件错误（同一服务器不同端口 mysql 主从练习）"></a>六、提示 pid 文件错误（同一服务器不同端口 mysql 主从练习）</h1><p>报错信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld_safe mysqld from pid file /var/run/mysqld/mysqld.pid ended</span><br></pre></td></tr></table></figure>
+<p>原因分析：权限不足，无法创建 pid 文件。<br>解决办法：修改 my.cnf 中 pid 文件的位置为 pid-file=/tmp/mysqld2.pid 或手动创建该文件。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/LAMP环境测试PHP解析.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -932,7 +1139,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -984,7 +1191,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
