@@ -473,7 +473,7 @@
       
 
       
-        <h1 id="一、字符串"><a href="#一、字符串" class="headerlink" title="一、字符串"></a>一、字符串</h1><h2 id="1-1-什么是字符串"><a href="#1-1-什么是字符串" class="headerlink" title="1.1 什么是字符串"></a>1.1 什么是字符串</h2><p>由0个或多个字符组成的有序字符序列，就是字符串。特点：</p>
+        <h2 id="一、字符串"><a href="#一、字符串" class="headerlink" title="一、字符串"></a>一、字符串</h2><h3 id="1-1-什么是字符串"><a href="#1-1-什么是字符串" class="headerlink" title="1.1 什么是字符串"></a>1.1 什么是字符串</h3><p>由0个或多个字符组成的有序字符序列，就是字符串。特点：</p>
 <ul>
 <li>由一对单引号或者是一对双引号表示，只能表示<strong>单行</strong>字符串</li>
 <li>由一对三单引号或者三双引号表示，表示<strong>多行</strong>字符串<ul>
@@ -483,18 +483,18 @@
 <li>字符串是字符的<strong>字符</strong>的有序序列，可以对其中的字符进行索引</li>
 </ul>
 <a id="more"></a>
-<h2 id="1-2-字符串中有双引号或者单引号如何表示"><a href="#1-2-字符串中有双引号或者单引号如何表示" class="headerlink" title="1.2 字符串中有双引号或者单引号如何表示"></a>1.2 字符串中有双引号或者单引号如何表示</h2><p>三种方式：</p>
+<h3 id="1-2-字符串中有双引号或者单引号如何表示"><a href="#1-2-字符串中有双引号或者单引号如何表示" class="headerlink" title="1.2 字符串中有双引号或者单引号如何表示"></a>1.2 字符串中有双引号或者单引号如何表示</h3><p>三种方式：</p>
 <ul>
 <li>“这里有一个单引号（’）”，双包单</li>
 <li>‘这里有一个双引号（”）’，单包双</li>
 <li>‘’’这里既有单引号（’），也有双引号（”）’’’</li>
 </ul>
-<h1 id="二、索引与切片"><a href="#二、索引与切片" class="headerlink" title="二、索引与切片"></a>二、索引与切片</h1><h2 id="2-1-字符串的序号"><a href="#2-1-字符串的序号" class="headerlink" title="2.1 字符串的序号"></a>2.1 字符串的序号</h2><p>从左往右（正向递增），依次是0，1，2，…<br>从右往左（反向递减），依次是-1，-2，-3，…</p>
+<h2 id="二、索引与切片"><a href="#二、索引与切片" class="headerlink" title="二、索引与切片"></a>二、索引与切片</h2><h3 id="2-1-字符串的序号"><a href="#2-1-字符串的序号" class="headerlink" title="2.1 字符串的序号"></a>2.1 字符串的序号</h3><p>从左往右（正向递增），依次是0，1，2，…<br>从右往左（反向递减），依次是-1，-2，-3，…</p>
 <p>如下图所示：</p>
 <p><img src="https://i.loli.net/2019/03/05/5c7e080641d1f.jpeg" alt="字符串的序号.jpeg"></p>
-<h2 id="2-2-索引"><a href="#2-2-索引" class="headerlink" title="2.2 索引"></a>2.2 索引</h2><p>索引是指返回字符串中单个字符（1个汉字就是一个字符，占用两个字节）</p>
+<h3 id="2-2-索引"><a href="#2-2-索引" class="headerlink" title="2.2 索引"></a>2.2 索引</h3><p>索引是指返回字符串中单个字符（1个汉字就是一个字符，占用两个字节）</p>
 <p>表示方法：&lt;字符变量&gt;[N]</p>
-<h2 id="2-3-切片"><a href="#2-3-切片" class="headerlink" title="2.3 切片"></a>2.3 切片</h2><p>切片是指返回字符串中的一个字符子串</p>
+<h3 id="2-3-切片"><a href="#2-3-切片" class="headerlink" title="2.3 切片"></a>2.3 切片</h3><p>切片是指返回字符串中的一个字符子串</p>
 <p>表示方法：&lt;字符变量&gt;[start:end:step]， 以步长 step 对 start 到 end 之间的字符串进行切片，且<strong>不包含 end 在内</strong>。</p>
 <p>示例：</p>
 <p><img src="https://i.loli.net/2019/03/05/5c7e0858bc9e0.jpeg" alt="字符串切片.jpeg"></p>
@@ -510,7 +510,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="2-4-转义符"><a href="#2-4-转义符" class="headerlink" title="2.4 转义符"></a>2.4 转义符</h2><p>转义符用 “\” 进行表示，用来表示特定字符的本意</p>
+<h3 id="2-4-转义符"><a href="#2-4-转义符" class="headerlink" title="2.4 转义符"></a>2.4 转义符</h3><p>转义符用 “\” 进行表示，用来表示特定字符的本意</p>
 <ul>
 <li><code>print(&quot;\&quot;&quot;)</code>，打印一个双引号</li>
 <li>表达一些不可打印字符<ul>
@@ -521,7 +521,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="三、字符串操作符"><a href="#三、字符串操作符" class="headerlink" title="三、字符串操作符"></a>三、字符串操作符</h1><table>
+<h2 id="三、字符串操作符"><a href="#三、字符串操作符" class="headerlink" title="三、字符串操作符"></a>三、字符串操作符</h2><table>
 <thead>
 <tr>
 <th style="text-align:center">操作符</th>
@@ -543,7 +543,7 @@
 </tr>
 </tbody>
 </table>
-<h1 id="四、字符串处理函数"><a href="#四、字符串处理函数" class="headerlink" title="四、字符串处理函数"></a>四、字符串处理函数</h1><table>
+<h2 id="四、字符串处理函数"><a href="#四、字符串处理函数" class="headerlink" title="四、字符串处理函数"></a>四、字符串处理函数</h2><table>
 <thead>
 <tr>
 <th style="text-align:center">函数</th>
@@ -577,13 +577,13 @@
 </tr>
 </tbody>
 </table>
-<h1 id="五、字符串处理方法"><a href="#五、字符串处理方法" class="headerlink" title="五、字符串处理方法"></a>五、字符串处理方法</h1><h2 id="5-1-什么是方法"><a href="#5-1-什么是方法" class="headerlink" title="5.1 什么是方法"></a>5.1 什么是方法</h2><p>方法是一个专有名词，在面向对象的 编程中，</p>
+<h2 id="五、字符串处理方法"><a href="#五、字符串处理方法" class="headerlink" title="五、字符串处理方法"></a>五、字符串处理方法</h2><h3 id="5-1-什么是方法"><a href="#5-1-什么是方法" class="headerlink" title="5.1 什么是方法"></a>5.1 什么是方法</h3><p>方法是一个专有名词，在面向对象的 编程中，</p>
 <ul>
 <li>方法特指<code>&lt;a&gt;.&lt;b&gt;()</code>风格中的<code>&lt;b&gt;()</code></li>
 <li>方法本身也是函数，但与<code>&lt;a&gt;</code>有关，需<code>&lt;a&gt;.&lt;b&gt;()</code>方可使用</li>
 <li>字符串及变量也是<code>&lt;a&gt;</code>，存在一些方法</li>
 </ul>
-<h2 id="5-2-8个方法"><a href="#5-2-8个方法" class="headerlink" title="5.2 8个方法"></a>5.2 8个方法</h2><p>下面是一些一方法提供的字符串处理方法</p>
+<h3 id="5-2-8个方法"><a href="#5-2-8个方法" class="headerlink" title="5.2 8个方法"></a>5.2 8个方法</h3><p>下面是一些一方法提供的字符串处理方法</p>
 <table>
 <thead>
 <tr>
@@ -622,14 +622,14 @@
 </tr>
 </tbody>
 </table>
-<h1 id="六、字符串的格式化"><a href="#六、字符串的格式化" class="headerlink" title="六、字符串的格式化"></a>六、字符串的格式化</h1><h2 id="6-1-format-的用法"><a href="#6-1-format-的用法" class="headerlink" title="6.1 format()的用法"></a>6.1 <code>format()</code>的用法</h2><p>格式化是对字符串进行格式化输出的方式，使用format()方法，具体的使用方法：</p>
+<h2 id="六、字符串的格式化"><a href="#六、字符串的格式化" class="headerlink" title="六、字符串的格式化"></a>六、字符串的格式化</h2><h3 id="6-1-format-的用法"><a href="#6-1-format-的用法" class="headerlink" title="6.1 format()的用法"></a>6.1 <code>format()</code>的用法</h3><p>格式化是对字符串进行格式化输出的方式，使用format()方法，具体的使用方法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;模板字符串&gt;.format(&lt;逗号分隔的参数&gt;)</span><br></pre></td></tr></table></figure>
 <p>在这里，不得不提到一个“槽”的概念——槽指的是在字符串中用一对“{ }”括起来的内容，分别和format()函数中的参数一一对应。如下图所示：</p>
 <p><strong>默认情况</strong>：</p>
 <p><img src="https://i.loli.net/2019/03/05/5c7e0858c2a13.jpeg" alt="format使用1.jpeg"></p>
 <p><strong>修改其依次对应的关系</strong>：</p>
 <p><img src="https://i.loli.net/2019/03/05/5c7e0858be576.jpeg" alt="format使用2.jpeg"></p>
-<h2 id="6-2-槽内部对格式化的配置方式"><a href="#6-2-槽内部对格式化的配置方式" class="headerlink" title="6.2 槽内部对格式化的配置方式"></a>6.2 槽内部对格式化的配置方式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&lt;参数序号&gt;:&lt;格式控制标记&gt;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-2-槽内部对格式化的配置方式"><a href="#6-2-槽内部对格式化的配置方式" class="headerlink" title="6.2 槽内部对格式化的配置方式"></a>6.2 槽内部对格式化的配置方式</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&lt;参数序号&gt;:&lt;格式控制标记&gt;&#125;</span><br></pre></td></tr></table></figure>
 <p>控制标记共分两大类：</p>
 <table>
 <thead>
@@ -701,8 +701,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Python数值.html" rel="prev" title="Python数值">
-                Python数值 <i class="fa fa-chevron-right"></i>
+              <a href="/Python数值类型.html" rel="prev" title="Python数值类型">
+                Python数值类型 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -837,6 +837,8 @@
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
@@ -898,7 +900,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、字符串"><span class="nav-text">一、字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-什么是字符串"><span class="nav-text">1.1 什么是字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-字符串中有双引号或者单引号如何表示"><span class="nav-text">1.2 字符串中有双引号或者单引号如何表示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、索引与切片"><span class="nav-text">二、索引与切片</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-字符串的序号"><span class="nav-text">2.1 字符串的序号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-索引"><span class="nav-text">2.2 索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-切片"><span class="nav-text">2.3 切片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-转义符"><span class="nav-text">2.4 转义符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、字符串操作符"><span class="nav-text">三、字符串操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、字符串处理函数"><span class="nav-text">四、字符串处理函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、字符串处理方法"><span class="nav-text">五、字符串处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-什么是方法"><span class="nav-text">5.1 什么是方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-8个方法"><span class="nav-text">5.2 8个方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、字符串的格式化"><span class="nav-text">六、字符串的格式化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-format-的用法"><span class="nav-text">6.1 format()的用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-槽内部对格式化的配置方式"><span class="nav-text">6.2 槽内部对格式化的配置方式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、字符串"><span class="nav-text">一、字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-什么是字符串"><span class="nav-text">1.1 什么是字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-字符串中有双引号或者单引号如何表示"><span class="nav-text">1.2 字符串中有双引号或者单引号如何表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、索引与切片"><span class="nav-text">二、索引与切片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-字符串的序号"><span class="nav-text">2.1 字符串的序号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-索引"><span class="nav-text">2.2 索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-切片"><span class="nav-text">2.3 切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-转义符"><span class="nav-text">2.4 转义符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、字符串操作符"><span class="nav-text">三、字符串操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、字符串处理函数"><span class="nav-text">四、字符串处理函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、字符串处理方法"><span class="nav-text">五、字符串处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-什么是方法"><span class="nav-text">5.1 什么是方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-8个方法"><span class="nav-text">5.2 8个方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、字符串的格式化"><span class="nav-text">六、字符串的格式化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-format-的用法"><span class="nav-text">6.1 format()的用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-槽内部对格式化的配置方式"><span class="nav-text">6.2 槽内部对格式化的配置方式</span></a></li></ol></li></ol></div>
             
 
           </div>
