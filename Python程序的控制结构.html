@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、顺序结构顺序结构其实就是程序按编写的顺序，一行行往后执行的程序结构。这是最简单的程序结构。 二、分支结构2.1 单分支结构单分支结构是最简单的分支结构，符合条件则执行语句块中的程序，否则直接结束分支结构。 12if &amp;lt;条件&amp;gt;:    &amp;lt;语句块&amp;gt;">
+<meta name="keywords" content="分支结构,循环结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python程序的控制结构">
+<meta property="og:url" content="https://blog.vungjoe.xyz/Python程序的控制结构.html">
+<meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
+<meta property="og:description" content="一、顺序结构顺序结构其实就是程序按编写的顺序，一行行往后执行的程序结构。这是最简单的程序结构。 二、分支结构2.1 单分支结构单分支结构是最简单的分支结构，符合条件则执行语句块中的程序，否则直接结束分支结构。 12if &amp;lt;条件&amp;gt;:    &amp;lt;语句块&amp;gt;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/05/10/5cd525df85c59.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/13/5cd98959e916178845.jpg">
+<meta property="og:updated_time" content="2019-05-10T06:54:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python程序的控制结构">
+<meta name="twitter:description" content="一、顺序结构顺序结构其实就是程序按编写的顺序，一行行往后执行的程序结构。这是最简单的程序结构。 二、分支结构2.1 单分支结构单分支结构是最简单的分支结构，符合条件则执行语句块中的程序，否则直接结束分支结构。 12if &amp;lt;条件&amp;gt;:    &amp;lt;语句块&amp;gt;">
+<meta name="twitter:image" content="https://i.loli.net/2019/05/10/5cd525df85c59.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.vungjoe.xyz/Python程序的控制结构.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python程序的控制结构 | VUNGJOE'S BLOG</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119042139-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-119042139-1');
+</script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">VUNGJOE'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Python程序的控制结构.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python程序的控制结构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-10 14:54:09" itemprop="dateCreated datePublished" datetime="2019-05-10T14:54:09+08:00">2019-05-10</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python3/" itemprop="url" rel="index"><span itemprop="name">Python3</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、顺序结构"><a href="#一、顺序结构" class="headerlink" title="一、顺序结构"></a>一、顺序结构</h2><p>顺序结构其实就是程序按编写的顺序，一行行往后执行的程序结构。这是最简单的程序结构。</p>
+<h2 id="二、分支结构"><a href="#二、分支结构" class="headerlink" title="二、分支结构"></a>二、分支结构</h2><h3 id="2-1-单分支结构"><a href="#2-1-单分支结构" class="headerlink" title="2.1 单分支结构"></a>2.1 单分支结构</h3><p>单分支结构是最简单的分支结构，符合条件则执行语句块中的程序，否则直接结束分支结构。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> &lt;条件&gt;:</span><br><span class="line">    &lt;语句块&gt;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>&lt;条件&gt;可以直接使用保留字 True（无条件执行）和 False（无条件跳过）。</li>
+</ul>
+<h3 id="2-2-二分支结构"><a href="#2-2-二分支结构" class="headerlink" title="2.2 二分支结构"></a>2.2 二分支结构</h3><p>二分支结构是根据条件结果选择不同的向前路径的运行方式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> &lt;条件&gt;:</span><br><span class="line">    &lt;语句块<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    &lt;语句块<span class="number">2</span>&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>条件成立执行语句块1，不成立则执行语句块2。</li>
+<li>紧凑形式：<code>&lt;表达式1&gt; if &lt;条件&gt; else &lt;表达式2&gt;</code></li>
+<li>注意这里是表达式而不是语句块？？<a href="https://www.zhihu.com/question/20750344" target="_blank" rel="noopener">^语句和表达式的区别</a>——说实话，没太懂。</li>
+</ul>
+<h3 id="2-3-多分支结构"><a href="#2-3-多分支结构" class="headerlink" title="2.3 多分支结构"></a>2.3 多分支结构</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> &lt;条件<span class="number">1</span>&gt;：</span><br><span class="line">    &lt;语句块<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">elif</span> &lt;条件<span class="number">2</span>&gt;:</span><br><span class="line">    &lt;语句块<span class="number">2</span>&gt;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    &lt;语句块N&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意多条件之间的包含关系（越向后条件越松）</li>
+<li>注意变量取值范围的覆盖关系（越向后取值范围越大）</li>
+</ul>
+<h3 id="2-4-条件判断与组合"><a href="#2-4-条件判断与组合" class="headerlink" title="2.4 条件判断与组合"></a>2.4 条件判断与组合</h3><h4 id="2-4-1-条件判断操作符"><a href="#2-4-1-条件判断操作符" class="headerlink" title="2.4.1 条件判断操作符"></a>2.4.1 条件<strong>判断</strong>操作符</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">操作符</th>
+<th style="text-align:center">数学符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&lt;</td>
+<td style="text-align:center">&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;=</td>
+<td style="text-align:center">≤</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;</td>
+<td style="text-align:center">&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td style="text-align:center">>=</td>
+<td style="text-align:center">≥</td>
+<td>大于等于</td>
+</tr>
+<tr>
+<td style="text-align:center">==</td>
+<td style="text-align:center">=</td>
+<td>等于</td>
+</tr>
+<tr>
+<td style="text-align:center">!=</td>
+<td style="text-align:center">≠</td>
+<td>不等于</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-4-2-条件组合的保留字"><a href="#2-4-2-条件组合的保留字" class="headerlink" title="2.4.2 条件组合的保留字"></a>2.4.2 条件<strong>组合</strong>的保留字</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">操作符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">x and y</td>
+<td>条件x和y的逻辑与</td>
+</tr>
+<tr>
+<td style="text-align:center">x or y</td>
+<td>条件x和y的逻辑或</td>
+</tr>
+<tr>
+<td style="text-align:center">not x</td>
+<td>条件x的逻辑非</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-5-程序的异常处理"><a href="#2-5-程序的异常处理" class="headerlink" title="2.5 程序的异常处理"></a>2.5 程序的异常处理</h3><p>程序运行时可能会遇到下图中类似的错误提示，其中告知了我们异常发生的位置，异常类型，以及异常的内容。该提示仅供参考。</p>
+<p><a href="https://i.loli.net/2019/05/10/5cd525df85c59.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/10/5cd525df85c59.png" alt="程序的异常处理.png"></a></p>
+<h4 id="2-5-1-程序的异常处理"><a href="#2-5-1-程序的异常处理" class="headerlink" title="2.5.1 程序的异常处理"></a>2.5.1 程序的异常处理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> :</span><br><span class="line">    &lt;语句块<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">except</span> :</span><br><span class="line">    &lt;语句块<span class="number">2</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进一步的提示异常类型：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> :</span><br><span class="line">    &lt;语句块<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">except</span> &lt;异常类型&gt;:</span><br><span class="line">    &lt;语句块<span class="number">2</span>&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>&lt;语句块1&gt; 是原本要执行的代码（程序的功能代码）</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> :</span><br><span class="line">    num = eval(input(<span class="string">"请输入一个数字："</span>))</span><br><span class="line">    print(<span class="string">"&#123;&#125; 的平方是 &#123;&#125;"</span>.format(num, pow(num,<span class="number">2</span>)))</span><br><span class="line"><span class="keyword">except</span> :</span><br><span class="line">    print(<span class="string">"请输入数字！"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="2-5-2-异常处理的高级使用"><a href="#2-5-2-异常处理的高级使用" class="headerlink" title="2.5.2 异常处理的高级使用"></a>2.5.2 异常处理的高级使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> :</span><br><span class="line">    &lt;语句块<span class="number">1</span>&gt;</span><br><span class="line"><span class="keyword">except</span> : <span class="comment"># 发生异常执行语句块2</span></span><br><span class="line">    &lt;语句块<span class="number">2</span>&gt;</span><br><span class="line"><span class="keyword">else</span> : <span class="comment"># 不发生异常时执行语句块3</span></span><br><span class="line">    &lt;语句块<span class="number">3</span>&gt;</span><br><span class="line"><span class="keyword">finally</span> : <span class="comment"># 一定执行语句块4</span></span><br><span class="line">    &lt;语句块<span class="number">4</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>这里只做了一个简单的介绍，如需了解更多请自行了解。</p>
+<h2 id="三、循环结构"><a href="#三、循环结构" class="headerlink" title="三、循环结构"></a>三、循环结构</h2><h3 id="3-1-for-in-循环（遍历循环）"><a href="#3-1-for-in-循环（遍历循环）" class="headerlink" title="3.1 for in 循环（遍历循环）"></a>3.1 for in 循环（遍历循环）</h3><p>for 循环的基本语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> &lt;变量&gt; <span class="keyword">in</span> &lt;列表&gt;:</span><br><span class="line">    &lt;语句块&gt;</span><br></pre></td></tr></table></figure>
+<p>上述的 <code>&lt;列表&gt;</code> ，可以有多种类型，只要它能遍历，都可以放在其中：</p>
+<ul>
+<li>可以是字符串，<code>for w in &quot;python&quot;</code> ——将遍历字符串 python 中的每一个字符</li>
+<li>可以是列表，<code>for s in [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</code> ——将遍历列表中的每一个元素</li>
+<li>可以是文件，<code>for line in file</code> ——将遍历文件的每一行</li>
+<li>可以是 range() 函数，<code>for i in range(10)</code>——将遍历 0-10 。</li>
+</ul>
+<h3 id="3-2-while-循环（条件循环）"><a href="#3-2-while-循环（条件循环）" class="headerlink" title="3.2 while 循环（条件循环）"></a>3.2 while 循环（条件循环）</h3><p>while 循环的基本语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> &lt;条件&gt;:</span><br><span class="line">    &lt;语句块&gt;</span><br></pre></td></tr></table></figure>
+<p>只要满足条件，就会执行循环中的语句块。</p>
+<h3 id="3-3-循环控制保留字-break-和-continue"><a href="#3-3-循环控制保留字-break-和-continue" class="headerlink" title="3.3 循环控制保留字 break 和 continue"></a>3.3 循环控制保留字 break 和 continue</h3><p>循环控制保留字包括两个：break 和 continue。</p>
+<ul>
+<li>break ：结束当前层的循环，继续执行后面的语句（与当前循环同层）</li>
+<li>continue ：结束本次循环，继续下一次循环</li>
+</ul>
+<h3 id="3-4-循环的高级应用"><a href="#3-4-循环的高级应用" class="headerlink" title="3.4 循环的高级应用"></a>3.4 循环的高级应用</h3><p>循环的高级应用是普通循环和 else 结合使用。它有以下的几个特性：</p>
+<ul>
+<li>当循环没有被 break 语句退出时，执行 else 语句块</li>
+<li>else 语句块作为“正常”完成循环的“奖励”</li>
+<li>这里 else 的用法与异常处理中 else 的用法相似</li>
+</ul>
+<p>示例：</p>
+<p><a href="https://i.loli.net/2019/05/13/5cd98959e916178845.jpg" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/13/5cd98959e916178845.jpg" alt="Snipaste_2019-05-13_23-12-07.jpg"></a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分支结构/" rel="tag"># 分支结构</a>
+          
+            <a href="/tags/循环结构/" rel="tag"># 循环结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/项目开发技能树.html" rel="next" title="项目介绍">
+                <i class="fa fa-chevron-left"></i> 项目介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">vungjoe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/vungjoe" title="GitHub &rarr; https://github.com/vungjoe" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:vungjoe.xyz@gmail.com" title="E-Mail &rarr; mailto:vungjoe.xyz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、顺序结构"><span class="nav-text">一、顺序结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、分支结构"><span class="nav-text">二、分支结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-单分支结构"><span class="nav-text">2.1 单分支结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-二分支结构"><span class="nav-text">2.2 二分支结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-多分支结构"><span class="nav-text">2.3 多分支结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-条件判断与组合"><span class="nav-text">2.4 条件判断与组合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1-条件判断操作符"><span class="nav-text">2.4.1 条件判断操作符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2-条件组合的保留字"><span class="nav-text">2.4.2 条件组合的保留字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-程序的异常处理"><span class="nav-text">2.5 程序的异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-1-程序的异常处理"><span class="nav-text">2.5.1 程序的异常处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-2-异常处理的高级使用"><span class="nav-text">2.5.2 异常处理的高级使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、循环结构"><span class="nav-text">三、循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-for-in-循环（遍历循环）"><span class="nav-text">3.1 for in 循环（遍历循环）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-while-循环（条件循环）"><span class="nav-text">3.2 while 循环（条件循环）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-循环控制保留字-break-和-continue"><span class="nav-text">3.3 循环控制保留字 break 和 continue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-循环的高级应用"><span class="nav-text">3.4 循环的高级应用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">vungjoe</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
