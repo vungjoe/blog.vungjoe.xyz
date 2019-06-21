@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、创建项目1django-admin startproject mold 该命令会在当前目录下创建一个名为 mold 的目录，其目录结构如下： 1234567mold/    manage.py    mold/        __init__.py        settings.py        urls.py        wsgi.py 各文件的用途：  最外层的目录 mold ：根目">
+<meta name="keywords" content="Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django快速入门第一节——创建项目及应用">
+<meta property="og:url" content="https://blog.vungjoe.xyz/Django快速入门第一节——创建项目及应用.html">
+<meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
+<meta property="og:description" content="一、创建项目1django-admin startproject mold 该命令会在当前目录下创建一个名为 mold 的目录，其目录结构如下： 1234567mold/    manage.py    mold/        __init__.py        settings.py        urls.py        wsgi.py 各文件的用途：  最外层的目录 mold ：根目">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/04/26/5cc2b43f1335f.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/04/26/5cc2ba8ec62b6.png">
+<meta property="og:image" content="https://i.loli.net/2019/04/30/5cc7361a263c3.png">
+<meta property="og:updated_time" content="2019-06-20T15:41:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django快速入门第一节——创建项目及应用">
+<meta name="twitter:description" content="一、创建项目1django-admin startproject mold 该命令会在当前目录下创建一个名为 mold 的目录，其目录结构如下： 1234567mold/    manage.py    mold/        __init__.py        settings.py        urls.py        wsgi.py 各文件的用途：  最外层的目录 mold ：根目">
+<meta name="twitter:image" content="https://i.loli.net/2019/04/26/5cc2b43f1335f.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.vungjoe.xyz/Django快速入门第一节——创建项目及应用.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Django快速入门第一节——创建项目及应用 | VUNGJOE'S BLOG</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119042139-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-119042139-1');
+</script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">VUNGJOE'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Django快速入门第一节——创建项目及应用.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Django快速入门第一节——创建项目及应用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-30 11:45:55" itemprop="dateCreated datePublished" datetime="2019-04-30T11:45:55+08:00">2019-04-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-20 23:41:23" itemprop="dateModified" datetime="2019-06-20T23:41:23+08:00">2019-06-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/WEB-开发/" itemprop="url" rel="index"><span itemprop="name">WEB 开发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、创建项目"><a href="#一、创建项目" class="headerlink" title="一、创建项目"></a>一、创建项目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject mold</span><br></pre></td></tr></table></figure>
+<p>该命令会在当前目录下创建一个名为 mold 的目录，其目录结构如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mold/</span><br><span class="line">    manage.py</span><br><span class="line">    mold/</span><br><span class="line">        __init__.py</span><br><span class="line">        settings.py</span><br><span class="line">        urls.py</span><br><span class="line">        wsgi.py</span><br></pre></td></tr></table></figure>
+<p>各文件的用途：</p>
+<ul>
+<li>最外层的目录 <code>mold</code> ：根目录只是项目的容器，这个名字没有意义，可以任意重命名为你喜欢的名字。</li>
+<li><code>manage.py</code>：一个让你用各种方式管理 Django 项目的命令行工具。可阅读 <a href="https://docs.djangoproject.com/zh-hans/2.2/ref/django-admin/" target="_blank" rel="noopener">django-admin and manage.py</a> 来获取所有有关的细节。</li>
+<li>子目录 <code>mold</code> ：这个目录包含你的项目，它是一个纯 Python 的包。它的名字就是当你引用它内部任何东西是需要用到的 Python 包名。（例如 <code>mold.urls</code> ）</li>
+<li><code>mold/__init__.py</code>：一个空文件，告诉 Python 这个目录应该被认为是一个 Python 包。<a href="https://docs.python.org/3/tutorial/modules.html#tut-packages" target="_blank" rel="noopener">更多有关 Python 中包的知识</a>。</li>
+<li><code>mold/settings.py</code>： Django 项目的配置文件。了解更多请看 <a href="https://docs.djangoproject.com/zh-hans/2.2/topics/settings/" target="_blank" rel="noopener">Django settings</a>。</li>
+<li><code>mold/urls.py</code>： Django 项目的 URL 声明，就像网站的“目录”一样。了解更多请看 <a href="https://docs.djangoproject.com/zh-hans/2.2/topics/http/urls/" target="_blank" rel="noopener">URL 调度器</a>。</li>
+<li><code>mold/wsgi.py</code>：作为项目的运行在 WSGI 兼容的 Web 服务器上的入口。阅读 <a href="https://docs.djangoproject.com/zh-hans/2.2/howto/deployment/wsgi/" target="_blank" rel="noopener">如何使用 WSGI 进行部署</a> 了解更多细节。</li>
+</ul>
+<h2 id="二、用于开发的简易服务器"><a href="#二、用于开发的简易服务器" class="headerlink" title="二、用于开发的简易服务器"></a>二、用于开发的简易服务器</h2><p>文件已经创建成功了，项目可以运行起来了吗？，执行下面的语句进行检查：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver</span><br><span class="line"><span class="comment"># python manage.py runserver 8080</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>默认会在 8000 端口监听，在浏览器中输入 127.0.0.1:8000 即可访问如下的界面。</li>
+<li>如果想在其他端口进行监听，只需在 runserver 后面加上想要监听的端口。</li>
+<li>自动重新加载：<ul>
+<li>用于开发的服务器在需要的情况下会对每一次的访问请求重新载入一遍 Python 代码，所以修改代码后不需要频繁地重启服务器。</li>
+<li>添加新文件，不会触发自动重新加载，这时需要手动重启服务器</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://i.loli.net/2019/04/26/5cc2b43f1335f.jpg" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/04/26/5cc2b43f1335f.jpg" alt="Django运行界面.jpg"></a></p>
+<h3 id="2-1-创建第一个应用"><a href="#2-1-创建第一个应用" class="headerlink" title="2.1 创建第一个应用"></a>2.1 创建第一个应用</h3><p>在 Django 中，每一个应用都是一个 Python 包，并且遵循相同的约定。 Django 自带一个工具，可以帮你生成应用的基础目录结构，这样就可以使你只专注于代码编写，而不是创建目录了。</p>
+<blockquote>
+<p>项目 VS 应用</p>
+<p>项目和应用有什么区别？应用是一个专门做某件事的网络应用程序——比如博客系统，比如公共记录的数据库，或者是简单的投票程序。项目则是一个网站使用的配置和应用的集合。</p>
+<ul>
+<li>项目可以包含多个应用</li>
+<li>应用可以被多个项目使用</li>
+</ul>
+</blockquote>
+<p>执行下面的命令来创建第一个应用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py startapp polls</span><br></pre></td></tr></table></figure>
+<p>该命令会创建一个 <code>polls</code> 目录，其结构大致如下所示：</p>
+<p><a href="https://i.loli.net/2019/04/26/5cc2ba8ec62b6.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/04/26/5cc2ba8ec62b6.png" alt="app目录结构.png"></a></p>
+<p>应用创建成功，下面就是进行代码编写的工作了。</p>
+<h3 id="2-2-编写第一个视图"><a href="#2-2-编写第一个视图" class="headerlink" title="2.2 编写第一个视图"></a>2.2 编写第一个视图</h3><p>在 <code>polls/views.py</code> 中写入如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world. You're at the polls index."</span>)</span><br></pre></td></tr></table></figure>
+<p>这是 Django 中最简单的视图。如果想看见效果，我们需要将一个 URL 映射到它——这就是我们需要 URLconf 的原因了。</p>
+<h3 id="2-3-编写应用的-url"><a href="#2-3-编写应用的-url" class="headerlink" title="2.3 编写应用的 url"></a>2.3 编写应用的 url</h3><p>在 polls 目录下创建 <code>urls.py</code>，写入如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from django.urls import path</span><br><span class="line"></span><br><span class="line">from . import views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(&apos;&apos;, views.index, name=&apos;index&apos;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="2-4-在根目录下指定-polls-urls-py-模块"><a href="#2-4-在根目录下指定-polls-urls-py-模块" class="headerlink" title="2.4 在根目录下指定 polls/urls.py 模块"></a>2.4 在根目录下指定 <code>polls/urls.py</code> 模块</h3><p>在项目根目录下的 urls.py 文件的 urlpatterns 列表里插入一个 include()， 如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'polls/'</span>, include(<span class="string">'polls.urls'</span>)),</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>include 的作用：可以引用其他（各个应用） URL 配置文件，</li>
+<li>何时使用 include ——当包括其它 URL 模式时你应该总是使用 include() ， admin.site.urls 是唯一例外。<ul>
+<li>每个应用的 URL 都应该这样使用</li>
+</ul>
+</li>
+</ul>
+<p>到此为止，我们已经将创建的第一个视图，添加进了 URL 配置文件。</p>
+<p>执行 <code>python manage.py runserver</code>，</p>
+<p>此时可以通过访问 <code>127.0.0.1:8000/polls</code> 来验证我们的操作是否成功。</p>
+<p><a href="https://i.loli.net/2019/04/30/5cc7361a263c3.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/04/30/5cc7361a263c3.png" alt="pollsi.png"></a></p>
+<p>如果显示上面的内容，说明我们的操作是没有问题的。</p>
+<h2 id="三、path-函数"><a href="#三、path-函数" class="headerlink" title="三、path() 函数"></a>三、path() 函数</h2><p>urlpatterns 列表中的 path() 函数，一共有四个参数，包括两个必须参数 route 和 views ，两个可选参数 kwargs 和 name 。</p>
+<p>path(route, view, kwargs=None, name=None)</p>
+<h3 id="3-1-route"><a href="#3-1-route" class="headerlink" title="3.1 route"></a>3.1 route</h3><ul>
+<li>route 是一个匹配 URL 的准则（类似正则表达式）</li>
+<li>当 Django 响应一个请求时，它会从 urlpatterns 列表的第一项开始，按顺序依次匹配列表中的项，直到找到匹配的项</li>
+<li>route 不会匹配 GET 和 POST 参数或域名。例如，<ul>
+<li>URLconf 在处理请求 <code>https://www.example.com/myapp/</code> 时，它会尝试匹配 myapp/</li>
+<li>处理请求 <code>https://www.example.com/myapp/?page=3</code> 时，也只会尝试匹配 myapp/。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-view"><a href="#3-2-view" class="headerlink" title="3.2 view"></a>3.2 view</h3><p>当 Django 找到了一个匹配的准则，就会调用这个特定的视图函数，并传入一个 HttpRequest 对象作为第一个参数，被“捕获”的参数以关键字参数的形式传入。稍后，我们会给出一个例子。</p>
+<h3 id="3-3-kwargs"><a href="#3-3-kwargs" class="headerlink" title="3.3 kwargs"></a>3.3 kwargs</h3><p>任意个关键字参数可以作为一个字典传递给目标视图函数。</p>
+<h3 id="3-4-name"><a href="#3-4-name" class="headerlink" title="3.4 name"></a>3.4 name</h3><p>为你的 URL 取名能使你在 Django 的任意地方唯一地引用它，尤其是在模板中。这个有用的特性允许你只改一个文件就能全局地修改某个 URL 模式。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Django/" rel="tag"># Django</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/项目开发技能树.html" rel="next" title="项目介绍">
+                <i class="fa fa-chevron-left"></i> 项目介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Python程序的控制结构.html" rel="prev" title="Python程序的控制结构">
+                Python程序的控制结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">vungjoe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/vungjoe" title="GitHub &rarr; https://github.com/vungjoe" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:vungjoe.xyz@gmail.com" title="E-Mail &rarr; mailto:vungjoe.xyz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、创建项目"><span class="nav-text">一、创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、用于开发的简易服务器"><span class="nav-text">二、用于开发的简易服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-创建第一个应用"><span class="nav-text">2.1 创建第一个应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-编写第一个视图"><span class="nav-text">2.2 编写第一个视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-编写应用的-url"><span class="nav-text">2.3 编写应用的 url</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-在根目录下指定-polls-urls-py-模块"><span class="nav-text">2.4 在根目录下指定 polls/urls.py 模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、path-函数"><span class="nav-text">三、path() 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-route"><span class="nav-text">3.1 route</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-view"><span class="nav-text">3.2 view</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-kwargs"><span class="nav-text">3.3 kwargs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-name"><span class="nav-text">3.4 name</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">vungjoe</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

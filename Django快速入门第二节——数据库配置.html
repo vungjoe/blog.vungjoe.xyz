@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="阅读官方文档：编写你的第一个 Django 应用，第 2 部分 一、数据库配置为了方便以后项目进行扩展，数据库没有使用默认的 SQLite ，而是 MySQL 。  支持：仅支持 MySQL 5.6 及更高的版本 存储引擎：建议使用 InnoDB，但有个问题 数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。  1.1 安装数据库">
+<meta name="keywords" content="Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django快速入门第二节——数据库配置">
+<meta property="og:url" content="https://blog.vungjoe.xyz/Django快速入门第二节——数据库配置.html">
+<meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
+<meta property="og:description" content="阅读官方文档：编写你的第一个 Django 应用，第 2 部分 一、数据库配置为了方便以后项目进行扩展，数据库没有使用默认的 SQLite ，而是 MySQL 。  支持：仅支持 MySQL 5.6 及更高的版本 存储引擎：建议使用 InnoDB，但有个问题 数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。  1.1 安装数据库">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2019/05/01/5cc9a43c08d93.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/02/5cc9d83369ada.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/03/5ccb1f617704b.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/03/5ccb1f63a4dd2.png">
+<meta property="og:image" content="https://i.loli.net/2019/05/03/5ccb1f644870f.png">
+<meta property="og:updated_time" content="2019-06-20T15:37:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django快速入门第二节——数据库配置">
+<meta name="twitter:description" content="阅读官方文档：编写你的第一个 Django 应用，第 2 部分 一、数据库配置为了方便以后项目进行扩展，数据库没有使用默认的 SQLite ，而是 MySQL 。  支持：仅支持 MySQL 5.6 及更高的版本 存储引擎：建议使用 InnoDB，但有个问题 数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。  1.1 安装数据库">
+<meta name="twitter:image" content="https://i.loli.net/2019/05/01/5cc9a43c08d93.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.vungjoe.xyz/Django快速入门第二节——数据库配置.html">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Django快速入门第二节——数据库配置 | VUNGJOE'S BLOG</title>
+  
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119042139-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-119042139-1');
+</script>
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">VUNGJOE'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Django快速入门第二节——数据库配置.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Django快速入门第二节——数据库配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-22 23:27:32" itemprop="dateCreated datePublished" datetime="2019-05-22T23:27:32+08:00">2019-05-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-20 23:37:01" itemprop="dateModified" datetime="2019-06-20T23:37:01+08:00">2019-06-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/WEB-开发/" itemprop="url" rel="index"><span itemprop="name">WEB 开发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>阅读官方文档：<a href="https://docs.djangoproject.com/zh-hans/2.2/intro/tutorial02/#writing-your-first-django-app-part-2" target="_blank" rel="noopener">编写你的第一个 Django 应用，第 2 部分</a></p>
+<h2 id="一、数据库配置"><a href="#一、数据库配置" class="headerlink" title="一、数据库配置"></a>一、数据库配置</h2><p>为了方便以后项目进行扩展，数据库没有使用默认的 SQLite ，而是 MySQL 。</p>
+<ul>
+<li>支持：仅支持 MySQL 5.6 及更高的版本</li>
+<li>存储引擎：建议使用 InnoDB，但有个问题</li>
+<li>数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。</li>
+</ul>
+<h3 id="1-1-安装数据库驱动"><a href="#1-1-安装数据库驱动" class="headerlink" title="1.1 安装数据库驱动"></a>1.1 安装数据库驱动</h3><p>安装 MySQL：在 MySQL 官网下载安装包，安装后添加环境变量</p>
+<p>安装 mysqlclient：<code>pip install mysqlclient</code></p>
+<h3 id="1-2-修改-settings-py"><a href="#1-2-修改-settings-py" class="headerlink" title="1.2 修改 settings.py"></a>1.2 修改 settings.py</h3><p>打开 mold/settings.py ，修改其中关于时区和数据库的部分。</p>
+<p><a href="https://docs.djangoproject.com/zh-hans/2.2/ref/settings/#std:setting-TIME_ZONE" target="_blank" rel="noopener"><strong>时区 TIMEZONE</strong></a></p>
+<p>中国的时区是 UTC8，也就是 <code>Asia/Shanghai</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TIME_ZONE = <span class="string">'Asia/Shanghai'</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://docs.djangoproject.com/zh-hans/2.2/ref/settings/#std:setting-DATABASES" target="_blank" rel="noopener"><strong>数据库</strong></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'polls'</span>,</span><br><span class="line">        <span class="string">'USER'</span>: <span class="string">'root'</span>,</span><br><span class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'rF9=x'</span>,</span><br><span class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">        <span class="string">'PORT'</span>: <span class="string">'3306'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>密码字段请务必不要放在文档中（上面的密码并非真正的密码）。</li>
+<li>这一步如果使用 sqlite 之外的数据库，则必须保证先行创建好了上面提到的数据库<ul>
+<li>MySQL：<code>CREATE DATABASE polls;</code></li>
+</ul>
+</li>
+<li>确保用户拥有创建数据库的权限（可以执行 create database 命令）</li>
+</ul>
+<h3 id="1-3-为应用添加数据表"><a href="#1-3-为应用添加数据表" class="headerlink" title="1.3 为应用添加数据表"></a>1.3 为应用添加数据表</h3><p>仔细看配置文件 settings.py，会发现在文件头部，会有下面这样的一段配置，表示的是默认启用的应用。这些应用就是为了给常规的项目提供方便。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>保证 manage.py 拥有创建数据库的权限：配置文件中的用户必须有权限</li>
+</ul>
+<p>执行<code>python manage.py migrate</code>，即可为默认应用创建相应的表，执行成功后，可看到创建了如下的一些表。</p>
+<p><a href="https://i.loli.net/2019/05/01/5cc9a43c08d93.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/01/5cc9a43c08d93.png" alt="Screen Shot 2019-05-01 at 21.50.00.png"></a></p>
+<h2 id="二、创建模型"><a href="#二、创建模型" class="headerlink" title="二、创建模型"></a>二、创建模型</h2><p>在 Django 里写一个数据库驱动的 Web 应用的第一步是定义模型 - 也就是数据库结构设计和附加的其它元数据。</p>
+<blockquote>
+<p>设计哲学</p>
+<p>模型是真实数据的简单明确的描述。它包含了储存的数据所必要的字段和行为。Django 遵循 DRY Principle（不重复地的造轮子）。它的目标是你只需要定义数据模型，然后其它的杂七杂八代码你都不用关心，它们会自动从模型生成。</p>
+</blockquote>
+<p>修改 <code>polls/models.py</code>，创建两个类，并定义了类变量（数据库中的字段）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    question_text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    pub_date = models.DateTimeField(<span class="string">'date published'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    question = models.ForeignKey(Question, on_delete=models.CASCADE)</span><br><span class="line">    choice_text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    votes = models.IntegerField(default=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>每个模型被表示为 django.db.models.Model 类的子类，每个模型有一些类变量，它们都表示模型里的一个数据库字段。</li>
+<li>每个字段都是 Field 类的实例，以下是几个常见的 Field 类：<ul>
+<li>字符字段：CharField</li>
+<li>日期时间字段：DateTimeField</li>
+<li>布尔字段：BooleanField</li>
+<li>…</li>
+</ul>
+</li>
+<li>ForeignKey，也是一个 Field 类，只不过是较为特殊的关系 Field 类。上面这句代码的含义是——每个 Choice 对象都关联到一个 Question 对象</li>
+</ul>
+<h2 id="三、激活模型"><a href="#三、激活模型" class="headerlink" title="三、激活模型"></a>三、激活模型</h2><h3 id="3-1-把应用添加到工程中"><a href="#3-1-把应用添加到工程中" class="headerlink" title="3.1 把应用添加到工程中"></a>3.1 把应用添加到工程中</h3><p>为了在工程中包含 polls 应用，需要在配置类 INSTALLED_APPS 中增加设置。又因为 PollsConfig 类是写在文件 polls/apps.py 中，所以它的点式路径为 ‘polls.app.PollsConfig’ 。</p>
+<p>在文件 mold/settings.py 中 INSTALLED_APPS 子项添加点式路径后，它看起来是这个样子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'polls.app.PollsConfig'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-为模型生成迁移文件"><a href="#3-2-为模型生成迁移文件" class="headerlink" title="3.2 为模型生成迁移文件"></a>3.2 为模型生成迁移文件</h3><p>生成迁移文件，执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations polls</span><br></pre></td></tr></table></figure>
+<p>执行命令后会有类似以下的输出：</p>
+<p><a href="https://i.loli.net/2019/05/02/5cc9d83369ada.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/02/5cc9d83369ada.png" alt="Screen Shot 2019-05-02 at 01.31.31.png"></a></p>
+<ul>
+<li>通过运行 makemigrations 命令，Django 会检测你对模型文件的修改，并且把修改的部分储存为一次 迁移。</li>
+<li>迁移是 Django 对于模型定义（也就是你的数据库结构）的变化的储存形式——该命令会生成一个py文件，通过阅读该文件，你就会知道会对数据库有哪些操作。</li>
+</ul>
+<h3 id="3-3-查看迁移命令会执行的-SQL-语句（本步骤可以跳过，但知识点很重要）"><a href="#3-3-查看迁移命令会执行的-SQL-语句（本步骤可以跳过，但知识点很重要）" class="headerlink" title="3.3 查看迁移命令会执行的 SQL 语句（本步骤可以跳过，但知识点很重要）"></a>3.3 查看迁移命令会执行的 SQL 语句（本步骤可以跳过，但知识点很重要）</h3><p><strong>sqlmigrate</strong> 命令接收一个迁移的名称，然后返回对应的 SQL：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py sqlmigrate polls 0001</span><br></pre></td></tr></table></figure>
+<ul>
+<li>polls 表示的是对哪个应用</li>
+<li>0001 对应迁移命令生成的文件名</li>
+</ul>
+<p>执行后，会输出类似以下的内容（下面的内容经过排版，更易阅读）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span>;</span><br><span class="line"><span class="comment">--</span></span><br><span class="line"><span class="comment">-- Create model Qusetion</span></span><br><span class="line"><span class="comment">--</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`polls_qusetion`</span> (</span><br><span class="line">    <span class="string">`id`</span> <span class="built_in">integer</span> AUTO_INCREMENT <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">    <span class="string">`question_text`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    <span class="string">`pub_date`</span> datetime(<span class="number">6</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>);</span><br><span class="line"><span class="comment">--</span></span><br><span class="line"><span class="comment">-- Create model Choice</span></span><br><span class="line"><span class="comment">--</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`polls_choice`</span> (</span><br><span class="line">    <span class="string">`id`</span> <span class="built_in">integer</span> AUTO_INCREMENT <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span>,</span><br><span class="line">    <span class="string">`choice_text`</span> <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    <span class="string">`votes`</span> <span class="built_in">integer</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    <span class="string">`question_id`</span> <span class="built_in">integer</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`polls_choice`</span></span><br><span class="line">    <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> <span class="string">`polls_choice_question_id_c5b4b260_fk_polls_qusetion_id`</span></span><br><span class="line">        <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (<span class="string">`question_id`</span>)</span><br><span class="line">        <span class="keyword">REFERENCES</span> <span class="string">`polls_qusetion`</span> (<span class="string">`id`</span>);</span><br><span class="line"><span class="keyword">COMMIT</span>;</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li>输出的内容和你所使用的具体的数据库有关，上面的输出示例使用的是 MySQL</li>
+<li>数据库中的表名是由应用名（ polls ）和模型名的小写（ question 和 choice ）连接而来（可自定义）</li>
+<li>主键（ IDs ）会被自动创建</li>
+<li>默认的，Django 会在外键字段名后追加字符串”_id”</li>
+<li>外键关系由 FOREIGN KEY 生成</li>
+</ul>
+<h3 id="3-4-应用数据库迁移"><a href="#3-4-应用数据库迁移" class="headerlink" title="3.4 应用数据库迁移"></a>3.4 应用数据库迁移</h3><p><strong>3.2 为模型生成迁移文件</strong> 只是生成了执行文件，但并没有实际执行，数据库此时还没有发生变化。这一步就是执行对数据库的操作。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+<h2 id="四、初试数据库-API"><a href="#四、初试数据库-API" class="headerlink" title="四、初试数据库 API"></a>四、<a href="https://docs.djangoproject.com/zh-hans/2.2/intro/tutorial02/#playing-with-the-api" target="_blank" rel="noopener">初试数据库 API</a></h2><p>现在让我们进入交互式 Python 命令行，尝试一下 Django 为你创建的各种 API。通过以下命令打开 Python 命令行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br></pre></td></tr></table></figure>
+<p>我们使用这个命令而不是简单的使用 “Python” 是因为 manage.py 会设置 DJANGO_SETTINGS_MODULE 环境变量，这个变量会让 Django 根据 mysite/settings.py 文件来设置 Python 包的导入路径。</p>
+<p>当你成功进入命令行后，来试试 database API 吧（这一部分暂时不做笔记了，有兴趣的先看下官网教程，跟着做一做）。</p>
+<h2 id="五、Django-管理页面"><a href="#五、Django-管理页面" class="headerlink" title="五、Django 管理页面"></a>五、<a href="https://docs.djangoproject.com/zh-hans/2.2/intro/tutorial02/#introducing-the-django-admin" target="_blank" rel="noopener">Django 管理页面</a></h2><blockquote>
+<p>设计哲学：</p>
+<p>为你的员工或客户生成一个用户添加，修改和删除内容的后台是一项缺乏创造性和乏味的工作。因此，Django 全自动地根据模型创建后台界面。</p>
+</blockquote>
+<p>管理界面不是为了网站的访问者，而是为管理者准备的。</p>
+<h3 id="5-1-创建管理员账户"><a href="#5-1-创建管理员账户" class="headerlink" title="5.1 创建管理员账户"></a>5.1 创建管理员账户</h3><p>首先，我们需要创建一个能登录管理页面的用户。执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py createsuperser</span><br></pre></td></tr></table></figure>
+<p>该命令会要求输入用户名、邮箱、密码，这样一个用户就创建好了。</p>
+<h3 id="5-2-启动开发服务器"><a href="#5-2-启动开发服务器" class="headerlink" title="5.2 启动开发服务器"></a>5.2 启动开发服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver</span><br></pre></td></tr></table></figure>
+<p>浏览网页 <a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener">http://127.0.0.1:8000/admin/</a> ，输入刚创建的用户及密码。</p>
+<p><img src="https://i.loli.net/2019/05/03/5ccb1f617704b.png" alt="Screen Shot 2019-05-03 at 00.30.58.png"></p>
+<p><a href="https://i.loli.net/2019/05/03/5ccb1f63a4dd2.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/03/5ccb1f63a4dd2.png" alt="Screen Shot 2019-05-03 at 00.32.00.png"></a></p>
+<h3 id="5-3-向管理页面加入应用"><a href="#5-3-向管理页面加入应用" class="headerlink" title="5.3 向管理页面加入应用"></a>5.3 向管理页面加入应用</h3><p>此时，会发现我们创建的应用，并没有在管理页面显示。这还需要告诉管理页面，问题 Question 对象需要被管理。修改 polls/admin.py 文件，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line">admin.site.register(Question)</span><br></pre></td></tr></table></figure>
+<p>再次回到管理页面，发现页面发生了变化，</p>
+<p><a href="https://i.loli.net/2019/05/03/5ccb1f644870f.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/03/5ccb1f644870f.png" alt="Screen Shot 2019-05-03 at 00.39.00.png"></a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Django/" rel="tag"># Django</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Python程序的控制结构.html" rel="next" title="Python程序的控制结构">
+                <i class="fa fa-chevron-left"></i> Python程序的控制结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">vungjoe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/vungjoe" title="GitHub &rarr; https://github.com/vungjoe" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:vungjoe.xyz@gmail.com" title="E-Mail &rarr; mailto:vungjoe.xyz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、数据库配置"><span class="nav-text">一、数据库配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-安装数据库驱动"><span class="nav-text">1.1 安装数据库驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-修改-settings-py"><span class="nav-text">1.2 修改 settings.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-为应用添加数据表"><span class="nav-text">1.3 为应用添加数据表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、创建模型"><span class="nav-text">二、创建模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、激活模型"><span class="nav-text">三、激活模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-把应用添加到工程中"><span class="nav-text">3.1 把应用添加到工程中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-为模型生成迁移文件"><span class="nav-text">3.2 为模型生成迁移文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-查看迁移命令会执行的-SQL-语句（本步骤可以跳过，但知识点很重要）"><span class="nav-text">3.3 查看迁移命令会执行的 SQL 语句（本步骤可以跳过，但知识点很重要）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-应用数据库迁移"><span class="nav-text">3.4 应用数据库迁移</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、初试数据库-API"><span class="nav-text">四、初试数据库 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、Django-管理页面"><span class="nav-text">五、Django 管理页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-创建管理员账户"><span class="nav-text">5.1 创建管理员账户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-启动开发服务器"><span class="nav-text">5.2 启动开发服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-向管理页面加入应用"><span class="nav-text">5.3 向管理页面加入应用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">vungjoe</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
