@@ -15,7 +15,7 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -108,13 +108,13 @@
 
 
 
-  <meta name="description" content="阅读官方文档：编写你的第一个 Django 应用，第 2 部分 一、数据库配置为了方便以后项目进行扩展，数据库没有使用默认的 SQLite ，而是 MySQL 。  支持：仅支持 MySQL 5.6 及更高的版本 存储引擎：建议使用 InnoDB，但有个问题 数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。  1.1 安装数据库">
+  <meta name="description" content="阅读官方文档：编写你的第一个 Django 应用，第 2 部分 一、数据库配置为了方便以后项目进行扩展，数据库没有使用默认的 SQLite ，而是 MySQL 。  支持：仅支持 MySQL 5.6 及更高的版本 存储引擎：建议使用 InnoDB，但有个问题 数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。">
 <meta name="keywords" content="Django">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django快速入门第二节——数据库配置">
-<meta property="og:url" content="https://blog.vungjoe.xyz/Django快速入门第二节——数据库配置.html">
+<meta property="og:url" content="https://blog.vungjoe.xyz/Django快速入门第02节——数据库配置.html">
 <meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
-<meta property="og:description" content="阅读官方文档：编写你的第一个 Django 应用，第 2 部分 一、数据库配置为了方便以后项目进行扩展，数据库没有使用默认的 SQLite ，而是 MySQL 。  支持：仅支持 MySQL 5.6 及更高的版本 存储引擎：建议使用 InnoDB，但有个问题 数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。  1.1 安装数据库">
+<meta property="og:description" content="阅读官方文档：编写你的第一个 Django 应用，第 2 部分 一、数据库配置为了方便以后项目进行扩展，数据库没有使用默认的 SQLite ，而是 MySQL 。  支持：仅支持 MySQL 5.6 及更高的版本 存储引擎：建议使用 InnoDB，但有个问题 数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2019/05/01/5cc9a43c08d93.png">
 <meta property="og:image" content="https://i.loli.net/2019/05/02/5cc9d83369ada.png">
@@ -124,7 +124,7 @@
 <meta property="og:updated_time" content="2019-06-20T15:37:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django快速入门第二节——数据库配置">
-<meta name="twitter:description" content="阅读官方文档：编写你的第一个 Django 应用，第 2 部分 一、数据库配置为了方便以后项目进行扩展，数据库没有使用默认的 SQLite ，而是 MySQL 。  支持：仅支持 MySQL 5.6 及更高的版本 存储引擎：建议使用 InnoDB，但有个问题 数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。  1.1 安装数据库">
+<meta name="twitter:description" content="阅读官方文档：编写你的第一个 Django 应用，第 2 部分 一、数据库配置为了方便以后项目进行扩展，数据库没有使用默认的 SQLite ，而是 MySQL 。  支持：仅支持 MySQL 5.6 及更高的版本 存储引擎：建议使用 InnoDB，但有个问题 数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。">
 <meta name="twitter:image" content="https://i.loli.net/2019/05/01/5cc9a43c08d93.png">
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.vungjoe.xyz/Django快速入门第二节——数据库配置.html">
+  <link rel="canonical" href="https://blog.vungjoe.xyz/Django快速入门第02节——数据库配置.html">
 
 
 
@@ -193,7 +193,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -203,7 +203,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -362,20 +362,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Django快速入门第二节——数据库配置.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Django快速入门第02节——数据库配置.html">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="vungjoe">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="VUNGJOE'S BLOG">
     </span>
 
@@ -443,7 +443,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/WEB-开发/" itemprop="url" rel="index"><span itemprop="name">WEB 开发</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/WEB-开发/" itemprop="url" rel="index"><span itemprop="name">WEB 开发</span></a></span>
 
                 
                 
@@ -482,6 +482,7 @@
 <li>存储引擎：建议使用 InnoDB，但有个问题</li>
 <li>数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。</li>
 </ul>
+<a id="more"></a>
 <h3 id="1-1-安装数据库驱动"><a href="#1-1-安装数据库驱动" class="headerlink" title="1.1 安装数据库驱动"></a>1.1 安装数据库驱动</h3><p>安装 MySQL：在 MySQL 官网下载安装包，安装后添加环境变量</p>
 <p>安装 mysqlclient：<code>pip install mysqlclient</code></p>
 <h3 id="1-2-修改-settings-py"><a href="#1-2-修改-settings-py" class="headerlink" title="1.2 修改 settings.py"></a>1.2 修改 settings.py</h3><p>打开 mold/settings.py ，修改其中关于时区和数据库的部分。</p>
@@ -669,7 +670,7 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">vungjoe</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -735,6 +736,12 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
+                    
+                      
+                    
+                      
+                    
+                      
                     
                       
                     
@@ -859,7 +866,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
