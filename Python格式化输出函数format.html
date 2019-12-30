@@ -249,6 +249,7 @@
 <h1 id="三、模板字符串的配置"><a href="#三、模板字符串的配置" class="headerlink" title="三、模板字符串的配置"></a>三、模板字符串的配置</h1><p>模板字符串由字符串和槽组成。</p>
 <h2 id="3-1-槽内部对格式化的配置方式"><a href="#3-1-槽内部对格式化的配置方式" class="headerlink" title="3.1 槽内部对格式化的配置方式"></a>3.1 槽内部对格式化的配置方式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&lt;参数序号&gt;:&lt;格式控制标记&gt;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例：</span></span><br><span class="line">&#123;:-&lt;<span class="number">10</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>常见格式控制标记：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -279,7 +280,9 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="3-2对数值进行格式化"><a href="#3-2对数值进行格式化" class="headerlink" title="3.2对数值进行格式化"></a>3.2对数值进行格式化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;:,<span class="number">.2</span>f&#125;</span><br></pre></td></tr></table></figure>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -302,6 +305,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h2 id="3-3-示例代码"><a href="#3-3-示例代码" class="headerlink" title="3.3 示例代码"></a>3.3 示例代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 字符串</span></span><br><span class="line">print(<span class="string">"&#123;:-&lt;10&#125;"</span>.format(<span class="string">"abc"</span>))</span><br><span class="line">print(<span class="string">"&#123;:-&gt;10&#125;"</span>.format(<span class="string">"abc"</span>))</span><br><span class="line">print(<span class="string">"&#123;:-^10&#125;"</span>.format(<span class="string">"abc"</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 浮点数</span></span><br><span class="line">print(<span class="string">"&#123;:.2f&#125;"</span>.format(<span class="number">3.1415926</span>))</span><br><span class="line">print(<span class="string">"&#123;:.2e&#125;"</span>.format(<span class="number">3.1415926</span>))</span><br><span class="line">print(<span class="string">"&#123;:.2E&#125;"</span>.format(<span class="number">3.1415926</span>))</span><br><span class="line">print(<span class="string">"&#123;:.2%&#125;"</span>.format(<span class="number">3.1415926</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 整数</span></span><br><span class="line">print(<span class="string">"&#123;:b&#125;"</span>.format(<span class="number">1234</span>))</span><br><span class="line">print(<span class="string">"&#123;:,d&#125;"</span>.format(<span class="number">1234</span>))</span><br><span class="line">print(<span class="string">"&#123;:o&#125;"</span>.format(<span class="number">1234</span>))</span><br><span class="line">print(<span class="string">"&#123;:x&#125;"</span>.format(<span class="number">1234</span>))</span><br><span class="line">print(<span class="string">"&#123;:X&#125;"</span>.format(<span class="number">1234</span>))</span><br><span class="line">print(<span class="string">"&#123;:c&#125;"</span>.format(<span class="number">101</span>))</span><br></pre></td></tr></table></figure>
 <p>其运行结果如下所示：</p>
 <p><img src="https://i.loli.net/2018/11/19/5bf2cd268348f.jpeg" alt="Python格式化输出函数format3.jpeg"></p>

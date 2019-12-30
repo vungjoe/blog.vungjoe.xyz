@@ -47,7 +47,7 @@
 </script>
 
   <meta name="description" content="官方文档阅读：编写你的第一个 Django 应用，第 3 部分 一、视图Django 中的视图是 一类具有相同功能和模板的网页的集合。 视图只做2件事：  返回一个包含被请求页面内容的 HttpResponse 对象，或者抛出一个异常，比如 Http404 。 另外一件事，随便我们怎么设计: 从数据库读取记录 使用一个模板引擎 生成一个 PDF 文件 …">
-<meta name="keywords" content="Django,模板,视图">
+<meta name="keywords" content="Django,视图,模板">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django快速入门教程第03节——视图和模板">
 <meta property="og:url" content="https://blog.vungjoe.xyz/Django快速入门教程第03节：视图和模板.html">
@@ -297,7 +297,7 @@
 </blockquote>
 <p>前面在模板文件 polls/index.html 中，关于编码的部分就是硬链接（直接定义了一个网址 polls/question_id ）</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/polls/&#123;&#123; question_id &#125;&#125;/"</span>&gt;</span>&#123;&#123; question.question_text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>但是假如我们想更改网址，比如改成 polls/fha/question_id ，如果使用的硬编码，你会发现需要修改 模板文件 ***.html 和 urls.py 才能完成完整的变更。</p>
+<p>但是假如我们想更改网址，比如改成 polls/fha/question_id ，如果使用的硬编码，你会发现需要修改 模板文件 <em>*</em>.html 和 urls.py 才能完成完整的变更。</p>
 <p>如果把模板文件中的 <code>/polls/</code> 换成一个变量来代替它，就会发现改动量要小很多。更改完后如下所示：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;li&gt;&lt;a href="&#123;% url 'detail' question_id &#125;"&gt;&#123;&#123; question.question_text &#125;&#125;&lt;/a&gt;&lt;/li&gt;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -309,7 +309,7 @@
 <h4 id="3-3-2-修改模板文件"><a href="#3-3-2-修改模板文件" class="headerlink" title="3.3.2 修改模板文件"></a>3.3.2 修改模板文件</h4><p>命名空间已经写好，下一步就是修改模板文件：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> latest_question_list %&#125;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">    &#123;% <span class="keyword">for</span> question <span class="keyword">in</span> latest_question_list %&#125;</span><br><span class="line">        &lt;li&gt;&lt;a href="&#123;% url 'polls:detail' question_id &#125;"&gt;&#123;&#123; question.question_text &#125;&#125;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&#123;% <span class="keyword">else</span> %&#125;</span><br><span class="line">    &lt;p&gt;No polls are available.&lt;/p&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
 <p>说明：</p>
-<p>[<img src="https://i.loli.net/2019/05/21/5ce41f3213afe12595.jpg" alt="Snipaste_2019-05-21_23-49-50 [2].jpg](https://i.loli.net/2019/05/21/5ce41f3213afe12595.jpg)"></p>
+<p><a href="https://i.loli.net/2019/05/21/5ce41f3213afe12595.jpg" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/05/21/5ce41f3213afe12595.jpg" alt="Snipaste_2019-05-21_23-49-50 [2].jpg"></a></p>
 
     </div>
 
@@ -320,8 +320,8 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Django/" rel="tag"># Django</a>
-              <a href="/tags/模板/" rel="tag"># 模板</a>
               <a href="/tags/视图/" rel="tag"># 视图</a>
+              <a href="/tags/模板/" rel="tag"># 模板</a>
           </div>
 
         
