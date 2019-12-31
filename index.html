@@ -355,425 +355,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Django表单第01节：HTML表单和Django表单.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="vungjoe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="VUNGJOE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/Django表单第01节：HTML表单和Django表单.html" class="post-title-link" itemprop="url">Django表单第01节：HTML表单和Django表单</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-09-10 11:00:33" itemprop="dateCreated datePublished" datetime="2019-09-10T11:00:33+08:00">2019-09-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WEB-开发/" itemprop="url" rel="index">
-                    <span itemprop="name">WEB 开发</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>前面在 <a href="https://blog.vungjoe.xyz/Django%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E7%AC%AC04%E8%8A%82%EF%BC%9A%E8%A1%A8%E5%8D%95%E5%92%8C%E9%80%9A%E7%94%A8%E8%A7%86%E5%9B%BE.html">Django快速入门教程第04节——表单和通用视图</a> 中引入了表单的概念，下面再来复习一下表单的概念。</p>
-<h2 id="一、HTML-表单"><a href="#一、HTML-表单" class="headerlink" title="一、HTML 表单"></a>一、HTML 表单</h2><p>Django 开发的是动态 Web 服务，而非单纯提供静态页面。动态服务的本质在于和用户进行互动，接收用户的输入，根据输入的不同，返回不同的内容给用户。返回数据是我们服务器后端做的，而<strong>接收用户输入</strong>就需要靠 HTML 表单。表单<code>&lt;form&gt;...&lt;/form&gt;</code>可以收集其内部标签中的用户输入，然后将数据发送到服务端。</p>
-<p>一个 HTML 表单必须指定两样东西：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Django表单第01节：HTML表单和Django表单.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Django中的Field-types.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="vungjoe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="VUNGJOE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/Django中的Field-types.html" class="post-title-link" itemprop="url">Django中的Field types</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-08-13 09:10:48" itemprop="dateCreated datePublished" datetime="2019-08-13T09:10:48+08:00">2019-08-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WEB-开发/" itemprop="url" rel="index">
-                    <span itemprop="name">WEB 开发</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://docs.djangoproject.com/zh-hans/2.2/ref/models/fields/#field-types" target="_blank" rel="noopener">Field types</a></p>
-<p>下面是 Django 中的常见字段类型及其说明，</p>
-<h2 id="一、Django-内置字段类型（不包括关系字段类型）"><a href="#一、Django-内置字段类型（不包括关系字段类型）" class="headerlink" title="一、Django 内置字段类型（不包括关系字段类型）"></a>一、<a href="http://www.liujiangblog.com/course/django/95" target="_blank" rel="noopener">Django 内置字段类型（不包括关系字段类型）</a></h2><h3 id="1-1-AutoField"><a href="#1-1-AutoField" class="headerlink" title="1.1 AutoField"></a>1.1 AutoField</h3><p>AutoField 是一个自动增加的整数类型字段。通常不需要自己编写它， Django 会自动帮你添加字段 <code>id = models.AutoField(primary_key=true)</code> 。</p>
-<ul>
-<li>这是一个自增字段，从 1 开始计数</li>
-<li>如果需要自行创建主键，务必将该字段设为 <code>primary_key=true</code></li>
-<li>Django 在模型中只允许有一个自增字段，且该字段必须为主键</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Django中的Field-types.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Django快速入门教程第04节：表单和通用视图.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="vungjoe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="VUNGJOE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/Django快速入门教程第04节：表单和通用视图.html" class="post-title-link" itemprop="url">Django快速入门教程第04节——表单和通用视图</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-26 00:10:38" itemprop="dateCreated datePublished" datetime="2019-06-26T00:10:38+08:00">2019-06-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WEB-开发/" itemprop="url" rel="index">
-                    <span itemprop="name">WEB 开发</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>官方文档阅读：<a href="https://docs.djangoproject.com/zh-hans/2.2/intro/tutorial04/" target="_blank" rel="noopener">编写你的第一个 Django 应用，第 4 部分</a></p>
-<h2 id="一、表单"><a href="#一、表单" class="headerlink" title="一、表单"></a>一、表单</h2><h3 id="1-1-表单概述"><a href="#1-1-表单概述" class="headerlink" title="1.1 表单概述"></a>1.1 <a href="http://www.liujiangblog.com/course/django/151" target="_blank" rel="noopener">表单概述</a></h3><p>Django 开发的是动态 web 服务，而非单纯地提供静态页面。动态服务的本质在于和用户进行互动，接受用户的输入，根据输入的不同，返回不同的内容给用户。</p>
-<ul>
-<li>返回数据是服务器后端做的</li>
-<li>接收用户输入的就需要靠 HTML 表单</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Django快速入门教程第04节：表单和通用视图.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Django快速入门教程第03节：视图和模板.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="vungjoe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="VUNGJOE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/Django快速入门教程第03节：视图和模板.html" class="post-title-link" itemprop="url">Django快速入门教程第03节——视图和模板</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-26 00:06:58" itemprop="dateCreated datePublished" datetime="2019-06-26T00:06:58+08:00">2019-06-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WEB-开发/" itemprop="url" rel="index">
-                    <span itemprop="name">WEB 开发</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>官方文档阅读：<a href="https://docs.djangoproject.com/zh-hans/2.2/intro/tutorial03/" target="_blank" rel="noopener">编写你的第一个 Django 应用，第 3 部分</a></p>
-<h2 id="一、视图"><a href="#一、视图" class="headerlink" title="一、视图"></a>一、视图</h2><p>Django 中的视图是 一类具有相同功能和模板的网页的集合。</p>
-<p>视图只做2件事：</p>
-<ul>
-<li>返回一个包含被请求页面内容的 HttpResponse 对象，或者抛出一个异常，比如 Http404 。</li>
-<li>另外一件事，随便我们怎么设计:<ul>
-<li>从数据库读取记录</li>
-<li>使用一个模板引擎</li>
-<li>生成一个 PDF 文件</li>
-<li>…</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Django快速入门教程第03节：视图和模板.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Django快速入门教程第02节：数据库配置.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="vungjoe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="VUNGJOE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/Django快速入门教程第02节：数据库配置.html" class="post-title-link" itemprop="url">Django快速入门教程第02节：数据库配置</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-05-22 23:27:32" itemprop="dateCreated datePublished" datetime="2019-05-22T23:27:32+08:00">2019-05-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-20 23:37:01" itemprop="dateModified" datetime="2019-06-20T23:37:01+08:00">2019-06-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WEB-开发/" itemprop="url" rel="index">
-                    <span itemprop="name">WEB 开发</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>阅读官方文档：<a href="https://docs.djangoproject.com/zh-hans/2.2/intro/tutorial02/#writing-your-first-django-app-part-2" target="_blank" rel="noopener">编写你的第一个 Django 应用，第 2 部分</a></p>
-<h2 id="一、数据库配置"><a href="#一、数据库配置" class="headerlink" title="一、数据库配置"></a>一、数据库配置</h2><p>为了方便以后项目进行扩展，数据库没有使用默认的 SQLite ，而是 MySQL 。</p>
-<ul>
-<li>支持：仅支持 MySQL 5.6 及更高的版本</li>
-<li>存储引擎：建议使用 InnoDB，但有个问题</li>
-<li>数据库驱动：官方文档建议使用 mysqlclient ， 且要求 mysqlclient 的版本高于 1.3.13 。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Django快速入门教程第02节：数据库配置.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Python程序的控制结构.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -852,7 +433,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Django快速入门教程第01节：创建项目及应用.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/04周-数据库的学习.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -866,7 +447,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/Django快速入门教程第01节：创建项目及应用.html" class="post-title-link" itemprop="url">Django快速入门教程第01节：创建项目及应用</a>
+            <a href="/04周-数据库的学习.html" class="post-title-link" itemprop="url">04周-数据库的学习</a>
         </h1>
 
         <div class="post-meta">
@@ -876,14 +457,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-04-30 11:45:55" itemprop="dateCreated datePublished" datetime="2019-04-30T11:45:55+08:00">2019-04-30</time>
+              <time title="创建时间：2019-03-28 23:38:43" itemprop="dateCreated datePublished" datetime="2019-03-28T23:38:43+08:00">2019-03-28</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-20 23:41:23" itemprop="dateModified" datetime="2019-06-20T23:41:23+08:00">2019-06-20</time>
+                <time title="修改时间：2019-03-29 23:42:05" itemprop="dateModified" datetime="2019-03-29T23:42:05+08:00">2019-03-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -891,8 +472,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WEB-开发/" itemprop="url" rel="index">
-                    <span itemprop="name">WEB 开发</span>
+                  <a href="/categories/七周成为数据分析师/" itemprop="url" rel="index">
+                    <span itemprop="name">七周成为数据分析师</span>
                   </a>
                 </span>
             </span>
@@ -908,12 +489,204 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="一、创建项目"><a href="#一、创建项目" class="headerlink" title="一、创建项目"></a>一、创建项目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject mold</span><br></pre></td></tr></table></figure>
-<p>该命令会在当前目录下创建一个名为 mold 的目录，其目录结构如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mold/</span><br><span class="line">    manage.py</span><br><span class="line">    mold/</span><br><span class="line">        __init__.py</span><br><span class="line">        settings.py</span><br><span class="line">        urls.py</span><br><span class="line">        wsgi.py</span><br></pre></td></tr></table></figure>
+          <p>这是学习《七周成为数据分析师》系列的第 5 篇笔记。</p>
+<p>第 4 篇笔记（<a href>03周-分析思维的锻炼</a>）整理不好，就暂时不放出来了。</p>
+<hr>
+<p>这部分关于数据库的学习，以关系型数据库 MySQL 为例。详细的学习笔记，请参考本站关于 <a href="https://blog.vungjoe.xyz/tags/MySQL/">MySQL的部分</a>，重点看查询就够了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/netfilter五表五链.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/netfilter五表五链.html" class="post-title-link" itemprop="url">netfilter 五表五链</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-28 21:35:18" itemprop="dateCreated datePublished" datetime="2019-03-28T21:35:18+08:00">2019-03-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-04-01 23:01:13" itemprop="dateModified" datetime="2019-04-01T23:01:13+08:00">2019-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux-运维基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux 运维基础</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux-运维基础/日常运维/" itemprop="url" rel="index">
+                    <span itemprop="name">日常运维</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、netfilter-简介"><a href="#一、netfilter-简介" class="headerlink" title="一、netfilter 简介"></a>一、netfilter 简介</h1><h2 id="1-2-工作原理图"><a href="#1-2-工作原理图" class="headerlink" title="1.2 工作原理图"></a>1.2 工作原理图</h2><p>图中的椭圆框中，上面一行小写表示<strong>表</strong>，下面一行大写表示<strong>链</strong>。</p>
+<p><img src="https://www.frozentux.net/iptables-tutorial/images/tables_traverse.jpg" alt="iptables的工作原理图"></p>
+<h1 id="二、基本概念"><a href="#二、基本概念" class="headerlink" title="二、基本概念"></a>二、基本概念</h1><h2 id="2-1-表（tables）：5个"><a href="#2-1-表（tables）：5个" class="headerlink" title="2.1 表（tables）：5个"></a>2.1 表（tables）：5个</h2><p>iptables包含五张表（tables）：</p>
+<ul>
+<li><code>raw</code>：用于配置数据包，<code>raw</code>中的数据包不会被系统跟踪。</li>
+<li><code>mangle</code>：用于对特定的包做修改。</li>
+<li><code>nat</code>：nat就是网络地址转换。用于<strong>网络地址转换（如端口映射、地址映射等）</strong>。生活中的实例——路由器。</li>
+<li><code>filter</code>：默认表，用于<strong>过滤包</strong>。</li>
+<li><code>security</code>：用于强制访问控制网络规则。CentOS6中是没有的，CentOS7中增加。工作中应该用不到。</li>
+</ul>
+<p><strong>大多数情况下，我们只需要使用<code>nat</code>和<code>filter</code>。</strong></p>
+<h2 id="2-2-链（chains）"><a href="#2-2-链（chains）" class="headerlink" title="2.2 链（chains）"></a>2.2 链（chains）</h2><p>表是由链组成的，链是一些按顺序排列的规则的列表。<br>默认情况下，任何链中都是没有规则的。可以根据我们自己的需要添加规则。</p>
+<ul>
+<li>filter 表包含 INPUT、OUTPUT、FORWARD 3条内建的链，这3条链作用于数据包过滤过程中的不同时间点。<ul>
+<li>INPUT ：对进入本机的包进行过滤</li>
+<li>OUTPUT ：对从本机送出去的包进行过滤</li>
+<li>FORWARD ：不是本机的包，对目标地址做更改或者说是转发。</li>
+</ul>
+</li>
+<li>nat 表包含 PREROUTING、POSTROUTING、OUTPUT 3条链。<ul>
+<li>PREROUTING ：外网 IP 转内网 IP 。</li>
+<li>POSTROUTING ：内网 IP 转外网 IP 。</li>
+<li>OUTPUT ：修改从本机出去的包。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-3-规则（rules）"><a href="#2-3-规则（rules）" class="headerlink" title="2.3 规则（rules）"></a>2.3 规则（rules）</h2><p>数据包的过滤基于规则，规则由一个目标（数据包包匹配所有条件后的动作）和很多匹配（导致该规则可以应用的数据包所满足的条件）指定。一个规则的典型匹配事项是数据包进入的端口（例如：eth0 或者 eth1）、数据包的类型（ICMP, TCP, 或者 UDP ）和数据包的目的端口。</p>
+<p>目标（怎么处理数据包）使用<code>-j</code>或者<code>--jump</code>选项指定。</p>
+<h2 id="2-4-遍历链（Traversing-Chains）"><a href="#2-4-遍历链（Traversing-Chains）" class="headerlink" title="2.4 遍历链（Traversing Chains）"></a>2.4 遍历链（Traversing Chains）</h2><p>开头的原理图描述了链在任何接口上收到的网络数据包是按照怎样的顺序穿过表的交通管制链：</p>
+<ul>
+<li>第一个路由策略包括决定数据包的目的地是本地主机（这种情况下，数据包穿过 INPUT 链），还是其他主机（数据包穿过 FORWARD 链）；</li>
+<li>中间的路由策略包括决定给传出的数据包使用哪个源地址、分配哪个接口；</li>
+<li>最后一个路由策略存在是因为先前的 mangle 与 nat 链可能会改变数据包的路由信息。</li>
+</ul>
+<h1 id="3-iptables命令语法"><a href="#3-iptables命令语法" class="headerlink" title="3.iptables命令语法"></a>3.iptables命令语法</h1><p>netfilter <strong>规则存放</strong> 在<code>/etc/sysconfig/iptables</code>中。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/拉延件质量问题处理办法.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/拉延件质量问题处理办法.html" class="post-title-link" itemprop="url">拉延件质量问题处理办法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-25 22:29:09" itemprop="dateCreated datePublished" datetime="2019-03-25T22:29:09+08:00">2019-03-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/冲压工艺/" itemprop="url" rel="index">
+                    <span itemprop="name">冲压工艺</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>冲压件拉延时最常见的质量问题是起皱和开裂。下面针对这两种质量问题，写一下常规的处理办法。</p>
+<h1 id="一、制件起皱"><a href="#一、制件起皱" class="headerlink" title="一、制件起皱"></a>一、制件起皱</h1><h2 id="1-1-调节顶杆压力"><a href="#1-1-调节顶杆压力" class="headerlink" title="1.1 调节顶杆压力"></a>1.1 调节顶杆压力</h2><p>如果制件出现起皱，首先考虑的就是增大顶杆的压力。</p>
+<ul>
+<li>内板等形状复杂的零件，气垫压力相对较小，在60T~100T</li>
+<li>外板件等形状较平缓的件，气垫压力相对较大，一般在100T~120T</li>
+<li>特殊形状的件，根据实际情况酌情处理</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/Django快速入门教程第01节：创建项目及应用.html#more" rel="contents">
+              <a class="btn" href="/拉延件质量问题处理办法.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -937,7 +710,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/项目开发技能树.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/冲压模具研合作业指导书——拉延模.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -951,7 +724,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/项目开发技能树.html" class="post-title-link" itemprop="url">项目介绍</a>
+            <a href="/冲压模具研合作业指导书——拉延模.html" class="post-title-link" itemprop="url">冲压模具研合作业指导书——拉延模</a>
         </h1>
 
         <div class="post-meta">
@@ -960,9 +733,32 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-04-12 16:32:07 / 修改时间：16:32:57" itemprop="dateCreated datePublished" datetime="2019-04-12T16:32:07+08:00">2019-04-12</time>
+              <time title="创建时间：2019-03-25 20:36:13" itemprop="dateCreated datePublished" datetime="2019-03-25T20:36:13+08:00">2019-03-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-28 22:44:54" itemprop="dateModified" datetime="2019-11-28T22:44:54+08:00">2019-11-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/冲压工艺/" itemprop="url" rel="index">
+                    <span itemprop="name">冲压工艺</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/冲压工艺/模具/" itemprop="url" rel="index">
+                    <span itemprop="name">模具</span>
+                  </a>
+                </span>
             </span>
 
           
@@ -976,8 +772,338 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="https://i.loli.net/2019/04/12/5cb04cbb632cf.png" alt="项目介绍.png"></p>
+          <p>今天在这里分享国内某模具厂的作业指导书，我摘取了其中关于研合的部分。</p>
+<ul>
+<li><p>这是这个系列的第一篇——拉延模研合作业指导书。</p>
+</li>
+<li><p>欢迎各位读者指正。</p>
+</li>
+</ul>
+<hr>
+<h1 id="一、拉延模研合作业指导书"><a href="#一、拉延模研合作业指导书" class="headerlink" title="一、拉延模研合作业指导书"></a>一、拉延模研合作业指导书</h1><h2 id="1-1-首先确认机床闭合高度，确认顶杆长度位置及压力，机床装模到位、机床回程到位，导板涂色均匀"><a href="#1-1-首先确认机床闭合高度，确认顶杆长度位置及压力，机床装模到位、机床回程到位，导板涂色均匀" class="headerlink" title="1.1 首先确认机床闭合高度，确认顶杆长度位置及压力，机床装模到位、机床回程到位，导板涂色均匀"></a>1.1 首先确认机床闭合高度，确认顶杆长度位置及压力，机床装模到位、机床回程到位，导板涂色均匀</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/冲压模具研合作业指导书——拉延模.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/02周-数据可视化.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/02周-数据可视化.html" class="post-title-link" itemprop="url">02周-数据可视化</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-10 23:46:25" itemprop="dateCreated datePublished" datetime="2019-03-10T23:46:25+08:00">2019-03-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-03-22 00:08:25" itemprop="dateModified" datetime="2019-03-22T00:08:25+08:00">2019-03-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/七周成为数据分析师/" itemprop="url" rel="index">
+                    <span itemprop="name">七周成为数据分析师</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考文档：</p>
+<ol>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5NjEyMDI2MQ==&amp;mid=2455946767&amp;idx=1&amp;sn=631135d8fe90b3b9c9e7983bf64fc77c&amp;scene=19#wechat_redirect" target="_blank" rel="noopener">数据可视化：你想知道的经典图表全在这</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5NjEyMDI2MQ==&amp;mid=2455946794&amp;idx=1&amp;sn=b864691a8cd3a752f196b0f841fd13a4&amp;scene=19#wechat_redirect" target="_blank" rel="noopener">数据可视化：教你打造升职加薪的报表</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5NjEyMDI2MQ==&amp;mid=2455946825&amp;idx=1&amp;sn=a29ed0280b50f2c7740a44dce2c9ce16&amp;scene=19#wechat_redirect" target="_blank" rel="noopener">数据可视化：手把手打造BI</a></p>
+</li>
+</ol>
+<p>这是学习《七周成为数据分析师》系列的第 3 篇笔记。</p>
+<hr>
+<h1 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h1><h2 id="1-维度"><a href="#1-维度" class="headerlink" title="1. 维度"></a>1. 维度</h2><p>数据分析中经常会提及维度。维度是观察数据的角度和对数据的描述。</p>
+<h2 id="1-2-维度类型与转换"><a href="#1-2-维度类型与转换" class="headerlink" title="1.2 维度类型与转换"></a>1.2 维度类型与转换</h2><h1 id="二、常用图表"><a href="#二、常用图表" class="headerlink" title="二、常用图表"></a>二、常用图表</h1><ul>
+<li>散点图：散点图在报表中不常用到，但在数据分析中出镜率非常高。散点图通过坐标轴，表示两个变量之间的关系。用途：<ul>
+<li>统计中的回归分析</li>
+<li>数据挖掘中的聚类</li>
+</ul>
+</li>
+<li>折线图：观察数据的趋势，常和时间一块出现。时间一般作为 X 轴，数据作为 Y 轴。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/02周-数据可视化.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/01周-Excel技巧大揭秘.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/01周-Excel技巧大揭秘.html" class="post-title-link" itemprop="url">01周-Excel技巧大揭密</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-08 00:56:46" itemprop="dateCreated datePublished" datetime="2019-03-08T00:56:46+08:00">2019-03-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-03-09 15:48:46" itemprop="dateModified" datetime="2019-03-09T15:48:46+08:00">2019-03-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/七周成为数据分析师/" itemprop="url" rel="index">
+                    <span itemprop="name">七周成为数据分析师</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考文档：<a href="https://mp.weixin.qq.com/s?__biz=MjM5NjEyMDI2MQ==&amp;mid=2455946754&amp;idx=1&amp;sn=1b906dde38b58d06be310870792000d7&amp;chksm=b17875a8860ffcbef473aa561c64f191ddd5240893bd671491354cc12733dcff6a065c942992&amp;scene=21%23wechat_redirect" target="_blank" rel="noopener">数据分析：Excel技巧大揭秘</a></p>
+<p>这是学习《七周成为数据分析师》系列的第 2 篇笔记。</p>
+<hr>
+<p>主要学习带 “★” 的内容。</p>
+<h1 id="一、快捷键"><a href="#一、快捷键" class="headerlink" title="一、快捷键"></a>一、快捷键</h1><p>以下是 Windows 系统中 Excel 的快捷键。如果是 Mac 系统，一般把 Ctrl 换成 Command 键即可。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>组合键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl+方向键</td>
+<td>快速移动光标到数据边缘</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+方向键</td>
+<td>快速框选单元格，选择到数据边缘</td>
+</tr>
+<tr>
+<td>Ctrl+空格</td>
+<td>选定整列</td>
+</tr>
+<tr>
+<td>Shift+空格</td>
+<td>选定整行</td>
+</tr>
+<tr>
+<td>Ctrl+A</td>
+<td>选择这整张表格内容</td>
+</tr>
+<tr>
+<td>Alt+Enter</td>
+<td>单元格内换行</td>
+</tr>
+<tr>
+<td>Ctrl+Enter</td>
+<td>选中一片区域后，以当前单元格为始，向下填充数据和函数。一般用在定位的下一步</td>
+</tr>
+<tr>
+<td>Ctrl+G</td>
+<td>定位，在一片区域中选择一些特殊的单元格（比如空单元格等等）</td>
+</tr>
+</tbody>
+</table>
+</div>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/01周-Excel技巧大揭秘.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/01周-Excel常见函数的使用.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/01周-Excel常见函数的使用.html" class="post-title-link" itemprop="url">01周-Excel常见函数的使用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-04 11:05:52" itemprop="dateCreated datePublished" datetime="2019-03-04T11:05:52+08:00">2019-03-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/七周成为数据分析师/" itemprop="url" rel="index">
+                    <span itemprop="name">七周成为数据分析师</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考文档：<a href="https://mp.weixin.qq.com/s?__biz=MjM5NjEyMDI2MQ==&amp;mid=2455946747&amp;idx=1&amp;sn=667693f99cc34ca357719cc459fba183&amp;chksm=b1787651860fff47f24645579fe956e952360ddc597b1fd5be43f90df2212103434dc42731a5&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">数据分析：常见的Excel函数全部涵盖在这里了</a></p>
+<p>这是学习《七周成为数据分析师》系列的第 1 篇笔记。</p>
+<hr>
+<h1 id="一、清洗处理类"><a href="#一、清洗处理类" class="headerlink" title="一、清洗处理类"></a>一、清洗处理类</h1><h2 id="1-1-TRIM——去空格"><a href="#1-1-TRIM——去空格" class="headerlink" title="1.1 TRIM——去空格"></a>1.1 TRIM——去空格</h2><p><strong>功能</strong>：清除掉字符串两边的空格</p>
+<p><strong>使用</strong>：</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=TRIM(单元格)</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-CONCATENATE——合并单元格"><a href="#1-2-CONCATENATE——合并单元格" class="headerlink" title="1.2 CONCATENATE——合并单元格"></a>1.2 CONCATENATE——合并单元格</h2><p><strong>功能</strong>：合并几个单元格的内容。使用 <code>单元格1&amp;单元格2&amp;...</code> 能实现相同的效果，但函数在单元格较多时效率更高、更优雅。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/01周-Excel常见函数的使用.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1062,7 +1188,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1075,7 +1201,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1108,7 +1234,7 @@
 <div class="copyright">
   
   &copy; 2017 – 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
