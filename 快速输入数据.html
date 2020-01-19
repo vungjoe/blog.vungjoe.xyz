@@ -46,22 +46,32 @@
   };
 </script>
 
-  <meta name="description" content="一、netfilter 简介1.2 工作原理图图中的椭圆框中，上面一行小写表示表，下面一行大写表示链。  二、基本概念2.1 表（tables）：5个iptables包含五张表（tables）：  raw：用于配置数据包，raw中的数据包不会被系统跟踪。 mangle：用于对特定的包做修改。 nat：nat就是网络地址转换。用于网络地址转换（如端口映射、地址映射等）。生活中的实例——路由器。 fi">
-<meta name="keywords" content="防火墙">
+  <meta name="description" content="一、利用自定义列表依次点击 文件—选项—高级—编辑自定义列表，自行设置需要的序列。">
+<meta name="keywords" content="Excel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="netfilter 五表五链">
-<meta property="og:url" content="https://blog.vungjoe.xyz/netfilter五表五链.html">
+<meta property="og:title" content="快速输入数据">
+<meta property="og:url" content="https://blog.vungjoe.xyz/快速输入数据.html">
 <meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
-<meta property="og:description" content="一、netfilter 简介1.2 工作原理图图中的椭圆框中，上面一行小写表示表，下面一行大写表示链。  二、基本概念2.1 表（tables）：5个iptables包含五张表（tables）：  raw：用于配置数据包，raw中的数据包不会被系统跟踪。 mangle：用于对特定的包做修改。 nat：nat就是网络地址转换。用于网络地址转换（如端口映射、地址映射等）。生活中的实例——路由器。 fi">
+<meta property="og:description" content="一、利用自定义列表依次点击 文件—选项—高级—编辑自定义列表，自行设置需要的序列。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.frozentux.net/iptables-tutorial/images/tables_traverse.jpg">
-<meta property="og:updated_time" content="2019-04-01T15:01:13.000Z">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/EC27eZcKHjQNBwz.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/eUSywNYdW1jJ9Rb.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/J2h8c3UN54ndMgi.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/AEdBwj8XTJh4cqy.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/YRbxKp3n9qJly2D.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/ufAiKnLj27r3JH6.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/boNdeYrWy7jp9iu.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/NMHW5dIleUJ7E28.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/OeHa5NYFqluzfmc.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/4MFY185sXrPaOEI.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/11/52Qs36cGpSB1dVZ.png">
+<meta property="og:updated_time" content="2020-01-10T12:36:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="netfilter 五表五链">
-<meta name="twitter:description" content="一、netfilter 简介1.2 工作原理图图中的椭圆框中，上面一行小写表示表，下面一行大写表示链。  二、基本概念2.1 表（tables）：5个iptables包含五张表（tables）：  raw：用于配置数据包，raw中的数据包不会被系统跟踪。 mangle：用于对特定的包做修改。 nat：nat就是网络地址转换。用于网络地址转换（如端口映射、地址映射等）。生活中的实例——路由器。 fi">
-<meta name="twitter:image" content="https://www.frozentux.net/iptables-tutorial/images/tables_traverse.jpg">
+<meta name="twitter:title" content="快速输入数据">
+<meta name="twitter:description" content="一、利用自定义列表依次点击 文件—选项—高级—编辑自定义列表，自行设置需要的序列。">
+<meta name="twitter:image" content="https://i.loli.net/2020/01/11/EC27eZcKHjQNBwz.png">
 
-<link rel="canonical" href="https://blog.vungjoe.xyz/netfilter五表五链.html">
+<link rel="canonical" href="https://blog.vungjoe.xyz/快速输入数据.html">
 
 
 <script id="page-configurations">
@@ -73,7 +83,7 @@
   };
 </script>
 
-  <title>netfilter 五表五链 | VUNGJOE'S BLOG</title>
+  <title>快速输入数据 | VUNGJOE'S BLOG</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119042139-1"></script>
     <script>
@@ -191,7 +201,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/netfilter五表五链.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/快速输入数据.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -204,7 +214,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          netfilter 五表五链
+          快速输入数据
         </h1>
 
         <div class="post-meta">
@@ -214,29 +224,22 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-03-28 21:35:18" itemprop="dateCreated datePublished" datetime="2019-03-28T21:35:18+08:00">2019-03-28</time>
+              <time title="创建时间：2020-01-10 20:36:22" itemprop="dateCreated datePublished" datetime="2020-01-10T20:36:22+08:00">2020-01-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-04-01 23:01:13" itemprop="dateModified" datetime="2019-04-01T23:01:13+08:00">2019-04-01</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux-运维基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux 运维基础</span>
+                  <a href="/categories/数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
                   </a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux-运维基础/日常运维/" itemprop="url" rel="index">
-                    <span itemprop="name">日常运维</span>
+                  <a href="/categories/数据分析/Excel/" itemprop="url" rel="index">
+                    <span itemprop="name">Excel</span>
                   </a>
                 </span>
             </span>
@@ -252,41 +255,44 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="一、netfilter-简介"><a href="#一、netfilter-简介" class="headerlink" title="一、netfilter 简介"></a>一、netfilter 简介</h1><h2 id="1-2-工作原理图"><a href="#1-2-工作原理图" class="headerlink" title="1.2 工作原理图"></a>1.2 工作原理图</h2><p>图中的椭圆框中，上面一行小写表示<strong>表</strong>，下面一行大写表示<strong>链</strong>。</p>
-<p><img src="https://www.frozentux.net/iptables-tutorial/images/tables_traverse.jpg" alt="iptables的工作原理图"></p>
-<h1 id="二、基本概念"><a href="#二、基本概念" class="headerlink" title="二、基本概念"></a>二、基本概念</h1><h2 id="2-1-表（tables）：5个"><a href="#2-1-表（tables）：5个" class="headerlink" title="2.1 表（tables）：5个"></a>2.1 表（tables）：5个</h2><p>iptables包含五张表（tables）：</p>
+        <h2 id="一、利用自定义列表"><a href="#一、利用自定义列表" class="headerlink" title="一、利用自定义列表"></a>一、利用自定义列表</h2><p>依次点击 文件—选项—高级—编辑自定义列表，自行设置需要的序列。</p>
+<a id="more"></a>
+<p><img src="https://i.loli.net/2020/01/11/EC27eZcKHjQNBwz.png" alt="image.png"></p>
+<p>在输入序列中，填入想要的序列，用英文逗号进行分隔，最后单击添加。</p>
+<p><img src="https://i.loli.net/2020/01/11/eUSywNYdW1jJ9Rb.png" alt="image.png"></p>
+<p>自定义序列设置好后，就可以在工作表中使用了：鼠标放在单元格右下角，当 白色空心十字 变成 黑色实心十字 时，按住鼠标左键向下拖动，就能生成自定义的序列了。</p>
+<h2 id="二、填充柄（也就是前面说的黑色实心十字）"><a href="#二、填充柄（也就是前面说的黑色实心十字）" class="headerlink" title="二、填充柄（也就是前面说的黑色实心十字）"></a>二、填充柄（也就是前面说的黑色实心十字）</h2><p>填充柄是Excel 中提供的快速填充单元格工具，拖拽它即可完成对单元格的数据、格式、公式的填充。</p>
+<h3 id="2-1-填充柄"><a href="#2-1-填充柄" class="headerlink" title="2.1 填充柄"></a>2.1 填充柄</h3><p>当单元格内是文本+数字、纯数字时，当按住鼠标左键拖动填充柄，会自动生成等差序列，步长为1。</p>
+<p><img src="https://i.loli.net/2020/01/11/J2h8c3UN54ndMgi.png" alt="image.png"></p>
+<p>但是如果需求的不是要求步长值为1，又该如何操作呢？这就用到了第二部分的知识，右键快捷菜单。</p>
+<h3 id="2-2-填充柄-右键快捷菜单"><a href="#2-2-填充柄-右键快捷菜单" class="headerlink" title="2.2 填充柄+右键快捷菜单"></a>2.2 填充柄+右键快捷菜单</h3><p>如果我们要自定义填充柄的填充内容，右键按住填充柄拖动，选择序列（如下图所示），</p>
+<p><img src="https://i.loli.net/2020/01/11/AEdBwj8XTJh4cqy.png" alt="image.png"></p>
+<p>自定义序列类型，</p>
+<p><img src="https://i.loli.net/2020/01/11/YRbxKp3n9qJly2D.png" alt="image.png"></p>
+<p>可以看见我们可以自定义 等差序列、等比序列、日期序列（Office 2019将一部分功能添加到了左键菜单，如下图所示）。</p>
+<p><img src="https://i.loli.net/2020/01/11/ufAiKnLj27r3JH6.png" alt="image.png"></p>
+<h2 id="三、多个不连续单元格填充相同内容"><a href="#三、多个不连续单元格填充相同内容" class="headerlink" title="三、多个不连续单元格填充相同内容"></a>三、多个不连续单元格填充相同内容</h2><p>shift：连续单元格<br>ctrl：非连续单元格</p>
+<p>选择好单元格后，输入想要的数据，然后按下 Ctrl+enter。就可进行多个不连续单元的填充。</p>
+<p>这个功能更经常与定位（快捷键 Ctrl+G）结合使用。</p>
+<h2 id="四、文本记忆式输入法"><a href="#四、文本记忆式输入法" class="headerlink" title="四、文本记忆式输入法"></a>四、文本记忆式输入法</h2><p>前面的单元格已有部分填充的内容，后面空白单元格和前面已有的单元格内容相同。</p>
+<p>这时，在空白单元格上右键，选择 从下拉列表中选择，就会出现前面填充过的内容。</p>
+<p><img src="https://i.loli.net/2020/01/11/boNdeYrWy7jp9iu.png" alt="image.png"></p>
+<h2 id="五、数据验证"><a href="#五、数据验证" class="headerlink" title="五、数据验证"></a>五、数据验证</h2><p>数据验证：要求某些单元格只能输入有效的数据，无效数据无法输入。</p>
+<p>选中要设置数据验证的单元格，在 数据—数据工具—数据验证，将 允许 设为序列，来源可以手动输入一个序列，也可以引用已有的单元格。</p>
+<p><img src="https://i.loli.net/2020/01/11/NMHW5dIleUJ7E28.png" alt="image.png"></p>
+<p>设置完成后，单元格会出现一个下拉箭头。这时，使用下拉列表进行选择，或者自行输入有效数据。</p>
+<p><img src="https://i.loli.net/2020/01/11/OeHa5NYFqluzfmc.png" alt="image.png"></p>
+<h2 id="六、巧妙利用自动更正选项快速输入"><a href="#六、巧妙利用自动更正选项快速输入" class="headerlink" title="六、巧妙利用自动更正选项快速输入"></a>六、巧妙利用自动更正选项快速输入</h2><p>经常输入一长段的数据，可以设置自动更正：依次点击 文件—选项—校对—自动更正选项。</p>
+<p>比如输入 中华，回车后将自动更正为 中华人民共和国。</p>
+<p><img src="https://i.loli.net/2020/01/11/4MFY185sXrPaOEI.png" alt="image.png"></p>
+<h2 id="七、数字自定义格式"><a href="#七、数字自定义格式" class="headerlink" title="七、数字自定义格式"></a>七、数字自定义格式</h2><p>对于部分单元格，如果该部分只有两个值，则可以设置数字自定义格式。</p>
+<p>选中要设置的单元格，打开自定义数字格式，输入</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[=数字<span class="number">1</span>]<span class="string">"值1"</span>;[数字<span class="number">2</span>]<span class="string">"值2"</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>raw</code>：用于配置数据包，<code>raw</code>中的数据包不会被系统跟踪。</li>
-<li><code>mangle</code>：用于对特定的包做修改。</li>
-<li><code>nat</code>：nat就是网络地址转换。用于<strong>网络地址转换（如端口映射、地址映射等）</strong>。生活中的实例——路由器。</li>
-<li><code>filter</code>：默认表，用于<strong>过滤包</strong>。</li>
-<li><code>security</code>：用于强制访问控制网络规则。CentOS6中是没有的，CentOS7中增加。工作中应该用不到。</li>
+<li>这里的1和2可以是任意的数字</li>
 </ul>
-<p><strong>大多数情况下，我们只需要使用<code>nat</code>和<code>filter</code>。</strong></p>
-<h2 id="2-2-链（chains）"><a href="#2-2-链（chains）" class="headerlink" title="2.2 链（chains）"></a>2.2 链（chains）</h2><p>表是由链组成的，链是一些按顺序排列的规则的列表。<br>默认情况下，任何链中都是没有规则的。可以根据我们自己的需要添加规则。</p>
-<ul>
-<li>filter 表包含 INPUT、OUTPUT、FORWARD 3条内建的链，这3条链作用于数据包过滤过程中的不同时间点。<ul>
-<li>INPUT ：对进入本机的包进行过滤</li>
-<li>OUTPUT ：对从本机送出去的包进行过滤</li>
-<li>FORWARD ：不是本机的包，对目标地址做更改或者说是转发。</li>
-</ul>
-</li>
-<li>nat 表包含 PREROUTING、POSTROUTING、OUTPUT 3条链。<ul>
-<li>PREROUTING ：外网 IP 转内网 IP 。</li>
-<li>POSTROUTING ：内网 IP 转外网 IP 。</li>
-<li>OUTPUT ：修改从本机出去的包。</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-3-规则（rules）"><a href="#2-3-规则（rules）" class="headerlink" title="2.3 规则（rules）"></a>2.3 规则（rules）</h2><p>数据包的过滤基于规则，规则由一个目标（数据包包匹配所有条件后的动作）和很多匹配（导致该规则可以应用的数据包所满足的条件）指定。一个规则的典型匹配事项是数据包进入的端口（例如：eth0 或者 eth1）、数据包的类型（ICMP, TCP, 或者 UDP ）和数据包的目的端口。</p>
-<p>目标（怎么处理数据包）使用<code>-j</code>或者<code>--jump</code>选项指定。</p>
-<h2 id="2-4-遍历链（Traversing-Chains）"><a href="#2-4-遍历链（Traversing-Chains）" class="headerlink" title="2.4 遍历链（Traversing Chains）"></a>2.4 遍历链（Traversing Chains）</h2><p>开头的原理图描述了链在任何接口上收到的网络数据包是按照怎样的顺序穿过表的交通管制链：</p>
-<ul>
-<li>第一个路由策略包括决定数据包的目的地是本地主机（这种情况下，数据包穿过 INPUT 链），还是其他主机（数据包穿过 FORWARD 链）；</li>
-<li>中间的路由策略包括决定给传出的数据包使用哪个源地址、分配哪个接口；</li>
-<li>最后一个路由策略存在是因为先前的 mangle 与 nat 链可能会改变数据包的路由信息。</li>
-</ul>
-<h1 id="3-iptables命令语法"><a href="#3-iptables命令语法" class="headerlink" title="3.iptables命令语法"></a>3.iptables命令语法</h1><p>netfilter <strong>规则存放</strong> 在<code>/etc/sysconfig/iptables</code>中。</p>
+<p>比如我们设置1代表男，2代表女。设置好后，在单元格内输入1或2，单元格的内容将自动变成男或女。</p>
+<p><img src="https://i.loli.net/2020/01/11/52Qs36cGpSB1dVZ.png" alt="image.png"></p>
 
     </div>
 
@@ -296,7 +302,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/防火墙/" rel="tag"># 防火墙</a>
+              <a href="/tags/Excel/" rel="tag"># Excel</a>
           </div>
 
         
@@ -305,12 +311,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/拉延件质量问题处理办法.html" rel="prev" title="拉延件质量问题处理办法">
-      <i class="fa fa-chevron-left"></i> 拉延件质量问题处理办法
+    <a href="/Excel文件的四层防护.html" rel="prev" title="Excel文件的四层防护">
+      <i class="fa fa-chevron-left"></i> Excel文件的四层防护
     </a></div>
       <div class="post-nav-item">
-    <a href="/Python程序的控制结构.html" rel="next" title="Python程序的控制结构">
-      Python程序的控制结构 <i class="fa fa-chevron-right"></i>
+    <a href="/查找与引用函数之MATCH函数简介.html" rel="next" title="查找与引用函数之MATCH函数简介">
+      查找与引用函数之MATCH函数简介 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -371,7 +377,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、netfilter-简介"><span class="nav-text">一、netfilter 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-工作原理图"><span class="nav-text">1.2 工作原理图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、基本概念"><span class="nav-text">二、基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-表（tables）：5个"><span class="nav-text">2.1 表（tables）：5个</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-链（chains）"><span class="nav-text">2.2 链（chains）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-规则（rules）"><span class="nav-text">2.3 规则（rules）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-遍历链（Traversing-Chains）"><span class="nav-text">2.4 遍历链（Traversing Chains）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-iptables命令语法"><span class="nav-text">3.iptables命令语法</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、利用自定义列表"><span class="nav-text">一、利用自定义列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、填充柄（也就是前面说的黑色实心十字）"><span class="nav-text">二、填充柄（也就是前面说的黑色实心十字）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-填充柄"><span class="nav-text">2.1 填充柄</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-填充柄-右键快捷菜单"><span class="nav-text">2.2 填充柄+右键快捷菜单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、多个不连续单元格填充相同内容"><span class="nav-text">三、多个不连续单元格填充相同内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、文本记忆式输入法"><span class="nav-text">四、文本记忆式输入法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、数据验证"><span class="nav-text">五、数据验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、巧妙利用自动更正选项快速输入"><span class="nav-text">六、巧妙利用自动更正选项快速输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、数字自定义格式"><span class="nav-text">七、数字自定义格式</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
