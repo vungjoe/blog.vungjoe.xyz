@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.vungjoe.xyz').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="文末有福利哦！！！  一、数据透视表基础数据透视表是计算、汇总和分析数据的强大工具，可助你了解数据中的对比情况、模式和趋势。 1.1 创建数据透视表步骤1：选择数据区域的某个单元格——创建数据透视表无需选中所有数据，只需选择数据区域的某个单元格即可。  数据不应有任何空行和列 且必须只有一行标题">
+<meta name="keywords" content="Excel,OFFSET,数据透视表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据透视表">
+<meta property="og:url" content="https://blog.vungjoe.xyz/数据透视表.html">
+<meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
+<meta property="og:description" content="文末有福利哦！！！  一、数据透视表基础数据透视表是计算、汇总和分析数据的强大工具，可助你了解数据中的对比情况、模式和趋势。 1.1 创建数据透视表步骤1：选择数据区域的某个单元格——创建数据透视表无需选中所有数据，只需选择数据区域的某个单元格即可。  数据不应有任何空行和列 且必须只有一行标题">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/NTrD7wx4OAkLKqz.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/sbKDn5k89pqFPcv.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/kR7LCnhKwB34DAm.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/twTVLl6mkepiuy4.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/frzmjNsdhuS9COY.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/JRu3E6jtIxVlYbT.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/sRYewBm6jgPcdrL.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/uLDPmEBefaHvKgQ.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/rkfxhJT6Bzw8Lqv.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/QJ4uxZOMSNt96Uz.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/OpLx2rPykfhCiE5.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/ObtskreV1lwIpWR.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/32JuCdH5MeBUQsL.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/RT9ym8MZ5dgKh2z.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/PGiLRKnu6pZYX5A.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/tuUEfz3MpVi5DyI.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/Z6nsCq2KFw9Vlfo.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/LeRIlpimUtVfqMK.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/rSAnfghEaOHB4NG.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/16/IUXlLoFsVTuW7Jn.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/17/la3knWJPbt5GHRC.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/17/2geUa3DMzdO1YZl.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/17/eYGR8StKEjVudnD.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/17/jVszXvPApeBqWYw.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/17/9MFv2Wo3hIne5zT.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/17/YfkzFpcxw9iu1MK.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/17/UglBzhG1dNypWAk.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/17/UWmbgtHP6IDRzyB.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/17/MP9RkbasiFdyENv.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/17/ykpHmF7TvCq8NZY.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/17/psLHZOewak5Czfc.png">
+<meta property="og:updated_time" content="2020-02-10T16:58:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据透视表">
+<meta name="twitter:description" content="文末有福利哦！！！  一、数据透视表基础数据透视表是计算、汇总和分析数据的强大工具，可助你了解数据中的对比情况、模式和趋势。 1.1 创建数据透视表步骤1：选择数据区域的某个单元格——创建数据透视表无需选中所有数据，只需选择数据区域的某个单元格即可。  数据不应有任何空行和列 且必须只有一行标题">
+<meta name="twitter:image" content="https://i.loli.net/2020/02/16/NTrD7wx4OAkLKqz.png">
+
+<link rel="canonical" href="https://blog.vungjoe.xyz/数据透视表.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>数据透视表 | VUNGJOE'S BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119042139-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-119042139-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">VUNGJOE'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/数据透视表.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据透视表
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-11 00:58:27" itemprop="dateCreated datePublished" datetime="2020-02-11T00:58:27+08:00">2020-02-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析/Excel/" itemprop="url" rel="index">
+                    <span itemprop="name">Excel</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>文末有福利哦！！！</p>
+<hr>
+<h2 id="一、数据透视表基础"><a href="#一、数据透视表基础" class="headerlink" title="一、数据透视表基础"></a>一、数据透视表基础</h2><p>数据透视表是计算、汇总和分析数据的强大工具，可助你了解数据中的对比情况、模式和趋势。</p>
+<h3 id="1-1-创建数据透视表"><a href="#1-1-创建数据透视表" class="headerlink" title="1.1 创建数据透视表"></a>1.1 创建数据透视表</h3><p>步骤1：选择数据区域的某个单元格——创建数据透视表无需选中所有数据，只需选择数据区域的某个单元格即可。</p>
+<ul>
+<li>数据不应有任何空行和列</li>
+<li>且必须只有一行标题</li>
+</ul>
+<a id="more"></a>
+<p>步骤2：插入—数据透视表</p>
+<p><img src="https://i.loli.net/2020/02/16/NTrD7wx4OAkLKqz.png" alt="image.png"></p>
+<p>步骤3：选择数据透视表放置的位置—可以是现有工作表，也可以新建一个工作表</p>
+<p><img src="https://i.loli.net/2020/02/16/sbKDn5k89pqFPcv.png" alt="image.png"></p>
+<p>步骤4：构建数据透视表——添加字段</p>
+<p>确定后发现创建的是如下所示的一张数据透视表。这是一张空表，还需要我们添加字段才能显示其结果。</p>
+<p><img src="https://i.loli.net/2020/02/16/kR7LCnhKwB34DAm.png" alt="image.png"></p>
+<p>单击数据透视表，会出现下面的数据透视表字段。直接拖动字段到相应的区域，就能创建好一个数据透视表了。</p>
+<p><img src="https://i.loli.net/2020/02/16/twTVLl6mkepiuy4.png" alt="image.png"></p>
+<h3 id="1-2-报表布局"><a href="#1-2-报表布局" class="headerlink" title="1.2 报表布局"></a>1.2 报表布局</h3><p>在“数据透视表—设计—报表布局”中有三种报表布局：以压缩形式显示、以大纲形式显示、以表格形式显示。</p>
+<p><img src="https://i.loli.net/2020/02/16/frzmjNsdhuS9COY.png" alt="image.png"></p>
+<p>在报表布局按钮的旁边，还有一个总计：可以实现对数据透视表的行汇总、列汇总、交叉汇总、交叉分类汇总。根据需要选择相应的总计方式。</p>
+<p><img src="https://i.loli.net/2020/02/16/JRu3E6jtIxVlYbT.png" alt="image.png"></p>
+<h3 id="1-3-值汇总依据和值显示方式"><a href="#1-3-值汇总依据和值显示方式" class="headerlink" title="1.3 值汇总依据和值显示方式"></a>1.3 值汇总依据和值显示方式</h3><p>在数据透视表上右键，会发现有两个选项——值汇总依据和值显示方式。</p>
+<h4 id="1-3-1-值汇总依据"><a href="#1-3-1-值汇总依据" class="headerlink" title="1.3.1 值汇总依据"></a>1.3.1 值汇总依据</h4><p>值汇总依据指的是对数据进行怎样的处理——求和、计数、平均值、还是最大最小值等等。</p>
+<p>可以在数据透视表右键</p>
+<p><img src="https://i.loli.net/2020/02/16/sRYewBm6jgPcdrL.png" alt="image.png"></p>
+<p>也可以在数据透视表字段中的值字段设置</p>
+<p><img src="https://i.loli.net/2020/02/16/uLDPmEBefaHvKgQ.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/02/16/rkfxhJT6Bzw8Lqv.png" alt="image.png"></p>
+<h4 id="1-3-2-值显示方式"><a href="#1-3-2-值显示方式" class="headerlink" title="1.3.2 值显示方式"></a>1.3.2 值显示方式</h4><p>若要向数据透视表添加两个或多个相同的值字段, 以便除了特定字段的实际值之外, 还可以显示不同的计算, 请执行下列操作:</p>
+<p><strong>示例1</strong>：要求数据透视表显示原始数据和百分比。</p>
+<p><img src="https://i.loli.net/2020/02/16/QJ4uxZOMSNt96Uz.png" alt="image.png"></p>
+<p>只需在数据透视表添加了两列相同的值（这是不需要在原始数据区域新增列计算百分比），并在其中一列右键更改需要的“值显示方式”即可。</p>
+<p><img src="https://i.loli.net/2020/02/16/OpLx2rPykfhCiE5.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/02/16/ObtskreV1lwIpWR.png" alt="image.png"></p>
+<h3 id="1-4-多个字段汇总"><a href="#1-4-多个字段汇总" class="headerlink" title="1.4 多个字段汇总"></a>1.4 多个字段汇总</h3><p>示例2：如果要对1月的数据进行多个汇总：总计、平均值、最大值、最小值，该如何操作？</p>
+<p><img src="https://i.loli.net/2020/02/16/32JuCdH5MeBUQsL.png" alt="image.png"></p>
+<p>在要求的字段上右键，选择字段设置，选择需要的汇总项。</p>
+<p><img src="https://i.loli.net/2020/02/16/RT9ym8MZ5dgKh2z.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/02/16/PGiLRKnu6pZYX5A.png" alt="image.png"></p>
+<h3 id="1-5-切片器功能——筛选组件"><a href="#1-5-切片器功能——筛选组件" class="headerlink" title="1.5 切片器功能——筛选组件"></a>1.5 切片器功能——筛选组件</h3><p>插入方法1：插入—筛选器—切片器</p>
+<p><img src="https://i.loli.net/2020/02/16/tuUEfz3MpVi5DyI.png" alt="image.png"></p>
+<p>插入方法2：数据透视表—分析—插入切片器</p>
+<p><img src="https://i.loli.net/2020/02/16/Z6nsCq2KFw9Vlfo.png" alt="image.png"></p>
+<p><img src="https://i.loli.net/2020/02/16/LeRIlpimUtVfqMK.png" alt="image.png"></p>
+<p>功能：</p>
+<ul>
+<li>可连接多个透视表，在透视表之间同步筛选（右键—报表连接）</li>
+</ul>
+<h3 id="1-6-组合（根据日期创建年、季度）"><a href="#1-6-组合（根据日期创建年、季度）" class="headerlink" title="1.6 组合（根据日期创建年、季度）"></a>1.6 组合（根据日期创建年、季度）</h3><p><img src="https://i.loli.net/2020/02/16/rSAnfghEaOHB4NG.png" alt="image.png"></p>
+<p>选择需要创建的组合，即可实现下面的行标签</p>
+<p><img src="https://i.loli.net/2020/02/16/IUXlLoFsVTuW7Jn.png" alt="image.png"></p>
+<h3 id="1-7-计算字段、计算项"><a href="#1-7-计算字段、计算项" class="headerlink" title="1.7 计算字段、计算项"></a>1.7 计算字段、计算项</h3><h4 id="1-7-1-概念先来说一说什么是字段、什么是项"><a href="#1-7-1-概念先来说一说什么是字段、什么是项" class="headerlink" title="1.7.1 概念先来说一说什么是字段、什么是项"></a>1.7.1 概念先来说一说什么是字段、什么是项</h4><ul>
+<li>计算字段：<strong>利用数据透视表中其他字段创建的新字段</strong>。如果数据透视表的数据源是工作表中一个表格，使用计算字段的一种方法就是在表格中增加一列，并创建执行所需计算的公式。计算字段必须位于数据透视表的“数值”区域。不能在“行标签”、“列标签”、“报表筛选”区域内使用计算字段。</li>
+<li>计算项目：<strong>计算项目使用数据透视表一个字段中其他项目的内容</strong>。如果数据透视表的数据源是一个工作表表格，使用计算项目的一种方法是插入一行或多行，并写入使用其他行数值的公式。计算项目必须位于数据透视表的“行标签”、“列标签”或“报表筛选”区域，不能在“数值”区域使用计算项目。<ul>
+<li>鼠标必须放在需要计算的项上，才能添加计算项，否则不能添加，会提示“透视表只能引用已算完的项所在域中的项”<br><img src="https://i.loli.net/2020/02/17/la3knWJPbt5GHRC.png" alt="image.png"></li>
+</ul>
+</li>
+<li>用于创建计算字段或计算项目的公式不是标准的Excel公式。换句话说，不能在单元格内输入公式，而是在对话框中输入这些公式，它们与数据透视表的数据存储在一起。</li>
+</ul>
+<p>简单地理解，<strong>计算字段是横向计算，计算项是纵向计算</strong>。</p>
+<h4 id="1-7-2-如何添加"><a href="#1-7-2-如何添加" class="headerlink" title="1.7.2 如何添加"></a>1.7.2 如何添加</h4><p>怎样添加计算字段、计算项：数据透视表—分析—字段、项目和集，选择计算字段或计算项即可。</p>
+<p><img src="https://i.loli.net/2020/02/17/2geUa3DMzdO1YZl.png" alt="image.png"></p>
+<h4 id="1-7-3-案例"><a href="#1-7-3-案例" class="headerlink" title="1.7.3 案例"></a>1.7.3 案例</h4><p>案例不是很好，理解为主。</p>
+<p>示例1：计算字段</p>
+<p>假设现在有一张如下所示的一张表格，每个人加薪 50%，要求对比各部门加薪前后的工资总额。</p>
+<p><img src="https://i.loli.net/2020/02/17/eYGR8StKEjVudnD.png" alt="image.png"></p>
+<p>默认添加完成后是这样的一张透视表。</p>
+<p><img src="https://i.loli.net/2020/02/17/jVszXvPApeBqWYw.png" alt="image.png"></p>
+<p>这时调整值汇总方式/值字段设置你会发现，并没有我们要求的这种计算方式。</p>
+<p><img src="https://i.loli.net/2020/02/17/9MFv2Wo3hIne5zT.png" alt="image.png"></p>
+<p>这时就需要用到计算字段。</p>
+<p><img src="https://i.loli.net/2020/02/17/YfkzFpcxw9iu1MK.png" alt="image.png"></p>
+<p>添加完成后，就是如下所示的透视表了。</p>
+<p><img src="https://i.loli.net/2020/02/17/UglBzhG1dNypWAk.png" alt="image.png"></p>
+<p>示例2：计算项</p>
+<p>还是前面示例1中的数据，要求在透视表里添加销售部门比财务部门多发多少工资。</p>
+<p>由于是销售和财务之间的计算，属于纵向计算，所以要添加计算项。</p>
+<p><img src="https://i.loli.net/2020/02/17/UWmbgtHP6IDRzyB.png" alt="image.png"></p>
+<p>添加后的数据透视表，会看见多了一行差值。</p>
+<p><img src="https://i.loli.net/2020/02/17/MP9RkbasiFdyENv.png" alt="image.png"></p>
+<h3 id="1-8-GETPIVOTDATA"><a href="#1-8-GETPIVOTDATA" class="headerlink" title="1.8 GETPIVOTDATA"></a>1.8 GETPIVOTDATA</h3><p>GETPIVOTDATA 函数的作用是返回数据透视表中的数据。</p>
+<p>用法：</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=<span class="built_in">GETPIVOTDATA</span>(data_field, pivot_table, [field1, item1], [field2, item2]...)</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li>data_field：数据字段，</li>
+<li>pivot_table：数据透视表</li>
+<li>field1,item1：对应的字段和项目</li>
+<li>当你点击数据透视表值区域时，Excel 默认会自动生成一组 GETPIVOTDATA 参数，极大地方便了我们使用该函数。你操作一下就明白啦。</li>
+</ul>
+<p>如果还是不明白，可以查看附件案例。</p>
+<h2 id="二、动态透视表——增减数据后如何更新透视表"><a href="#二、动态透视表——增减数据后如何更新透视表" class="headerlink" title="二、动态透视表——增减数据后如何更新透视表"></a>二、动态透视表——增减数据后如何更新透视表</h2><h3 id="2-1-新增数据后透视表如何更新"><a href="#2-1-新增数据后透视表如何更新" class="headerlink" title="2.1 新增数据后透视表如何更新"></a>2.1 新增数据后透视表如何更新</h3><p>新增数据后，数据透视表的源数据是<strong>不能自动更新</strong>的。</p>
+<p>那有没有办法让透视表自己更新呢 ——名称管理器和 OFFSET 函数的组合应用，只需要执行刷新即可（省去了重新选择数据区域、设计透视表结构的麻烦）。</p>
+<p><img src="https://i.loli.net/2020/02/17/ykpHmF7TvCq8NZY.png" alt="image.png"></p>
+<p>将数据区域用名称管理器进行引用，且其值为 OFFSET 函数创建的一个引用。公式示例：</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=<span class="built_in">OFFSET</span>(源数据<span class="number">2</span>!$A$<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="built_in">COUNTA</span>(源数据<span class="number">2</span>!$<span class="symbol">A:</span>$A),<span class="built_in">COUNTA</span>(源数据<span class="number">2</span>!$<span class="symbol">1:</span>$<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>添加数据后，需要在透视表区域进行右键—刷新操作。</p>
+<p><img src="https://i.loli.net/2020/02/17/psLHZOewak5Czfc.png" alt="image.png"></p>
+<hr>
+<p>附件下载地址：<a href="https://pan.baidu.com/s/1ZiX5PcOroztKO9AMqQiv_g" target="_blank" rel="noopener">https://pan.baidu.com/s/1ZiX5PcOroztKO9AMqQiv_g</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Excel/" rel="tag"># Excel</a>
+              <a href="/tags/OFFSET/" rel="tag"># OFFSET</a>
+              <a href="/tags/数据透视表/" rel="tag"># 数据透视表</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Excel图表.html" rel="prev" title="Excel图表">
+      <i class="fa fa-chevron-left"></i> Excel图表
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、数据透视表基础"><span class="nav-text">一、数据透视表基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-创建数据透视表"><span class="nav-text">1.1 创建数据透视表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-报表布局"><span class="nav-text">1.2 报表布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-值汇总依据和值显示方式"><span class="nav-text">1.3 值汇总依据和值显示方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-值汇总依据"><span class="nav-text">1.3.1 值汇总依据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-值显示方式"><span class="nav-text">1.3.2 值显示方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-多个字段汇总"><span class="nav-text">1.4 多个字段汇总</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-切片器功能——筛选组件"><span class="nav-text">1.5 切片器功能——筛选组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-组合（根据日期创建年、季度）"><span class="nav-text">1.6 组合（根据日期创建年、季度）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-计算字段、计算项"><span class="nav-text">1.7 计算字段、计算项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-1-概念先来说一说什么是字段、什么是项"><span class="nav-text">1.7.1 概念先来说一说什么是字段、什么是项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-2-如何添加"><span class="nav-text">1.7.2 如何添加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-7-3-案例"><span class="nav-text">1.7.3 案例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-GETPIVOTDATA"><span class="nav-text">1.8 GETPIVOTDATA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、动态透视表——增减数据后如何更新透视表"><span class="nav-text">二、动态透视表——增减数据后如何更新透视表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-新增数据后透视表如何更新"><span class="nav-text">2.1 新增数据后透视表如何更新</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">vungjoe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/vungjoe" title="GitHub → https://github.com/vungjoe" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:vungjoe.xyz@gmail.com" title="E-Mail → mailto:vungjoe.xyz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">vungjoe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
