@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.vungjoe.xyz').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="文末有福利哦！！！  一、LOOKUP 函数的两种语法形式1.1 向量形式用法： 1=LOOKUP(lookup_value,lookup_vector,[result_vector]) 向量形式的 LOOKUP 函数的优势就在于 lookup_vector 不需要位于第一列就能查找（类似逆向查询），这一点和 VLOOKUP 函数不同。说明：  lookup_value：为函数在第一个向量 loo">
+<meta name="keywords" content="Excel,vlookup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查找与引用函数之LOOKUP、VLOOKUP、HLOOKUP函数">
+<meta property="og:url" content="https://blog.vungjoe.xyz/查找与引用函数之LOOKUP、VLOOKUP、HLOOKUP函数.html">
+<meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
+<meta property="og:description" content="文末有福利哦！！！  一、LOOKUP 函数的两种语法形式1.1 向量形式用法： 1=LOOKUP(lookup_value,lookup_vector,[result_vector]) 向量形式的 LOOKUP 函数的优势就在于 lookup_vector 不需要位于第一列就能查找（类似逆向查询），这一点和 VLOOKUP 函数不同。说明：  lookup_value：为函数在第一个向量 loo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-21T15:46:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="查找与引用函数之LOOKUP、VLOOKUP、HLOOKUP函数">
+<meta name="twitter:description" content="文末有福利哦！！！  一、LOOKUP 函数的两种语法形式1.1 向量形式用法： 1=LOOKUP(lookup_value,lookup_vector,[result_vector]) 向量形式的 LOOKUP 函数的优势就在于 lookup_vector 不需要位于第一列就能查找（类似逆向查询），这一点和 VLOOKUP 函数不同。说明：  lookup_value：为函数在第一个向量 loo">
+
+<link rel="canonical" href="https://blog.vungjoe.xyz/查找与引用函数之LOOKUP、VLOOKUP、HLOOKUP函数.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>查找与引用函数之LOOKUP、VLOOKUP、HLOOKUP函数 | VUNGJOE'S BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119042139-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-119042139-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">VUNGJOE'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/查找与引用函数之LOOKUP、VLOOKUP、HLOOKUP函数.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          查找与引用函数之LOOKUP、VLOOKUP、HLOOKUP函数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-21 23:46:59" itemprop="dateCreated datePublished" datetime="2020-04-21T23:46:59+08:00">2020-04-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析/Excel/" itemprop="url" rel="index">
+                    <span itemprop="name">Excel</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>文末有福利哦！！！</p>
+<hr>
+<h2 id="一、LOOKUP-函数的两种语法形式"><a href="#一、LOOKUP-函数的两种语法形式" class="headerlink" title="一、LOOKUP 函数的两种语法形式"></a>一、LOOKUP 函数的两种语法形式</h2><h3 id="1-1-向量形式"><a href="#1-1-向量形式" class="headerlink" title="1.1 向量形式"></a>1.1 向量形式</h3><p>用法：</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=LOOKUP(lookup_value,lookup_vector,[result_vector])</span><br></pre></td></tr></table></figure>
+<p>向量形式的 LOOKUP 函数的优势就在于 lookup_vector 不需要位于第一列就能查找（类似逆向查询），这一点和 VLOOKUP 函数不同。说明：</p>
+<ul>
+<li>lookup_value：为函数在第一个向量 lookup_vector 中所要查找的数值。Lookup_value 可以为数字、文本、逻辑值或包含数值的名称或引用。</li>
+<li>lookup_vector：为只包含一行或一列的区域。Lookup_vector 的数值可以为文本、数字或逻辑值。<ul>
+<li>lookup_vector 必须按升序排列：…、-2、-1、0、1、2、…、A-Z、FALSE、TRUE。否则 lookup 函数无法返回正确的结果</li>
+<li>文本不区分大小写</li>
+</ul>
+</li>
+<li>result_vector：只包含一行或一列的区域，其大小必须与 lookup_vector 相同。</li>
+<li>如果 lookup 找不到 lookup_value，则查找 lookup_vector 中小于或等于 lookup_value 的最大数值</li>
+<li>如果 lookup_value 小于 lookup_vector 中的最小值，函数将返回错误值 #N/A</li>
+</ul>
+<blockquote>
+<p>利用返回 #N/A 的这个特性，我们可以利用 <code>=LOOKUP(1,0/(条件),引用区域)</code> 这样一个通用公式来作查找引用</p>
+<blockquote>
+<p>这是因为：条件——产生的是逻辑值 True、False 数组，0/True=0，0/Fasle=#DIV0!。即 LOOKUP 的第二个参数便是由 0、#DIV0! 组成的数组（都比1小），所以这个公式能返回最后一个出现 0 的位置（错误最小）——也就是说最后一个 0/True，即满足条件的地方。如果没有满足条件的记录则返回 #N/A。</p>
+</blockquote>
+</blockquote>
+<h3 id="1-2-数组形式（只作了解）"><a href="#1-2-数组形式（只作了解）" class="headerlink" title="1.2 数组形式（只作了解）"></a>1.2 数组形式（只作了解）</h3><p>对于 LOOKUP 函数的 数组形式：强烈建议使用 VLOOKUP 或 HLOOKUP，不要使用数组形式。</p>
+<p>提供数组形式是为了与其他电子表格程序兼容，这种形式的功能有限。</p>
+<p>用法：</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=LOOKUP(lookup_value,array)</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li>如果 lookup_value 小于第一行或第一列（取决于数组的维数）的最小值，函数返回错误值 #N/A</li>
+<li>LOOKUP 函数的数组形式与函数 HLOOKUP 以及 VLOOKUP 函数非常相似。不同之处在于 HLOOKUP 函数在第一行找，VLOOKUP 函数在第一列找，而 LOOKUP 函数按照数组的维数查找。</li>
+</ul>
+<h2 id="二、VLOOKUP-函数"><a href="#二、VLOOKUP-函数" class="headerlink" title="二、VLOOKUP 函数"></a>二、VLOOKUP 函数</h2><p>用法：</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=VLOOKUP(lookup_value,table_array,col_index_num,[range_lookup])</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li>lookup_value 为需要在 table_array 第一列中查找的值</li>
+<li>table_array 为需要在其中查找数据的数据表<ul>
+<li>该参数的第一列必须包含要查找的内容，其他列包含需要返回的内容，返回内容的列序号由第三个参数 col_index_num 指定</li>
+<li>对区域引用时，可以引用整列，excel 会自动判断使用区域。</li>
+</ul>
+</li>
+<li>col_index_num 为 table_array 中待返回的匹配值的列序号<ul>
+<li>如为1，则返回 table_array 中第一列的值；如为2，则返回 table_array 中第二列的值；依次类推</li>
+<li>如果 col_index_num 小于1，返回错误值 #VALUE!；</li>
+<li>如果 col_index_num 大于 table_array 的列数，返回错误值 #REF!；</li>
+</ul>
+</li>
+<li>range_lookup 是一个逻辑值，表示 vlookup 返回时是精确匹配还是近似匹配：<ul>
+<li>如果为 0 或 false，将返回精确匹配值；<ul>
+<li>此时 table_array 无需排序。如果</li>
+</ul>
+</li>
+<li>如果其值为 true 或 其他任意非0值（包括留空），将返回近似匹配值；<ul>
+<li>当找不到精确匹配值时，将返回小于 lookup_value 的最大值</li>
+<li>近似匹配一般用于数值查询，此时 lookup_array 的第一列必须按升序排列，否则不能返回正确的结果</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、HLOOKUP-函数"><a href="#三、HLOOKUP-函数" class="headerlink" title="三、HLOOKUP 函数"></a>三、HLOOKUP 函数</h2><p>用法：</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=hlookup(lookup_value,table_array,row_index_num,[range_lookup])</span><br></pre></td></tr></table></figure>
+<p>HLOOKUP 函数的用法和 VLOOKUP 函数类似，只不过变成的第一行，参考 VLOOKUP 用法即可。</p>
+<p>附件下载地址：<a href="https://pan.baidu.com/s/1tD2SvYqj3sk1a-mKqHy8yg" target="_blank" rel="noopener">https://pan.baidu.com/s/1tD2SvYqj3sk1a-mKqHy8yg</a> 提取码：rfps</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Excel/" rel="tag"># Excel</a>
+              <a href="/tags/vlookup/" rel="tag"># vlookup</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/冲压加工概述.html" rel="prev" title="冲压加工概述">
+      <i class="fa fa-chevron-left"></i> 冲压加工概述
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、LOOKUP-函数的两种语法形式"><span class="nav-text">一、LOOKUP 函数的两种语法形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-向量形式"><span class="nav-text">1.1 向量形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-数组形式（只作了解）"><span class="nav-text">1.2 数组形式（只作了解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、VLOOKUP-函数"><span class="nav-text">二、VLOOKUP 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、HLOOKUP-函数"><span class="nav-text">三、HLOOKUP 函数</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">vungjoe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/vungjoe" title="GitHub → https://github.com/vungjoe" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:vungjoe.xyz@gmail.com" title="E-Mail → mailto:vungjoe.xyz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">vungjoe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

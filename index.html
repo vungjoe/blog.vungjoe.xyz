@@ -184,6 +184,144 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/查找与引用函数之LOOKUP、VLOOKUP、HLOOKUP函数.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/查找与引用函数之LOOKUP、VLOOKUP、HLOOKUP函数.html" class="post-title-link" itemprop="url">查找与引用函数之LOOKUP、VLOOKUP、HLOOKUP函数</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-21 23:46:59" itemprop="dateCreated datePublished" datetime="2020-04-21T23:46:59+08:00">2020-04-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析/Excel/" itemprop="url" rel="index">
+                    <span itemprop="name">Excel</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>文末有福利哦！！！</p>
+<hr>
+<h2 id="一、LOOKUP-函数的两种语法形式"><a href="#一、LOOKUP-函数的两种语法形式" class="headerlink" title="一、LOOKUP 函数的两种语法形式"></a>一、LOOKUP 函数的两种语法形式</h2><h3 id="1-1-向量形式"><a href="#1-1-向量形式" class="headerlink" title="1.1 向量形式"></a>1.1 向量形式</h3><p>用法：</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=LOOKUP(lookup_value,lookup_vector,[result_vector])</span><br></pre></td></tr></table></figure>
+<p>向量形式的 LOOKUP 函数的优势就在于 lookup_vector 不需要位于第一列就能查找（类似逆向查询），这一点和 VLOOKUP 函数不同。说明：</p>
+<ul>
+<li>lookup_value：为函数在第一个向量 lookup_vector 中所要查找的数值。Lookup_value 可以为数字、文本、逻辑值或包含数值的名称或引用。</li>
+<li>lookup_vector：为只包含一行或一列的区域。Lookup_vector 的数值可以为文本、数字或逻辑值。<ul>
+<li>lookup_vector 必须按升序排列：…、-2、-1、0、1、2、…、A-Z、FALSE、TRUE。否则 lookup 函数无法返回正确的结果</li>
+<li>文本不区分大小写</li>
+</ul>
+</li>
+<li>result_vector：只包含一行或一列的区域，其大小必须与 lookup_vector 相同。</li>
+<li>如果 lookup 找不到 lookup_value，则查找 lookup_vector 中小于或等于 lookup_value 的最大数值</li>
+<li>如果 lookup_value 小于 lookup_vector 中的最小值，函数将返回错误值 #N/A</li>
+</ul>
+<blockquote>
+<p>利用返回 #N/A 的这个特性，我们可以利用 <code>=LOOKUP(1,0/(条件),引用区域)</code> 这样一个通用公式来作查找引用</p>
+<blockquote>
+<p>这是因为：条件——产生的是逻辑值 True、False 数组，0/True=0，0/Fasle=#DIV0!。即 LOOKUP 的第二个参数便是由 0、#DIV0! 组成的数组（都比1小），所以这个公式能返回最后一个出现 0 的位置（错误最小）——也就是说最后一个 0/True，即满足条件的地方。如果没有满足条件的记录则返回 #N/A。</p>
+</blockquote>
+</blockquote>
+<h3 id="1-2-数组形式（只作了解）"><a href="#1-2-数组形式（只作了解）" class="headerlink" title="1.2 数组形式（只作了解）"></a>1.2 数组形式（只作了解）</h3><p>对于 LOOKUP 函数的 数组形式：强烈建议使用 VLOOKUP 或 HLOOKUP，不要使用数组形式。</p>
+<p>提供数组形式是为了与其他电子表格程序兼容，这种形式的功能有限。</p>
+<p>用法：</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=LOOKUP(lookup_value,array)</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li>如果 lookup_value 小于第一行或第一列（取决于数组的维数）的最小值，函数返回错误值 #N/A</li>
+<li>LOOKUP 函数的数组形式与函数 HLOOKUP 以及 VLOOKUP 函数非常相似。不同之处在于 HLOOKUP 函数在第一行找，VLOOKUP 函数在第一列找，而 LOOKUP 函数按照数组的维数查找。</li>
+</ul>
+<h2 id="二、VLOOKUP-函数"><a href="#二、VLOOKUP-函数" class="headerlink" title="二、VLOOKUP 函数"></a>二、VLOOKUP 函数</h2><p>用法：</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=VLOOKUP(lookup_value,table_array,col_index_num,[range_lookup])</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li>lookup_value 为需要在 table_array 第一列中查找的值</li>
+<li>table_array 为需要在其中查找数据的数据表<ul>
+<li>该参数的第一列必须包含要查找的内容，其他列包含需要返回的内容，返回内容的列序号由第三个参数 col_index_num 指定</li>
+<li>对区域引用时，可以引用整列，excel 会自动判断使用区域。</li>
+</ul>
+</li>
+<li>col_index_num 为 table_array 中待返回的匹配值的列序号<ul>
+<li>如为1，则返回 table_array 中第一列的值；如为2，则返回 table_array 中第二列的值；依次类推</li>
+<li>如果 col_index_num 小于1，返回错误值 #VALUE!；</li>
+<li>如果 col_index_num 大于 table_array 的列数，返回错误值 #REF!；</li>
+</ul>
+</li>
+<li>range_lookup 是一个逻辑值，表示 vlookup 返回时是精确匹配还是近似匹配：<ul>
+<li>如果为 0 或 false，将返回精确匹配值；<ul>
+<li>此时 table_array 无需排序。如果</li>
+</ul>
+</li>
+<li>如果其值为 true 或 其他任意非0值（包括留空），将返回近似匹配值；<ul>
+<li>当找不到精确匹配值时，将返回小于 lookup_value 的最大值</li>
+<li>近似匹配一般用于数值查询，此时 lookup_array 的第一列必须按升序排列，否则不能返回正确的结果</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、HLOOKUP-函数"><a href="#三、HLOOKUP-函数" class="headerlink" title="三、HLOOKUP 函数"></a>三、HLOOKUP 函数</h2><p>用法：</p>
+<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=hlookup(lookup_value,table_array,row_index_num,[range_lookup])</span><br></pre></td></tr></table></figure>
+<p>HLOOKUP 函数的用法和 VLOOKUP 函数类似，只不过变成的第一行，参考 VLOOKUP 用法即可。</p>
+<p>附件下载地址：<a href="https://pan.baidu.com/s/1tD2SvYqj3sk1a-mKqHy8yg" target="_blank" rel="noopener">https://pan.baidu.com/s/1tD2SvYqj3sk1a-mKqHy8yg</a> 提取码：rfps</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/冲压加工概述.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -944,97 +1082,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/Excel文件的四层防护.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="vungjoe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="VUNGJOE'S BLOG">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/Excel文件的四层防护.html" class="post-title-link" itemprop="url">Excel文件的四层防护</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-03 20:13:46" itemprop="dateCreated datePublished" datetime="2020-01-03T20:13:46+08:00">2020-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-21 00:14:26" itemprop="dateModified" datetime="2020-01-21T00:14:26+08:00">2020-01-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据分析/" itemprop="url" rel="index">
-                    <span itemprop="name">数据分析</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据分析/Excel/" itemprop="url" rel="index">
-                    <span itemprop="name">Excel</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、Excel文件的四层保护"><a href="#一、Excel文件的四层保护" class="headerlink" title="一、Excel文件的四层保护"></a>一、Excel文件的四层保护</h2><h3 id="1-1-需要密码才能打开工作簿"><a href="#1-1-需要密码才能打开工作簿" class="headerlink" title="1.1 需要密码才能打开工作簿"></a>1.1 需要密码才能打开工作簿</h3><p>在 信息 中设置密码保护工作簿</p>
-<p><img src="https://i.loli.net/2020/01/03/7cFiuOVHjmwYXPa.png" alt="Image4.png"></p>
-<h3 id="1-2-保护工作簿的结构不变（工作表不能随意删除增加）"><a href="#1-2-保护工作簿的结构不变（工作表不能随意删除增加）" class="headerlink" title="1.2 保护工作簿的结构不变（工作表不能随意删除增加）"></a>1.2 保护工作簿的结构不变（工作表不能随意删除增加）</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Excel文件的四层防护.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1105,7 +1152,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1118,7 +1165,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
