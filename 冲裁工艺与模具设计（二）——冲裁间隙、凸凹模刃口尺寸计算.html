@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://blog.vungjoe.xyz').hostname,
+    root: '/',
+    scheme: 'Muse',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="一、冲裁间隙的确定与选择冲裁模凸、凹模刃口部分尺寸之差称为冲裁间隙，用 $Z$ 表示，又称双面间隙（单面间隙用 $Z/2$ 表示）。 间隙是冲裁设计中一个很重要的工艺参数。冲裁间隙对冲裁件的质量、冲裁力和模具寿命等都有很大影响，在长期的研究中发现影响的规律各不相同。因此，并不存在一个绝对合理的间隙值，能同时满足冲裁件断面质量最佳、尺寸精度最高、寿命最长、冲裁力最小等各方面的要求。">
+<meta name="keywords" content="冲裁">
+<meta property="og:type" content="article">
+<meta property="og:title" content="冲裁工艺与模具设计（二）——冲裁间隙、凸凹模刃口尺寸计算">
+<meta property="og:url" content="https://blog.vungjoe.xyz/冲裁工艺与模具设计（二）——冲裁间隙、凸凹模刃口尺寸计算.html">
+<meta property="og:site_name" content="VUNGJOE&#39;S BLOG">
+<meta property="og:description" content="一、冲裁间隙的确定与选择冲裁模凸、凹模刃口部分尺寸之差称为冲裁间隙，用 $Z$ 表示，又称双面间隙（单面间隙用 $Z/2$ 表示）。 间隙是冲裁设计中一个很重要的工艺参数。冲裁间隙对冲裁件的质量、冲裁力和模具寿命等都有很大影响，在长期的研究中发现影响的规律各不相同。因此，并不存在一个绝对合理的间隙值，能同时满足冲裁件断面质量最佳、尺寸精度最高、寿命最长、冲裁力最小等各方面的要求。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/06/DC42hiAcaBNvZWb.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/06/JsukVoi4caN2FO8.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/06/xmAkjLZXCnFrP3G.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/06/hKbZ5CIDm9U34Ox.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/07/CuzsGqjBibx3fPK.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/07/iwOzSACy8UHZneq.png">
+<meta property="og:image" content="https://i.loli.net/2020/05/07/QYMoPXE61xuwOqN.png">
+<meta property="og:updated_time" content="2020-05-06T16:36:00.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="冲裁工艺与模具设计（二）——冲裁间隙、凸凹模刃口尺寸计算">
+<meta name="twitter:description" content="一、冲裁间隙的确定与选择冲裁模凸、凹模刃口部分尺寸之差称为冲裁间隙，用 $Z$ 表示，又称双面间隙（单面间隙用 $Z/2$ 表示）。 间隙是冲裁设计中一个很重要的工艺参数。冲裁间隙对冲裁件的质量、冲裁力和模具寿命等都有很大影响，在长期的研究中发现影响的规律各不相同。因此，并不存在一个绝对合理的间隙值，能同时满足冲裁件断面质量最佳、尺寸精度最高、寿命最长、冲裁力最小等各方面的要求。">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/06/DC42hiAcaBNvZWb.png">
+
+<link rel="canonical" href="https://blog.vungjoe.xyz/冲裁工艺与模具设计（二）——冲裁间隙、凸凹模刃口尺寸计算.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>冲裁工艺与模具设计（二）——冲裁间隙、凸凹模刃口尺寸计算 | VUNGJOE'S BLOG</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119042139-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-119042139-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">VUNGJOE'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.vungjoe.xyz/冲裁工艺与模具设计（二）——冲裁间隙、凸凹模刃口尺寸计算.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="vungjoe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="VUNGJOE'S BLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          冲裁工艺与模具设计（二）——冲裁间隙、凸凹模刃口尺寸计算
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-30 15:50:53" itemprop="dateCreated datePublished" datetime="2020-04-30T15:50:53+08:00">2020-04-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-07 00:36:00" itemprop="dateModified" datetime="2020-05-07T00:36:00+08:00">2020-05-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/冲压工艺/" itemprop="url" rel="index">
+                    <span itemprop="name">冲压工艺</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一、冲裁间隙的确定与选择"><a href="#一、冲裁间隙的确定与选择" class="headerlink" title="一、冲裁间隙的确定与选择"></a>一、冲裁间隙的确定与选择</h2><p>冲裁模凸、凹模刃口部分尺寸之差称为冲裁间隙，用 $Z$ 表示，又称双面间隙（单面间隙用 $Z/2$ 表示）。</p>
+<p>间隙是冲裁设计中一个很重要的工艺参数。冲裁间隙对冲裁件的质量、冲裁力和模具寿命等都有很大影响，在长期的研究中发现影响的规律各不相同。因此，并不存在一个绝对合理的间隙值，能同时满足冲裁件断面质量最佳、尺寸精度最高、寿命最长、冲裁力最小等各方面的要求。</p>
+<a id="more"></a>
+<p>在实际生产中，间隙的选用主要考虑冲裁件断面质量和模具寿命这两个主要因素，它与生产成本、产品质量密切相关。</p>
+<h3 id="1-1-冲裁间隙"><a href="#1-1-冲裁间隙" class="headerlink" title="1.1 冲裁间隙"></a>1.1 冲裁间隙</h3><p>冲裁间隙对冲裁件质量、模具寿命、卸料力等都有很大影响，但影响规律不同，不存在同时满足工件质量、模具寿命和冲裁力要求的间隙。在实际生产中，冲裁间隙的选择主要考虑冲裁断面的质量和模具寿命这两个主要方面，同时，考虑到模具制造中的偏差以及使用中的磨损，而选择一个合理的间隙值范围，只要在这个范围内就可加工出合格的冲裁件。</p>
+<p>这个范围的最小值称为最小合理间隙，用 $Z_{min}$ 表示；最大值称为最大合理间隙，用 $Z_{max}$ 表示。考虑到模具使用过程中的磨损会使间隙变大，因此，实际设计与制造模具时常采用最小合理间隙 $Z_{min}$。</p>
+<h3 id="1-2-合理冲裁间隙的确定"><a href="#1-2-合理冲裁间隙的确定" class="headerlink" title="1.2 合理冲裁间隙的确定"></a>1.2 合理冲裁间隙的确定</h3><p>目前，确定合理间隙值的方法有理论确定法、经验确定法和查表法 3 种。</p>
+<p>（1）<strong>理论确定法/公式法</strong></p>
+<p>理论确定法又称之为公式法，此法主要是保证上、下微裂纹重合，获得良好的冲裁断面。图 2-6 所示为冲裁过程中开始产生裂纹的瞬时状态，根据途中集合关系可求得合理间隙 $Z$ 为</p>
+<script type="math/tex; mode=display">Z = 2 \left (t-h_0 \right )\tan \beta = 2t\left(1-h_0/t\right)\tan\beta</script><p>式中：</p>
+<ul>
+<li>$t$——材料厚度</li>
+<li>$h_0$——产生裂纹时凸模挤入材料的深度</li>
+<li>$h_0/t$——产生裂纹时凸模挤入材料的相对深度</li>
+<li>$\beta$——剪切裂纹与垂直线之间的夹角</li>
+</ul>
+<p>图 2-6 理论冲裁间隙计算图</p>
+<p><img src="https://i.loli.net/2020/05/06/DC42hiAcaBNvZWb.png" alt="image.png"></p>
+<p>由上面的公式可以看出，合理的间隙值与材料的厚度、凸模挤入材料的相对深度 $h_0/t$、裂纹夹角 $\beta$ 有关，而 $h_0/t$ 不仅与材料塑性有关，而且还受材料厚度的综合影响。$h_0/t$ 和 $\beta$ 值见下表 2-2。</p>
+<p>表 2-2 部分材料的 $h_0/t$ 和 $\beta$ 值</p>
+<p><img src="https://i.loli.net/2020/05/06/JsukVoi4caN2FO8.png" alt="image.png"></p>
+<p>总之，材料厚度越大、塑性越低的硬脆材料，所需间隙值越大；反之，材料厚度越薄、塑性越好的材料，所需间隙值越小。</p>
+<p>由于公式法在生产中使用不方便，故目前使用最广泛的是经验确定法。</p>
+<p>（2）<strong>经验确定法</strong></p>
+<p>生产中，常用下述经验公式计算合理的冲裁间隙值：</p>
+<script type="math/tex; mode=display">Z = ct</script><p>式中：</p>
+<ul>
+<li>$c$——系数，与材料性能及厚度有关，当 $t ＜ 3mm$ 时，$c=6%~12%$；当 $t＞3mm$ 时，$c=15%~25%$。</li>
+</ul>
+<p>当材料软时，取小值；当材料硬时，取大值。</p>
+<p>（3）<strong>查表法</strong></p>
+<p>表 2-3 和表 2-4 所提供的经验数据为落料、冲孔模具的初始冲裁间隙，可用于一般条件下冲裁。</p>
+<p>表中的最小初始间隙 $Z_{min}$ 为最小合理间隙，而初始间隙的最大值 $Z_{max}$ 是考虑到凸模、凹模的制造误差，在 $Z_{min}$ 的基础上增加的一个值。在使用过程中，由于模具工作部分的不断磨损，间隙将会有所增加，因而使间隙的最大值可能超过表中所列的数值。</p>
+<p>表 2-3 较小间隙的冲裁模具初始双面间隙</p>
+<p><img src="https://i.loli.net/2020/05/06/xmAkjLZXCnFrP3G.png" alt="image.png"></p>
+<p>表2-4 较大间隙的冲裁模具初始双面间隙</p>
+<p><img src="https://i.loli.net/2020/05/06/hKbZ5CIDm9U34Ox.png" alt="image.png"></p>
+<h3 id="1-3-合理冲裁间隙的选取原则"><a href="#1-3-合理冲裁间隙的选取原则" class="headerlink" title="1.3 合理冲裁间隙的选取原则"></a>1.3 合理冲裁间隙的选取原则</h3><p>生产实践证明，冲裁间隙取小值时，冲裁件的断面质量较好，但间隙过小会增大冲裁力和退料力，降低模具使用寿命。因此，在选择冲裁间隙时，应综合考虑各方面因素。</p>
+<p>（1）当冲裁件断面质量要求不高时，在合理的间隙范围内，应尽量取较大的间隙，从而有利于延长模具寿命，降低冲裁力、推件力、卸料力。</p>
+<p>（2）当冲裁件质量要求高时，在合理间隙范围内，应尽量取小值，这样尽管模具寿命有所降低，但保证了零件的冲裁质量。在设计冲模时，一般取 $Z_{min}$ 作为初始间隙值，主要是考虑模具工作一段时间后，要进行刃磨。修模后会使间隙增大，使 $Z_{min}$ 向 $Z_{max}$ 过渡。所以，为了使模具能在较长时间内冲制出合格的零件、提高模具利用率、降低生产成本，一般在模具设计时取 $Z_{min}$ 作为初始间隙。</p>
+<h2 id="二、凸、凹模刃口尺寸计算"><a href="#二、凸、凹模刃口尺寸计算" class="headerlink" title="二、凸、凹模刃口尺寸计算"></a>二、凸、凹模刃口尺寸计算</h2><p>模具刃口尺寸及公差是影响冲裁件尺寸精度的主要因素，模具的合理间隙值也是靠凸、凹模刃口尺寸及其公差来保证的。因此，正确确定凸、凹模刃口尺寸和公差，是冲裁模设计中的一项关键工作。</p>
+<h3 id="2-1-计算原则"><a href="#2-1-计算原则" class="headerlink" title="2.1 计算原则"></a>2.1 计算原则</h3><p>凸、凹模间隙的存在使冲裁件断面都带有锥度，所以冲裁件的尺寸测量和使用都是以光亮带的尺寸为基准。落料件的光亮带是因为凹模刃口挤切材料产生的，冲孔件的光亮带是由于凸模刃口挤切材料产生的。因此，设计凸、凹模刃口尺寸应区别落料和冲孔，并遵循以下原则：</p>
+<p>（1）<strong>确定基准模刃口尺寸</strong></p>
+<p>设计落料模先确定凹模刃口尺寸，以凹模为基准，间隙取在凸模上，冲裁间隙通过减小凸模尺寸获得。</p>
+<p>设计冲孔模先确定凸模刃口尺寸，以凸模为基准，间隙取在凹模上，冲裁间隙通过增大凹模尺寸获得。</p>
+<p>（2）<strong>遵循冲模在使用过程中的磨损规律</strong></p>
+<p>冲裁过程中，凸、凹模与冲裁零件或废料发生摩擦，凸模轮廓越磨损越小，凹模轮廓越磨损越大，凸、凹模间隙越来越大。设计落料模时，凹模基本尺寸应取接近或等于工件的最小尺寸；设计冲孔模时，凸模基本尺寸取接近或等于工件孔的最大极限尺寸。不管冲孔还是落料，冲裁间隙一般选取最小合理间隙值 Zmin。模具磨损预留量与工件制造精度有关，用 xΔ 表示，其中 Δ 为工件的公差值，x 为磨损系数，其值在 0.5~1 之间，根据工件制造精度有以下选取原则。</p>
+<ul>
+<li>工件精度在 IT10 以上，x =1</li>
+<li>工件精度在 IT11~IT13，x = 0.75</li>
+<li>工件精度在 IT14，x = 0.5</li>
+</ul>
+<p>（3）<strong>考虑工件精度与模具精度的关系</strong></p>
+<p>选择模具刃口制造公差时，要考虑工件精度与模具精度的关系，既要保证工件的精度要求，又要保证有合理的间隙值。</p>
+<ul>
+<li>一般冲模精度较工件精度高 2~4 级。</li>
+<li>对于形状简单的圆形、方形刃口，其制造偏差值可按 IT6~IT7 级来选取</li>
+<li>对于形状复杂的刃口，制造偏差可按工件相应部位公差值的 1/4 来选取</li>
+<li>对于刃口尺寸磨损后无变化的，制造偏差值可取工件相应部位公差值的 1/8 并冠以 $\pm$</li>
+</ul>
+<p>（4）<strong>公差标注遵循“入体”原则</strong></p>
+<p>工件尺寸公差与冲模刃口尺寸的制造偏差原则上都应按“入体”原则标注为单向公差，所谓“入体”原则是指标注工件尺寸公差时应向材料实体方向单向标注。但对于磨损后无变化的尺寸，一般标注为双向偏差。</p>
+<p>（5）<strong>凸、凹模刃口尺寸的计算要考虑模具制造的特点</strong></p>
+<h3 id="2-2-凸、凹模刃口尺寸计算"><a href="#2-2-凸、凹模刃口尺寸计算" class="headerlink" title="2.2 凸、凹模刃口尺寸计算"></a>2.2 凸、凹模刃口尺寸计算</h3><p>由于冲模加工方法不同，刃口尺寸的计算方法也不同，基本上可分为两类。</p>
+<h4 id="2-2-1-按凸模与凹模图样分别加工法"><a href="#2-2-1-按凸模与凹模图样分别加工法" class="headerlink" title="2.2.1 按凸模与凹模图样分别加工法"></a>2.2.1 按凸模与凹模图样分别加工法</h4><p>此方法主要适用于圆形或简单规则形状的工件，因为冲裁此类工件的凸、凹模制造相对简单，精度容易保证，所以采用分别加工。设计时，需在图纸上分别标注凸模和凹模刃口尺寸及制造公差。</p>
+<p>（1）冲孔。设冲裁件孔的直径为 $d_0^{+\Delta}$，根据刃口尺寸计算原则：</p>
+<ul>
+<li>凸模 $ d_p = \left(1 + x\Delta\right)_{-\delta_p}^0 $</li>
+<li>凹模 $ d_d = \left(d + x\Delta + Z_{min}\right)_{d_0}^{+δ} $</li>
+</ul>
+<p>（2）落料。设冲裁件的落料尺寸为 $D_{-\Delta}^0$，根据刃口尺寸计算原则：</p>
+<ul>
+<li>凹模 $ D_d = \left(D - x\Delta\right)_{d_0}^{+δ} $</li>
+<li>凸模 $ D_p = \left(D - x\Delta - Z_{min}\right)_{-δ_p}^0 $</li>
+</ul>
+<p>（3）中心距。中心距属于磨损后基本不变的尺寸。在同一工步中，在工件上冲出孔距，其凹模型孔中心距可按下式确定。</p>
+<ul>
+<li>$ L_d = L + \frac{1}{8}\Delta$</li>
+</ul>
+<p>上面五个公式中：</p>
+<ul>
+<li>$D$、$d$——落料、冲孔工件基本尺寸</li>
+<li>$D_p$、$D_d$——落料凸、凹模刃口尺寸</li>
+<li>$d_p$、$d_d$——冲孔凸、凹模刃口尺寸</li>
+<li>$L_d$、$L$——工件孔中心距和凹模孔中心距的公称尺寸</li>
+<li>$\Delta$——工件公差</li>
+<li>$\delta_p$、$\delta_d$——凸、凹模制造公差，凸模公差取下偏差，凹模公差取上偏差，一般按零件公差的 1/3~1/4 来选取。对于形状简单的冲裁件（如圆形件、方形件等），由于制造简单，精度容易保证，制造公差可按 IT8~IT6 级选取，也可查表 2-5。</li>
+<li>$x$——磨损系数，其值应该在0.5~1之间选取，与冲裁件精度有关，可直接按冲裁件的公差等级选取或查表2-6.</li>
+<li>$Z_{min}——最小冲裁间隙</li>
+</ul>
+<p>表2-5 规则形状冲裁凸、凹模制造极限偏差</p>
+<p><img src="https://i.loli.net/2020/05/07/CuzsGqjBibx3fPK.png" alt="image.png"></p>
+<p>表 2-6 磨损系数</p>
+<p><img src="https://i.loli.net/2020/05/07/iwOzSACy8UHZneq.png" alt="image.png"></p>
+<p>这种计算方法适合于圆形和形状规则的冲裁件，设计时应分别在凸、凹模图上标注刃口尺寸及制造公差，为保证冲裁间隙在合理范围内，应确保下面的公式成立：</p>
+<script type="math/tex; mode=display">\left | \delta_p \right | + \left | \delta_d \right | ≤ Z_{max} - Z_{min}</script><p>如果上式不成立，则应提高模具制造精度，以减小 $\delta_d$ 和 $\delta_p$。所以当模具形状复杂时，不宜采用这种方法。</p>
+<h4 id="2-2-2-凸模与凹模配合加工法"><a href="#2-2-2-凸模与凹模配合加工法" class="headerlink" title="2.2.2 凸模与凹模配合加工法"></a>2.2.2 凸模与凹模配合加工法</h4><p>采用凸、凹模分别加工法时，为了保证凸、凹模间一定的间隙值，必须严格限制冲模制造公差，因此，造成冲模制造困难。对于冲制薄材料（因 $Z_{max} 与 $Z_{min} 的差值很小）的冲模、复杂形状工件的冲模、单件生产的冲模，常常采用凸模与凹模配合加工的方法。</p>
+<p>凸模与凹模配合加工法就是先按设计尺寸造出一个基准件（凸模或凹模），然后根据基准件的实际尺寸再按最小合理间隙配制另一边。这种加工方法的特点是模具的间隙由配制保证，工艺比较简单，不必校核 $ \left | \delta_p \right | + \left | \delta_d \right | ≤ Z_{max} - Z_{min} $ 的条件，并且还可放大基准件的制造公差，使制造容易。设计时，基准件的刃口尺寸及制造公差应详细标注，而配做件上只标注公称尺寸，不注公差，只在图纸上注明：“凸（凹）模刃口按凹（凸）模实际刃口尺寸配制，保证最小双面合理间隙值 $Z_{min}$”即可。目前，一般工厂大多采用此方法加工。</p>
+<p>对于形状复杂的冲裁件，各部分的尺寸性质不同，凸模、凹模的磨损情况也不同，因此基准件的刃口尺寸需按不同的方法进行计算。</p>
+<p>图 2-8（a）所示为落料件，计算时应以凹模为基准件，但凹模的磨损情况分为 3 类：第 1 类是凹模磨损后增大的尺寸（图中的 A 类尺寸）；第 2 类是凹模磨损后减小的尺寸（图中的 B 类尺寸）；第 3 类是凹模磨损后保持不变的尺寸（图中的 C 类尺寸）。</p>
+<p>图 2-8（b）所示为冲孔件，应以凸模为基准件，可根据凸模的磨损情况，按图示方式将尺寸分为 A、B、C 三类。当凸模磨损后，其尺寸的变化也符合 A 类尺寸增大、B 类尺寸减小、C 类尺寸不变的规律。这样，对于形状复杂的落料件和冲孔件，其基准件的刃口尺寸均可按下面的公式进行计算。</p>
+<ul>
+<li>A 类尺寸：$ A = \left( A_{max} - x\Delta \right)_0^{+\delta} $</li>
+<li>B 类尺寸：$ B = \left( B_{min} + x\Delta \right )_{-\delta}^0 $</li>
+<li>C 类尺寸：$ C = C ± δ/2 $</li>
+</ul>
+<p>其中：</p>
+<ul>
+<li>$A$、$B$、$C$——基准件的基本尺寸</li>
+<li>$A_{max}$——冲裁件 A 类尺寸最大极限值</li>
+<li>$B_{min}$——冲裁件 B 类尺寸最小极限值</li>
+<li>$\delta$——模具制造公差</li>
+</ul>
+<p>图 2-8 落料、冲孔尺寸分类</p>
+<p><img src="https://i.loli.net/2020/05/07/QYMoPXE61xuwOqN.png" alt="image.png"></p>
+<h4 id="2-2-3-制造法选用原则"><a href="#2-2-3-制造法选用原则" class="headerlink" title="2.2.3 制造法选用原则"></a>2.2.3 制造法选用原则</h4><p>（1）当冲裁件为复杂形状（尺寸数多）时，用配合加工法制造模具刃口</p>
+<p>（2）当冲裁件为简单形状（尺寸数少）时，根据下列判别式选择刃口制造方法。</p>
+<ul>
+<li>当 $ \delta_p + \delta_d ＞ Z_{max} - Z_{min} $ 时，用配合加工法制造模具刃口</li>
+<li>当 $ \delta_p + \delta_d ≤ Z_{max} - Z_{min} $ 时，用分别加工法制造模具刃口</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/冲裁/" rel="tag"># 冲裁</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/冲裁工艺与模具设计（一）——冲裁变形分析.html" rel="prev" title="冲裁工艺与模具设计（一）——冲裁变形分析">
+      <i class="fa fa-chevron-left"></i> 冲裁工艺与模具设计（一）——冲裁变形分析
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、冲裁间隙的确定与选择"><span class="nav-text">一、冲裁间隙的确定与选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-冲裁间隙"><span class="nav-text">1.1 冲裁间隙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-合理冲裁间隙的确定"><span class="nav-text">1.2 合理冲裁间隙的确定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-合理冲裁间隙的选取原则"><span class="nav-text">1.3 合理冲裁间隙的选取原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、凸、凹模刃口尺寸计算"><span class="nav-text">二、凸、凹模刃口尺寸计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-计算原则"><span class="nav-text">2.1 计算原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-凸、凹模刃口尺寸计算"><span class="nav-text">2.2 凸、凹模刃口尺寸计算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-按凸模与凹模图样分别加工法"><span class="nav-text">2.2.1 按凸模与凹模图样分别加工法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-凸模与凹模配合加工法"><span class="nav-text">2.2.2 凸模与凹模配合加工法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-制造法选用原则"><span class="nav-text">2.2.3 制造法选用原则</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">vungjoe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/vungjoe" title="GitHub → https://github.com/vungjoe" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:vungjoe.xyz@gmail.com" title="E-Mail → mailto:vungjoe.xyz@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">vungjoe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+  
+
+</body>
+</html>
